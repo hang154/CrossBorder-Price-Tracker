@@ -69,7 +69,7 @@
   }
  },
  "resume_policy": {
-  "ko": "새 상세/검색은 탐침(HTTP 200 + product-detail-content 확인) 통과 후에만 재개. 동일 대기열로 python /tmp/qwen_amulet_expand.py 실행이면 후보·선정·차단 기록이 재사용된다.",
+  "ko": "새 상세/검색은 탐침(HTTP 200 + product-detail-content 확인) 통과 후에만 재개. 동일 대기열로 python /tmp/qwen_amulet_expand.py (사본: reports/coupang-edge-block-20261022/resume-expand-run.py; 필요시 동일 경로에 복사 후 실행) 실행이면 후보·선정·차단 기록이 재사용된다.",
   "unsafe_ko": "제3자 IP 기록을 Coupang 실패로混合하거나, 아카이브 스냅샷을 현재 가격/재고로 취급하지 않는다."
  },
  "new_details_collected_this_attempt": 0,
