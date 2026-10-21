@@ -39,3 +39,18 @@ URL·바이트수·SHA-256 증빙을 남깁니다.
 근거 예시(2026-10-21): `reports/alibaba-captcha-breakout-20261021/`에 차단 로그,
 해소 경과, 3개 상세 스냅샷, 실행 검증 파일을 보관했습니다. 당시 재관찰은 블록이
 자연 해소되어 ①단계 직접 관찰로 완료됐고, 슬라이더·미러 사다리는 발동하지 않았습니다.
+
+## 쿠팡 전면 차단(2026-10-22): 사다리가 없는 유형의 차단
+
+쿠팡은 슬라이더가 아니라 Akamai 엣지에서 IP 대역 자체를 403("Access Denied")로
+거부했다. `www`·`m`·`/robots.txt`가 모두 403이고, 두 로컬 출구 IP(유선·무선),
+완전 브라우저 헤더, `_abck/bm_*` 센서 쿠키 갱신, r.jina.ai·allorigins·codetabs·
+corsproxy·Google 번역·microlink·Bing 캐시·Wayback(save-now 포함)·archive.today가
+전부 실패했다. Coupang 상세 본문은 승인된 same-origin XHR로만 채워지므로, 알리
+사다리 같은 브라우저/미러 우회가 존재하지 않는다. 근거 헤더와 에스컬레이션 목록은
+`reports/coupang-edge-block-20261022/`에 보존했다.
+
+재개 규칙: 탐침(HTTP 200 + `.product-detail-content` 확인)을 통과한 러닝에서만
+수집을 재개하며, 동일 대기열(`python /tmp/qwen_amulet_expand.py` 방식)로 재실행해
+searched/selected/blocked 기록을 재사용한다. 모바일 테더링 등 승인된 신규 출구가
+가장 빠른 열림 경로다. 아카이브 스냅샷을 현재 가격·재고로 취급하지 않는다.

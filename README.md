@@ -303,6 +303,9 @@ Alibaba.com 상세 페이지가 슬라이드 검증으로 차단된 상황의 �
 [ALIBABA_ACCESS.md](ALIBABA_ACCESS.md)에 절차와 근거 예시(`reports/alibaba-captcha-breakout-20261021/`)로
 보존했다. OpenCLI의 `alibaba detail` 사다리(직접 로드 → 슬라이더 해체 → 텍스트 미러)를
 쓰고, 미러 관측은 `text_proxy`로 직접 관찰과 구분해 기록한다.
+
+2026-10-22에는 쿠팡이 같은 문서의 절차로 회복 불가능한 엣지 IP 403 차단을 반환했다.
+로그는 `reports/coupang-edge-block-20261022/`에 있고, 새 수집은 탐침 통과 후 재개한다.
 ```
 
 특히 `test_sourcing_agent.py`, `test_sourcing_pipeline.py`, `test_sourcing_handoff.py`,

@@ -1,0 +1,33 @@
+== 2026-10-22T01:03:08+09:00 coupang edge block evidence ==
+HTTP/2 403 
+server: AkamaiGHost
+mime-version: 1.0
+content-type: text/html
+content-length: 395
+expires: Wed, 21 Oct 2026 16:03:08 GMT
+x-reference-error: 18.4e9fbcb.1792598588.c054fe2
+date: Wed, 21 Oct 2026 16:03:08 GMT
+strict-transport-security: max-age=31536000
+
+
+HTTP/2 403 
+server: AkamaiGHost
+mime-version: 1.0
+content-type: text/html
+content-length: 395
+expires: Wed, 21 Oct 2026 16:03:08 GMT
+x-reference-error: 18.4eafbcb.1792598588.a1a66e40
+date: Wed, 21 Oct 2026 16:03:08 GMT
+strict-transport-security: max-age=31536000
+
+
+HTTP/2 403 
+server: AkamaiGHost
+mime-version: 1.0
+content-type: text/html
+content-length: 383
+expires: Wed, 21 Oct 2026 16:03:08 GMT
+x-reference-error: 18.dce9fbcb.1792598588.723d863e
+date: Wed, 21 Oct 2026 16:03:08 GMT
+strict-transport-security: max-age=31536000
+
