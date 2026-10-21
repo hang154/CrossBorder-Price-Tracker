@@ -11,3 +11,17 @@ def test_unknown_price_retained_as_product_but_not_price(price):
 @pytest.mark.parametrize('payload',[{'ok':False,'error':{'code':'auth_required'}},{'ok':True,'data':[]},{'ok':True,'data':[{'item_url':'https://evil.test/offer/123.html'}]}])
 def test_failure_not_marked_success(payload):
     with pytest.raises(ValueError):normalize_rows('1688',payload)
+
+def test_bridge_check_does_not_confuse_doctor_exit_zero_with_connected(monkeypatch):
+    from types import SimpleNamespace
+    from app.sourcing import browser_ready
+    monkeypatch.delenv('OPENCLI_CDP_ENDPOINT',raising=False)
+    monkeypatch.setattr('app.sourcing.subprocess.run',lambda *a,**kw:SimpleNamespace(returncode=0,stdout='{"ok":true,"data":{"extensionConnected":false}}'))
+    assert browser_ready(['opencli'])['ready'] is False
+
+def test_bridge_connection_is_detected(monkeypatch):
+    from types import SimpleNamespace
+    from app.sourcing import browser_ready
+    monkeypatch.delenv('OPENCLI_CDP_ENDPOINT',raising=False)
+    monkeypatch.setattr('app.sourcing.subprocess.run',lambda *a,**kw:SimpleNamespace(returncode=0,stdout='{"ok":true,"data":{"extensionConnected":true}}'))
+    assert browser_ready(['opencli'])['ready'] is True

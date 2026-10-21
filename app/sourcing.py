@@ -4,6 +4,7 @@ import datetime
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 from app.models.product import detect_platform,extract_product_id
@@ -35,6 +36,15 @@ def commands(args):
     return [(site,[*prefix,site,'search',query,'--limit',str(args.limit),'-f','json'])
             for site,query in [('1688',args.query_zh),('alibaba',args.query_en)]]
 
+def browser_ready(prefix):
+    if os.environ.get('OPENCLI_CDP_ENDPOINT'):
+        return {'ready':True,'method':'configured_cdp_not_yet_verified'}
+    r=subprocess.run([*prefix,'doctor'],capture_output=True,text=True,timeout=20,check=False)
+    try: data=json.loads(r.stdout).get('data',{})
+    except ValueError: data={}
+    return {'ready':r.returncode==0 and data.get('extensionConnected') is True,
+            'method':'browser_bridge','extension_connected':data.get('extensionConnected',False)}
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('action',choices=['plan','run']);p.add_argument('--query-zh',required=True);p.add_argument('--query-en',required=True)
@@ -44,9 +54,16 @@ def main():
     report={'created_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'action':a.action,'jobs':[],'model_api_calls':0,'supplier_messages_sent':0}
     failed=False
-    for site,argv in commands(a):
+    jobs=commands(a);connection={'ready':True,'method':'not_needed_for_plan'}
+    if a.action=='run':
+        try: connection=browser_ready(jobs[0][1][:-7])
+        except (OSError,subprocess.TimeoutExpired) as e: connection={'ready':False,'error':type(e).__name__}
+    report['browser_connection']=connection
+    for site,argv in jobs:
         job={'site':site,'argv':argv,'state':'prepared'}
-        if a.action=='run':
+        if a.action=='run' and not connection['ready']:
+            job.update(state='blocked_or_failed',error='Browser Bridge not connected; connect extension or configure existing CDP before retry');failed=True
+        elif a.action=='run':
             try:
                 r=subprocess.run(argv,capture_output=True,text=True,timeout=120,check=False)
                 job['exit_code']=r.returncode
