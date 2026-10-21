@@ -256,6 +256,41 @@ python -m app.coupang_reviews \
 추정일 수 있습니다. ×15는 사용자가 정한 가정이며 실제 거래량이나 판매자별 매출이
 아닙니다. 이 집계 경로는 OpenCLI와 코드로 동작하며 LLM 호출로 숫자를 생성하지 않습니다.
 
+### 키워드 검색 UI · Qwen 상위 10개 판매량 조사
+
+```bash
+python -m app.coupang_search_web \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/coupang-search --port 8879
+```
+
+`http://127.0.0.1:8879/`에서 사람이 키워드를 입력하면 로컬 Qwen3.8이
+`search_products → audit_top_products → finish_search` 도구를 실제 호출합니다.
+검색 노출 상위 10개의 상품·대표 가격이 먼저 표시되고, 1/3개월 참여자 ×15 및
+구매 옵션별 추정치가 수집되는 대로 나타납니다. 광고·개인화로 검색 순위가 달라질
+수 있고 동일 상품 ID는 한 번 조사합니다. 실제 주문 수와 구분해 표시합니다.
+
+채팅 요청이나 자동화에서는 같은 에이전트를 실행합니다.
+
+```bash
+python -m app.coupang_search_agent --keyword '여행용 손저울' \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/coupang-keyword-example
+```
+
+작업별 `job.json`, 원본 Qwen 응답, 검색 응답, 상품별 리뷰 근거와 HTML이 남습니다.
+모델이 도구를 호출하지 않으면 중단으로 기록하며 코드 실행을 Qwen 실행으로
+표시하지 않습니다. 집계·중복 제거·×15 계산은 코드가 수행합니다.
+
+UI 작업은 한 번에 한 개씩 실행하며 대기열과 서버 재시작 후 중단 상태를 보존합니다.
+CLI의 `--resume` 또는 UI의 재시도는 완료된 상품의 해시를 확인해 재사용하고 미완료
+상품만 다시 탐색합니다. 기간 수집은 끝났지만 별점/목록 총수가 불일치하는 결과는
+불확실성을 유지하고 보존하며, 새 관측이 필요하면 새 검색을 실행합니다. `--max-pages`(기본 100, 상품별)와 `--as-of`를 지원합니다.
+페이지 상한에 걸리거나 전체 별점/목록 수가 불일치하면 부분 집계로 표시합니다.
+고유 상품이 10개 미만이면 확보한 수량을 표시하며 나머지를 만들어 채우지 않습니다.
+`--resume` 시 기준일·검색어·연결 경로는 유지하고 페이지 상한만 늘릴 수 있습니다.
+작업 폴더는 로컬에 보존되며 Git에 포함하지 않습니다.
+
 ## License
 
 MIT

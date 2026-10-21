@@ -58,6 +58,35 @@ agent may request failed jobs only. Collection calls are bounded to three per
 product; do not repeatedly restart a failing site. Report blocked/partial results
 and retain their observations. A nonzero exit is not success even if partial HTML exists.
 
+## Coupang keyword search and sales UI
+
+When the user asks to search a keyword and see sales estimates, use the Qwen
+search agent (not the single-product deterministic audit):
+
+```bash
+python -m app.coupang_search_agent --keyword '<requested keyword>' \
+  --opencli-main <opencli-checkout>/dist/src/main.js \
+  --output-dir sourcing-runs/<fresh-keyword-run>
+```
+
+For a human-operated UI, run `python -m app.coupang_search_web` with the same
+`--opencli-main`, a persistent `--output-dir`, and `--port 8879`. Open
+`http://127.0.0.1:8879/`. The UI submits asynchronous FIFO jobs, displays progress,
+source search prices, 1/3-month estimates and purchased-option breakdowns.
+
+Qwen must actually invoke `search_products`, `audit_top_products`, then
+`finish_search`; native API responses and tool events are saved in each job.
+Code calculates counts/×15; do not fabricate model execution or missing results.
+Use `job.json` to report the observed count, completion/partial status, model calls
+and collection date. Search rank is observed order, not proven organic rank.
+`--max-pages` defaults to 100 per product; capped or rating-total mismatched results
+stay partial. `--resume` verifies completed evidence and retries unfinished audits
+without repeating successful browser collection. Date-complete audits with
+mismatched rating counters are retained as uncertain, not blindly recollected.
+UI offers retry when collection or model execution is unfinished; start a new
+search for a fresh observation of already covered dates.
+Do not silently change the keyword or fill fewer than ten real results with guesses.
+
 ## Coupang review-only audit
 
 For a Coupang product URL and recent-review counts, use the checkout's deterministic

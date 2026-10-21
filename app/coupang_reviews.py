@@ -115,11 +115,19 @@ class Browser:
     def __init__(self, prefix, session):
         self.prefix, self.session = prefix, session
 
-    def call(self, action, *args):
+    def call(self, action, *args, _retry=True):
         r=subprocess.run([*self.prefix,'browser',action,*map(str,args),'--session',self.session,'--window','foreground'],capture_output=True,text=True,timeout=90)
         try: payload=json.loads(r.stdout)
         except ValueError: raise ValueError('Invalid browser JSON; exit '+str(r.returncode))
         if r.returncode or payload.get('ok') is not True:
+            # Retry only when the bridge explicitly guarantees no input occurred.
+            # Select this session's single leased tab, never an unrelated tab.
+            message=str(payload.get('error',{}).get('message',''))
+            if _retry and action=='click' and 'input was not dispatched' in message:
+                tabs=self.call('tab','list')
+                if isinstance(tabs,list) and len(tabs)==1 and tabs[0].get('page'):
+                    self.call('tab','select',tabs[0]['page'])
+                    return self.call(action,*args,_retry=False)
             raise ValueError(str(payload.get('error',{})))
         return payload.get('data')
 
@@ -159,17 +167,17 @@ class Browser:
         return True
 
 
-def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created'):
+def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     with (out/'.audit.lock').open('a') as lock:
         try:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another audit owns this output directory')
-        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis)
+        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress)
 
 
-def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created'):
+def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None):
     parsed=urlsplit(url)
     match=re.fullmatch(r'/vp/products/(\d+)/?',parsed.path)
     if parsed.scheme!='https' or parsed.hostname not in ['www.coupang.com','coupang.com'] or not match or parsed.username is not None or parsed.password is not None:
@@ -217,6 +225,8 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
             raw=out/f'attempt-{attempt:03d}-page-{wanted:05d}.json';atomic_json(raw,s)
             state['pages']=[p for p in state['pages'] if p['page']!=wanted]+[{'page':wanted,'file':str(raw.resolve()),'sha256':hashlib.sha256(raw.read_bytes()).hexdigest()}]
             atomic_json(path,state)
+            if on_progress:
+                on_progress({'page':wanted,'records':len(records),'total':s['listed_review_count']})
             print(json.dumps({'page':wanted,'records':len(records),'total':s['listed_review_count']},ensure_ascii=False),flush=True)
             if wanted>=s['total_pages']:
                 stop='list_exhausted';break

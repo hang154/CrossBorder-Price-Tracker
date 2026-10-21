@@ -9,6 +9,11 @@ dependencies = ["httpx[socks]>=0.27.0", "openpyxl>=3.1,<4", "Pillow>=10"]
 sourcing-research = "app.sourcing_pipeline:main"
 sourcing-agent = "app.sourcing_agent:main"
 coupang-review-audit = "app.coupang_reviews:main"
+coupang-search-agent = "app.coupang_search_agent:main"
+coupang-search-ui = "app.coupang_search_web:main"
+
+[tool.setuptools.package-data]
+app = ["coupang_review_extract.js", "coupang_search.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

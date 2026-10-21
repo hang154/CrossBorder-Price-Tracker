@@ -143,3 +143,20 @@ def test_old_creation_page_does_not_skip_recent_edits_in_display_mode(tmp_path,m
     assert created['windows']['1']['rating_or_review_events']==0
     assert display['coverage']['pages']==2
     assert display['windows']['1']['rating_or_review_events']==2
+
+
+def test_undispatched_click_recovers_only_its_single_leased_tab(monkeypatch):
+    import json
+    import subprocess
+    from app import coupang_reviews as audit
+    calls=[]
+    def run(argv,**kwargs):
+        action=argv[1:3]
+        calls.append(action)
+        if len(calls)==1:
+            return subprocess.CompletedProcess(argv,1,json.dumps({'ok':False,'error':{'message':'Native input requires a visible browser page; input was not dispatched.'}}),'')
+        data=[{'page':'owned-tab'}] if action==['tab','list'] else {'clicked':True}
+        return subprocess.CompletedProcess(argv,0,json.dumps({'ok':True,'data':data}),'')
+    monkeypatch.setattr(audit.subprocess,'run',run)
+    assert audit.Browser([],'fixture').call('click','#next')=={'clicked':True}
+    assert calls==[['click','#next'],['tab','list'],['tab','select'],['click','#next']]
