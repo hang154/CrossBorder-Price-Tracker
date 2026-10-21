@@ -1,0 +1,12 @@
+{
+  "krw_per_currency": {},
+  "comparisons": [
+    {
+      "category": "oil-sprayer",
+      "domestic": {"platform":"naver", "product_id":"REPLACE_WITH_OBSERVED_ID", "units":2},
+      "overseas": {"platform":"alibaba", "product_id":"REPLACE_WITH_OBSERVED_ID", "units":1},
+      "match_evidence": "상품 사진·용량·사용 방식을 대조한 실제 관측으로 교체",
+      "limitations": "국내 1+1 사진 표시만으로 2개를 가정한 예시. 실제 옵션·구성 검증 필요"
+    }
+  ]
+}

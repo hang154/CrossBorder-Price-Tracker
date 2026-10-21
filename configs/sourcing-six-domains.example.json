@@ -1,0 +1,14 @@
+{
+  "limit": 8,
+  "timeout_seconds": 120,
+  "krw_per_currency": {},
+  "products": [
+    {"id":"film","query_ko":"무점착 안개 시트지 50 200","query_zh":"静电磨砂玻璃贴膜","query_en":"static cling frosted window privacy film","domestic_image_indices":[0]},
+    {"id":"oil-sprayer","query_ko":"오일스프레이 470ml","query_zh":"470ml 玻璃 喷油壶","query_en":"470ml glass oil spray bottle","domestic_image_indices":[0]},
+    {"id":"pet-hair","query_ko":"세척 반영구 돌돌이 롤러","query_zh":"可重复使用 宠物除毛滚筒","query_en":"washable reusable lint roller","domestic_image_indices":[0]},
+    {"id":"under-sink","query_ko":"싱크대 하부 슬라이딩 2단 정리 선반","query_zh":"厨房 水槽下 双层 抽拉 置物架","query_en":"2 tier sliding under sink organizer","domestic_image_indices":[0]},
+    {"id":"drain-catcher","query_ko":"실리콘 배수구 머리카락 거름망","query_zh":"硅胶 下水道 毛发 过滤网","query_en":"silicone drain hair catcher","domestic_image_indices":[0]},
+    {"id":"bag-sealer","query_ko":"미니 충전식 밀봉기","query_zh":"充电 迷你 封口机","query_en":"rechargeable mini bag heat sealer","domestic_image_indices":[0]}
+  ],
+  "comparisons": []
+}

@@ -1,0 +1,7 @@
+{
+  "limit": 3,
+  "timeout_seconds": 120,
+  "products": [
+    {"id":"oil-sprayer","query_ko":"오일스프레이 470ml","query_zh":"470ml 玻璃 喷油壶","query_en":"470ml glass oil spray bottle","domestic_image_indices":[0]}
+  ]
+}
