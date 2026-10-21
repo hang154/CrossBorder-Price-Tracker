@@ -9,3 +9,6 @@ data/
 dist/
 *.egg-info/
 .venv/
+
+# Local discovery evidence and session material
+/sourcing-runs/

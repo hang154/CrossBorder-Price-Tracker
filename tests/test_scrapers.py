@@ -107,7 +107,7 @@ class TestAli1688Scraper:
         return Ali1688Scraper()
 
     def test_parse_title(self, scraper):
-        html = '<title>优质商品 - 1688.com</title>'
+        html = '<title>优质商品 - 1688.com</title>\"price\":\"15.80\"'
         result = scraper.parse_price(html, "https://detail.1688.com/offer/789.html")
         assert result.title == "优质商品"
 

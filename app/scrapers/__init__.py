@@ -3,12 +3,14 @@ from .amazon import AmazonScraper
 from .aliexpress import AliExpressScraper
 from .shopee import ShopeeScraper
 from .ali1688 import Ali1688Scraper
+from .alibaba import AlibabaScraper
 
 SCRAPERS = {
     "amazon": AmazonScraper,
     "aliexpress": AliExpressScraper,
     "shopee": ShopeeScraper,
     "1688": Ali1688Scraper,
+    "alibaba": AlibabaScraper,
 }
 
 def get_scraper(platform: str) -> BaseScraper:

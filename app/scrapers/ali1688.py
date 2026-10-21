@@ -20,6 +20,8 @@ class Ali1688Scraper(BaseScraper):
 
     def parse_price(self, html: str, url: str) -> Optional[ScrapedProduct]:
         product_id = extract_product_id(url, "1688")
+        if not product_id or re.search(r"验证码|滑动验证|访问验证|请登录|login\.1688|captcha|slide to verify", html, re.I):
+            return None
         title = ""
         price = 0.0
 
@@ -42,6 +44,9 @@ class Ali1688Scraper(BaseScraper):
                     break
                 except ValueError:
                     continue
+
+        if not (0 < price < float("inf")):
+            return None
 
         return ScrapedProduct(
             url=url, platform="1688", product_id=product_id,

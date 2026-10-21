@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from typing import Optional
 import re
+from urllib.parse import urlsplit
 
 
 @dataclass
@@ -26,15 +27,19 @@ class ScrapedProduct:
 
 def detect_platform(url: str) -> str:
     """Detect platform from URL."""
-    url_lower = url.lower()
+    parsed = urlsplit(url)
+    if parsed.scheme not in {'https', 'http'}:
+        return 'unknown'
+    url_lower = (parsed.hostname or '').lower()
     patterns = {
         "amazon": r"amazon\.(com|co\.uk|de|co\.jp|fr|es|it|ca|com\.au)",
         "aliexpress": r"aliexpress\.com|ali\.express",
         "shopee": r"shopee\.(sg|com\.my|co\.th|vn|ph|co\.id|tw|com\.br)",
         "1688": r"1688\.com|detail\.1688\.com",
     }
+    patterns["alibaba"] = r"alibaba\.com"
     for platform, pattern in patterns.items():
-        if re.search(pattern, url_lower):
+        if re.fullmatch(r"(?:[a-z0-9-]+\.)*(?:" + pattern + r")", url_lower):
             return platform
     return "unknown"
 
@@ -47,6 +52,10 @@ def extract_product_id(url: str, platform: str) -> str:
         "shopee": r"\.(\d+)$|i\.\d+\.(\d+)",
         "1688": r"offer/(\d+)\.html",
     }
+    extractors["alibaba"] = r"/product-detail/[^/?#]+_(\d+)\.html"
+    if detect_platform(url) != platform:
+        return ""
+    url = urlsplit(url).path
     pattern = extractors.get(platform)
     if pattern:
         m = re.search(pattern, url)
