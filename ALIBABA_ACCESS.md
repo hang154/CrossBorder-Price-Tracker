@@ -42,15 +42,15 @@ URL·바이트수·SHA-256 증빙을 남깁니다.
 
 ## 쿠팡 전면 차단(2026-10-22): 사다리가 없는 유형의 차단
 
-쿠팡은 슬라이더가 아니라 Akamai 엣지에서 IP 대역 자체를 403("Access Denied")로
-거부했다. `www`·`m`·`/robots.txt`가 모두 403이고, 두 로컬 출구 IP(유선·무선),
-완전 브라우저 헤더, `_abck/bm_*` 센서 쿠키 갱신, r.jina.ai·allorigins·codetabs·
-corsproxy·Google 번역·microlink·Bing 캐시·Wayback(save-now 포함)·archive.today가
-전부 실패했다. Coupang 상세 본문은 승인된 same-origin XHR로만 채워지므로, 알리
-사다리 같은 브라우저/미러 우회가 존재하지 않는다. 근거 헤더와 에스컬레이션 목록은
-`reports/coupang-edge-block-20261022/`에 보존했다.
+쿠팡은 슬라이더가 아니라 Akamai 엣지에서 403("Access Denied")을 반환했다. 초기에는
+두 로컬 출구 IP(유선·무선)와 평범한 HTTP 클라이언트 전부에서 동일했으나, 약 30분 뒤
+브라우저(Chrome/Browser Bridge)는 홈·검색·상세가 모두 열린 반면 curl형 요청은 계속
+403이었다. 즉 쿠팡 차단은 IP 단독 판단이 아니라 클라이언트 지문과 결합된 결정이며,
+"어느 쪽이 열렸는지"를 계정 표면별로 개별 탐침해야 한다. 근거 헤더·전환 로그는
+`reports/coupang-edge-block-20261022/`에 보존했다(해제 LEDger 포함).
 
-재개 규칙: 탐침(HTTP 200 + `.product-detail-content` 확인)을 통과한 러닝에서만
-수집을 재개하며, 동일 대기열(`python /tmp/qwen_amulet_expand.py` 방식)로 재실행해
-searched/selected/blocked 기록을 재사용한다. 모바일 테더링 등 승인된 신규 출구가
-가장 빠른 열림 경로다. 아카이브 스냅샷을 현재 가격·재고로 취급하지 않는다.
+재개 규칙: 브라우저 세션과 HTTP 클라이언트를 각각 탐침(`.product-detail-content`
+또는 HTTP 200)하고 통과한 경로로만 재개한다. 동일 대기열 스크립트 재실행으로
+searched/selected/blocked 기록을 재사용한다. 미러 관측과 동일하게, 아카이브
+스냅샷을 현재 가격·재고로 취급하지 않는다.
+

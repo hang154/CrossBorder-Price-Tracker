@@ -1,6 +1,6 @@
 {
  "blocked_at_utc": "2026-10-21T16:03:59.493316+00:00",
- "state": "blocked_edge_ip_acl",
+ "state": "resolved_for_browser_clients",
  "surfaces": "www.coupang.com /vp/products, m.coupang.com/vm/products, /robots.txt — HTTP 403 AkamaiGHost \"Access Denied\" (참조번호 보존) from both local exits (유선 175.121.6.111, 무선 58.230.12.110)",
  "headers_evidence": "== 2026-10-22T01:03:08+09:00 coupang edge block evidence ==\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 395\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.4e9fbcb.1792598588.c054fe2\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 395\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.4eafbcb.1792598588.a1a66e40\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 383\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.dce9fbcb.1792598588.723d863e\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n",
  "qwen_actions": {
@@ -73,5 +73,13 @@
   "unsafe_ko": "제3자 IP 기록을 Coupang 실패로混合하거나, 아카이브 스냅샷을 현재 가격/재고로 취급하지 않는다."
  },
  "new_details_collected_this_attempt": 0,
- "salvage_note": "amulet-details-20261021 10건은 차단 전 수집된 complete 상세(상세 이미지·자산 SHA-256 포함). amulet-qwen-expanded-20261021과 coupang-qwen-details-20261022는 각각 10건·9건 모두 차단 실패 스캐폴더이며 새 본문은 0건이다. 세 검색어(부적·팔찌·재물운) 검색도 같은 엣지를 사용해 EMPTY_RESULT였다."
+ "salvage_note": "amulet-details-20261021 10건은 차단 전 수집된 complete 상세(상세 이미지·자산 SHA-256 포함). amulet-qwen-expanded-20261021과 coupang-qwen-details-20261022는 각각 10건·9건 모두 차단 실패 스캐폴더이며 새 본문은 0건이다. 세 검색어(부적·팔찌·재물운) 검색도 같은 엣지를 사용해 EMPTY_RESULT였다.",
+ "resolved_at_utc": "2026-10-21T16:56:42.931535+00:00",
+ "resolution_ko": "브라우저(Chrome/Browser Bridge)는 01:33경 홈·검색·상세 모두 통과. curl형 HTTP 클라이언트(유저에이전트만 흉내)(curl -A만 설정)은 계속 403이라, Akamai가 IP만 보는 것이 아니라 클라이언트 지문과 함께 판단한 것으로 정정한다. 대기열 9건은 동일 스크립트로 재실행해 9/9 complete 수집; 치환 3개 검색어는 해당 런의 inline search가 EMPTY_RESULT라 rank·가격·source SHA가 보존된 prior candidates로 선정되었다.",
+ "recovered": {
+  "run": "sourcing-runs/coupang-qwen-details-20261022",
+  "complete": 9,
+  "detail_images": 80,
+  "log": "coup-rerun-20261022.log"
+ }
 }
