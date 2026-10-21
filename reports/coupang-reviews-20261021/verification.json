@@ -1,0 +1,45 @@
+{
+  "tests": {
+    "passed": 70,
+    "failed": 0,
+    "new_coupang_tests": 14
+  },
+  "live_checks": {
+    "complete_lists": [
+      {
+        "product_id": "9299533568",
+        "records": 29
+      },
+      {
+        "product_id": "7366457362",
+        "records": 48
+      }
+    ],
+    "multi_option": {
+      "product_id": "7346791745",
+      "pages": 8,
+      "records": 80,
+      "three_month_range_covered": true,
+      "observed_options": 3
+    },
+    "group_pagination": {
+      "product_id": "80294222",
+      "pages": 12,
+      "records": 120,
+      "tested_transition": "10 -> 11 -> 12",
+      "full_period_complete": false,
+      "stop_reason": "page_limit",
+      "rating_total_mismatch": "10402 vs 10401; rating-only coverage unknown"
+    }
+  },
+  "llm_calls": 0,
+  "sales_multiplier": 15,
+  "person_identity": "masked signatures; approximate",
+  "default_date_basis": "createdAt",
+  "privacy": "Reviewer identities hashed inside browser; no names/emails in exported records",
+  "html_verified": {
+    "aggregate_rows": 3,
+    "multi_option_rows": 6,
+    "browser_dom_values_match_json": true
+  }
+}

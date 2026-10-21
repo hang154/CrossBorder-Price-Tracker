@@ -230,6 +230,32 @@ python skills/qwen-product-sourcing/scripts/run_sourcing.py \
 [manifest](reports/sourcing-comparison-20261021/manifest.json)에 원본 보고서 및 HTML
 해시를 기록했습니다. 실시간 가격이나 동일 SKU 확정 자료는 아닙니다.
 
+### 쿠팡 최근 별점·리뷰 참여자 집계
+
+```bash
+python -m app.coupang_reviews \
+  --url https://www.coupang.com/vp/products/9299533568 \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/coupang-review-example
+```
+
+최신순 리뷰 페이지를 자동 이동해 글/사진 리뷰와 별점만 남긴 기록을 함께 저장하고,
+최근 1개월·3개월의 중복 제거 관측·추정 참여자에 각각 15를 곱합니다. 한국 날짜 기준
+동일 일자의 1/3개월 전부터 오늘까지 양 끝 날짜를 포함하며, 기간을 결과에 표시합니다.
+`--as-of YYYY-MM-DD`, `--full-scan`, `--max-pages 100`, `--resume`을 지원합니다.
+결과는 `report.json`, `index.html` 및 개인정보를 해시 처리한 페이지별 근거 파일입니다.
+구매 옵션명·`itemId`·`vendorItemId`를 기록하고 옵션별 1개월·3개월 참여자와 ×15 추정치를
+별도로 계산합니다. 같은 옵션의 여러 판매자는 구분해 저장하며, 옵션 미확인 기록은 별도
+그룹으로 남깁니다. 옵션별 인원 합계와 전체 중복 제거 인원은 다를 수 있습니다.
+
+날짜는 기본적으로 원래 작성 시각(`createdAt`)을 사용하며 3개월 경계까지 탐색합니다.
+`--full-scan`은 전체 목록을 확인합니다. 화면 날짜 모드는 오래된 수정 리뷰 때문에 전체를 탐색합니다.
+화면 표시 시각 기준은 `--date-basis display`로 선택합니다. 리뷰 수정 때문에 두 시각이
+다를 수 있습니다. 별점 총수와 리뷰 목록 총수를 대조하고 페이지 누락·제한은 부분
+집계로 표시합니다. 작성자의 마스킹 식별값은 정확한 고유 고객 ID가 아니므로 인원은
+추정일 수 있습니다. ×15는 사용자가 정한 가정이며 실제 거래량이나 판매자별 매출이
+아닙니다. 이 집계 경로는 OpenCLI와 코드로 동작하며 LLM 호출로 숫자를 생성하지 않습니다.
+
 ## License
 
 MIT

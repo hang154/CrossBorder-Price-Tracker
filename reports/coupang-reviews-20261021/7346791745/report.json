@@ -1,0 +1,494 @@
+{
+  "as_of_kst": "2026-10-21",
+  "window_definition": "rolling calendar months; both boundary dates inclusive",
+  "date_basis": "created",
+  "date_basis_note": "display uses reviewAt; created uses createdAt; edits may move the display date",
+  "deduplicated_records": 80,
+  "missing_dates": 0,
+  "coverage": {
+    "stop_reason": "three_month_boundary",
+    "pages": 8,
+    "date_range_complete": true,
+    "rating_only_coverage": "count_reconciled",
+    "site_rating_count": 281,
+    "listed_review_count": 281,
+    "list_count_reconciled": false
+  },
+  "windows": {
+    "1": {
+      "months": 1,
+      "start_inclusive": "2026-09-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 21,
+      "rating_only_events": 18,
+      "review_events": 3,
+      "participants_observed_or_inferred": 19,
+      "review_participants": 3,
+      "rating_only_participants": 17,
+      "both_kinds_participants": 1,
+      "identity_ambiguous_events": 21,
+      "participant_count_is_exact": false,
+      "participants_exact_if_identifiable": null,
+      "estimated_sales": 285,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    },
+    "3": {
+      "months": 3,
+      "start_inclusive": "2026-07-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 70,
+      "rating_only_events": 62,
+      "review_events": 8,
+      "participants_observed_or_inferred": 64,
+      "review_participants": 8,
+      "rating_only_participants": 57,
+      "both_kinds_participants": 1,
+      "identity_ambiguous_events": 70,
+      "participant_count_is_exact": false,
+      "participants_exact_if_identifiable": null,
+      "estimated_sales": 960,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    }
+  },
+  "sales_model": "user_assumption: observed/inferred unique participants × 15",
+  "limitations": [
+    "×15 is a user-specified heuristic, not observed transactions or a calibrated sales model.",
+    "Masked email/name signatures may merge different people; missing identities use one review as one inferred participant.",
+    "Coupang catalog reviews may combine options and sellers; this is not seller-specific sales.",
+    "A dated list can be complete for the requested interval while hidden rating-only coverage remains unknown.",
+    "One person may contribute to multiple options; option participant totals must not be added to obtain the product union."
+  ],
+  "option_groups": [
+    {
+      "option_key": "item:18896134829",
+      "item_id": "18896134829",
+      "option_label": "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, 07.특사이즈 동물 손잡이 (25cm), 공룡그린, 25cm",
+      "observed_labels": [
+        "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, 07.특사이즈 동물 손잡이 (25cm), 공룡그린, 25cm"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 5,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 4,
+          "rating_only_events": 2,
+          "review_events": 2,
+          "participants_observed_or_inferred": 4,
+          "review_participants": 2,
+          "rating_only_participants": 2,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 4,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 60,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "91899946228",
+          "vendor_names": [
+            "판매자: 담앤드솜(DAMANDSOM)"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 4,
+              "rating_only_events": 2,
+              "review_events": 2,
+              "participants_observed_or_inferred": 4,
+              "review_participants": 2,
+              "rating_only_participants": 2,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 4,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 60,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "option_key": "item:24893306831",
+      "item_id": "24893306831",
+      "option_label": "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, (25cm 왕특) 자체제작, 그레이, 25cm",
+      "observed_labels": [
+        "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, (25cm 왕특) 자체제작, 그레이, 25cm"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 28,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 5,
+          "rating_only_events": 5,
+          "review_events": 0,
+          "participants_observed_or_inferred": 5,
+          "review_participants": 0,
+          "rating_only_participants": 5,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 5,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 75,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 24,
+          "rating_only_events": 22,
+          "review_events": 2,
+          "participants_observed_or_inferred": 22,
+          "review_participants": 2,
+          "rating_only_participants": 20,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 24,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 330,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "78300783549",
+          "vendor_names": [
+            "판매자: 담앤드솜(DAMANDSOM)"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 5,
+              "rating_only_events": 5,
+              "review_events": 0,
+              "participants_observed_or_inferred": 4,
+              "review_participants": 0,
+              "rating_only_participants": 4,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 5,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 60,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        },
+        {
+          "vendor_item_id": "91899946251",
+          "vendor_names": [
+            "판매자: 담앤드솜(DAMANDSOM)"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 5,
+              "rating_only_events": 5,
+              "review_events": 0,
+              "participants_observed_or_inferred": 5,
+              "review_participants": 0,
+              "rating_only_participants": 5,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 5,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 75,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 19,
+              "rating_only_events": 17,
+              "review_events": 2,
+              "participants_observed_or_inferred": 18,
+              "review_participants": 2,
+              "rating_only_participants": 16,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 19,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 270,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "option_key": "item:24893306833",
+      "item_id": "24893306833",
+      "option_label": "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, (25cm 왕특) 자체제작, 다크그린, 25cm",
+      "observed_labels": [
+        "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레, 1개, (25cm 왕특) 자체제작, 다크그린, 25cm"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 47,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 16,
+          "rating_only_events": 13,
+          "review_events": 3,
+          "participants_observed_or_inferred": 15,
+          "review_participants": 3,
+          "rating_only_participants": 13,
+          "both_kinds_participants": 1,
+          "identity_ambiguous_events": 16,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 225,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 42,
+          "rating_only_events": 38,
+          "review_events": 4,
+          "participants_observed_or_inferred": 40,
+          "review_participants": 4,
+          "rating_only_participants": 37,
+          "both_kinds_participants": 1,
+          "identity_ambiguous_events": 42,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 600,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "78300783576",
+          "vendor_names": [
+            "판매자: 담앤드솜(DAMANDSOM)"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 1,
+              "rating_only_events": 1,
+              "review_events": 0,
+              "participants_observed_or_inferred": 1,
+              "review_participants": 0,
+              "rating_only_participants": 1,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 1,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 15,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 2,
+              "rating_only_events": 2,
+              "review_events": 0,
+              "participants_observed_or_inferred": 2,
+              "review_participants": 0,
+              "rating_only_participants": 2,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 2,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 30,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        },
+        {
+          "vendor_item_id": "91899946349",
+          "vendor_names": [
+            "판매자: 담앤드솜(DAMANDSOM)"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 15,
+              "rating_only_events": 12,
+              "review_events": 3,
+              "participants_observed_or_inferred": 14,
+              "review_participants": 3,
+              "rating_only_participants": 12,
+              "both_kinds_participants": 1,
+              "identity_ambiguous_events": 15,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 210,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 40,
+              "rating_only_events": 36,
+              "review_events": 4,
+              "participants_observed_or_inferred": 38,
+              "review_participants": 4,
+              "rating_only_participants": 35,
+              "both_kinds_participants": 1,
+              "identity_ambiguous_events": 40,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 570,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "option_coverage": "Only options observed in collected reviews; not a complete catalog of selectable options.",
+  "product_url": "https://www.coupang.com/vp/products/7346791745",
+  "product_id": "7346791745",
+  "product_title": "[자체제작] 담앤드솜 프리미엄 실리콘 배수구 덮개 냄새 벌레 - 배수구용품 | 쿠팡",
+  "navigation": "OpenCLI existing Chrome; read-only rendered review data",
+  "llm_calls": 0,
+  "finished_at_kst": "2026-10-21T19:24:49.500670+09:00",
+  "source_pages": [
+    {
+      "page": 1,
+      "sha256": "84a0e60b005662391a7e8124f9796bbaae02885a8a20be1c9faf76afca7f7fc1"
+    },
+    {
+      "page": 2,
+      "sha256": "aae8c4b343a507dcebf7ed07041252fc275d1e1409c26b9260f4af7b30afe001"
+    },
+    {
+      "page": 3,
+      "sha256": "b8e0dcf0496d86b1dceac4c3c93d5de4ab7b6b8d5153cc32d945bf0aa11d6ab2"
+    },
+    {
+      "page": 4,
+      "sha256": "22815d3c8d81a5599cf124b959cb4cfa84ab734df39a57348b2f072bfde75252"
+    },
+    {
+      "page": 5,
+      "sha256": "9d729236d14a1254145e274922b790f5cfe9e72ce7473d74268de89e842c9209"
+    },
+    {
+      "page": 6,
+      "sha256": "8eb93034142f17ec6d3f8fe36bb472c5e985ff21f3e6aa0cdb5a562214415199"
+    },
+    {
+      "page": 7,
+      "sha256": "31f0717f9bc19adadf3b87049751900683161e77afe1b3187951b0ae61e29729"
+    },
+    {
+      "page": 8,
+      "sha256": "8e33f067b41f320e7fbefe3e734b76bf215df05a5860a7baea126b19f04c1889"
+    }
+  ]
+}

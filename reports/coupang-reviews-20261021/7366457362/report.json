@@ -1,0 +1,482 @@
+{
+  "as_of_kst": "2026-10-21",
+  "window_definition": "rolling calendar months; both boundary dates inclusive",
+  "date_basis": "created",
+  "date_basis_note": "display uses reviewAt; created uses createdAt; edits may move the display date",
+  "deduplicated_records": 48,
+  "missing_dates": 0,
+  "coverage": {
+    "stop_reason": "list_exhausted",
+    "pages": 5,
+    "date_range_complete": true,
+    "rating_only_coverage": "count_reconciled",
+    "site_rating_count": 48,
+    "listed_review_count": 48,
+    "list_count_reconciled": true
+  },
+  "windows": {
+    "1": {
+      "months": 1,
+      "start_inclusive": "2026-09-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 1,
+      "rating_only_events": 1,
+      "review_events": 0,
+      "participants_observed_or_inferred": 1,
+      "review_participants": 0,
+      "rating_only_participants": 1,
+      "both_kinds_participants": 0,
+      "identity_ambiguous_events": 1,
+      "participant_count_is_exact": false,
+      "participants_exact_if_identifiable": null,
+      "estimated_sales": 15,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    },
+    "3": {
+      "months": 3,
+      "start_inclusive": "2026-07-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 8,
+      "rating_only_events": 8,
+      "review_events": 0,
+      "participants_observed_or_inferred": 8,
+      "review_participants": 0,
+      "rating_only_participants": 8,
+      "both_kinds_participants": 0,
+      "identity_ambiguous_events": 8,
+      "participant_count_is_exact": false,
+      "participants_exact_if_identifiable": null,
+      "estimated_sales": 120,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    }
+  },
+  "sales_model": "user_assumption: observed/inferred unique participants × 15",
+  "limitations": [
+    "×15 is a user-specified heuristic, not observed transactions or a calibrated sales model.",
+    "Masked email/name signatures may merge different people; missing identities use one review as one inferred participant.",
+    "Coupang catalog reviews may combine options and sellers; this is not seller-specific sales.",
+    "A dated list can be complete for the requested interval while hidden rating-only coverage remains unknown.",
+    "One person may contribute to multiple options; option participant totals must not be added to obtain the product union."
+  ],
+  "option_groups": [
+    {
+      "option_key": "item:18991128825",
+      "item_id": "18991128825",
+      "option_label": "휴앤코 프리미엄 여행용 캐리어 수화물 디지털 손저울 50kg PDL-50, PDL-50kg 수화물 디지털 손저울",
+      "observed_labels": [
+        "휴앤코 프리미엄 여행용 캐리어 수화물 디지털 손저울 50kg PDL-50, PDL-50kg 수화물 디지털 손저울"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 45,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 1,
+          "rating_only_events": 1,
+          "review_events": 0,
+          "participants_observed_or_inferred": 1,
+          "review_participants": 0,
+          "rating_only_participants": 1,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 1,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 15,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 8,
+          "rating_only_events": 8,
+          "review_events": 0,
+          "participants_observed_or_inferred": 8,
+          "review_participants": 0,
+          "rating_only_participants": 8,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 8,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 120,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "86116339745",
+          "vendor_names": [
+            "판매자: 휴라이프"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 1,
+              "rating_only_events": 1,
+              "review_events": 0,
+              "participants_observed_or_inferred": 1,
+              "review_participants": 0,
+              "rating_only_participants": 1,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 1,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 15,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        },
+        {
+          "vendor_item_id": "91350583421",
+          "vendor_names": [
+            "판매자: 휴라이프"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 1,
+              "rating_only_events": 1,
+              "review_events": 0,
+              "participants_observed_or_inferred": 1,
+              "review_participants": 0,
+              "rating_only_participants": 1,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 1,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 15,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 7,
+              "rating_only_events": 7,
+              "review_events": 0,
+              "participants_observed_or_inferred": 7,
+              "review_participants": 0,
+              "rating_only_participants": 7,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 7,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 105,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "option_key": "item:19548699369",
+      "item_id": "19548699369",
+      "option_label": "로에드 휴대용 손저울 전자 무게측정 이동식저울 여행저울",
+      "observed_labels": [
+        "로에드 휴대용 손저울 전자 무게측정 이동식저울 여행저울"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 2,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "88010765157",
+          "vendor_names": [
+            "판매자: 아이리스인터내셔날"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        },
+        {
+          "vendor_item_id": "91706353610",
+          "vendor_names": [
+            "판매자: 도도미"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "option_key": "item:24020107085",
+      "item_id": "24020107085",
+      "option_label": "휴대용 디지털 손저울 기내 수화물 여행용 (50kg)",
+      "observed_labels": [
+        "휴대용 디지털 손저울 기내 수화물 여행용 (50kg)"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 1,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "91040653349",
+          "vendor_names": [
+            "판매자: 시아바오"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "option_coverage": "Only options observed in collected reviews; not a complete catalog of selectable options.",
+  "product_url": "https://www.coupang.com/vp/products/7366457362",
+  "product_id": "7366457362",
+  "product_title": "휴앤코 프리미엄 여행용 캐리어 수화물 디지털 손저울 50kg PDL-50 - 전자저울 | 쿠팡",
+  "navigation": "OpenCLI existing Chrome; read-only rendered review data",
+  "llm_calls": 0,
+  "finished_at_kst": "2026-10-21T19:26:29.356458+09:00",
+  "source_pages": [
+    {
+      "page": 1,
+      "sha256": "6493228ad90c8f5588a8e225a2d1d2433a8b3ec222cb2782eea4d5413a6a1822"
+    },
+    {
+      "page": 2,
+      "sha256": "ffeb427130200fb2e68dd1c898d00f7d155f82866e09012e334cc29c05ad681e"
+    },
+    {
+      "page": 3,
+      "sha256": "4f48b030f389f2fb88bd57282ea42aa9e49fe2d4da50e39ace07adf1fb847c77"
+    },
+    {
+      "page": 4,
+      "sha256": "cf00973c5a737955c531f576b038585e29ce1db7e7c315090ed922649329c36f"
+    },
+    {
+      "page": 5,
+      "sha256": "1e9235f0d9cdf5c7f4584e5b3f600482afee541000f26c00bd363218f8afbf0f"
+    }
+  ]
+}

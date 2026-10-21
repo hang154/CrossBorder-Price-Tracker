@@ -1,6 +1,6 @@
 ---
 name: qwen-product-sourcing
-description: Research domestic and overseas product candidates using the local Qwen3.8 uncensored API and OpenCLI browser, compare observed prices and photographs, and create reusable HTML and Excel reports. Use for Naver versus 1688/Alibaba sourcing, keyword and image search, or adding products to an existing comparison.
+description: Research domestic and overseas product candidates using local Qwen3.8 and OpenCLI, compare observed prices and photographs, and create HTML and Excel reports. Also audit Coupang review pages for rolling 1/3-month participants and review-based sales estimates. Use for Naver versus 1688/Alibaba sourcing, image search, or Coupang rating/review counts.
 ---
 
 # Qwen product sourcing
@@ -58,9 +58,54 @@ agent may request failed jobs only. Collection calls are bounded to three per
 product; do not repeatedly restart a failing site. Report blocked/partial results
 and retain their observations. A nonzero exit is not success even if partial HTML exists.
 
+## Coupang review-only audit
+
+For a Coupang product URL and recent-review counts, use the checkout's deterministic
+browser agent rather than running overseas sourcing:
+
+```bash
+python -m app.coupang_reviews \
+  --url https://www.coupang.com/vp/products/<product-id> \
+  --opencli-main <opencli-checkout>/dist/src/main.js \
+  --output-dir sourcing-runs/<review-run>
+```
+
+Run from the tracker checkout with the same Python environment. This route uses
+OpenCLI and already-rendered public review data; it makes no LLM calls. Default
+periods are rolling 1 and 3 calendar months through today's Korean date, inclusive
+at both ends. `--as-of YYYY-MM-DD` fixes the reference date. Creation-date mode
+stops after covering the 3-month boundary; `--full-scan` reconciles the entire
+list. Display-date mode always scans the list because edits occur on old pages.
+`--max-pages` bounds requests. `--resume` validates saved page hashes and skips a
+finished audit; interrupted audits restart browser pagination from page 1.
+
+The default sales heuristic is deduplicated observed/inferred participants ×15,
+not actual transactions. A reviewer contributing both a written/media review and
+a rating-only event counts once in the union. Stable public IDs allow exact
+deduplication; masked email/name signatures are approximate and must be labeled.
+Missing identities use individual reviews as inferred participants. Do not call
+this exact unique-customer counting. Names and masked emails are hashed in-page
+and are not saved. The default date basis is the original `createdAt`, when the
+rating/review was first left. `--date-basis display` uses displayed `reviewAt`,
+which can include later edits; label this difference explicitly.
+
+Review records retain `itemId`, `vendorItemId`, purchased `itemName` and seller
+label. Group options by catalog item ID, preserving separate vendor listings;
+fall back to vendor listing/label only with the identity basis exposed, and
+keep unknown options separate. Each group has 1/3-month counts and ×15 estimates.
+Never sum per-option people to produce the product union. Observed review options
+are not proof of the full current option catalog; missing options are not zero.
+
+Inspect `report.json` and `index.html`: compare listed review totals against rating
+totals to assess rating-only coverage. A page cap, changed counts, unknown dates,
+missing controls, or inaccessible pages must remain partial. Catalog reviews may
+combine options/sellers. Report the interval, written versus rating-only events,
+participant identity quality and ×15 assumption separately. Never replace missing
+monthly counts with cumulative rating totals.
+
 ## Check and deliver
 
-Check `summary.json`, each `agent-state.json`, and `reviewed-report.json`. A complete
+For sourcing, check `summary.json`, each `agent-state.json`, and `reviewed-report.json`. A complete
 product has three keyword paths (Naver, 1688, Alibaba), both actual photo-upload
 paths, an inspected candidate pair and a comparison. Failed or absent evidence must
 remain `needs_review`. Preserve API response files and marketplace response hashes.

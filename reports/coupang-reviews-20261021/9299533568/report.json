@@ -1,0 +1,172 @@
+{
+  "as_of_kst": "2026-10-21",
+  "window_definition": "rolling calendar months; both boundary dates inclusive",
+  "date_basis": "created",
+  "date_basis_note": "display uses reviewAt; created uses createdAt; edits may move the display date",
+  "deduplicated_records": 29,
+  "missing_dates": 0,
+  "coverage": {
+    "stop_reason": "list_exhausted",
+    "pages": 3,
+    "date_range_complete": true,
+    "rating_only_coverage": "count_reconciled",
+    "site_rating_count": 29,
+    "listed_review_count": 29,
+    "list_count_reconciled": true
+  },
+  "windows": {
+    "1": {
+      "months": 1,
+      "start_inclusive": "2026-09-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 0,
+      "rating_only_events": 0,
+      "review_events": 0,
+      "participants_observed_or_inferred": 0,
+      "review_participants": 0,
+      "rating_only_participants": 0,
+      "both_kinds_participants": 0,
+      "identity_ambiguous_events": 0,
+      "participant_count_is_exact": true,
+      "participants_exact_if_identifiable": 0,
+      "estimated_sales": 0,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    },
+    "3": {
+      "months": 3,
+      "start_inclusive": "2026-07-21",
+      "end_inclusive": "2026-10-21",
+      "rating_or_review_events": 8,
+      "rating_only_events": 6,
+      "review_events": 2,
+      "participants_observed_or_inferred": 8,
+      "review_participants": 2,
+      "rating_only_participants": 6,
+      "both_kinds_participants": 0,
+      "identity_ambiguous_events": 8,
+      "participant_count_is_exact": false,
+      "participants_exact_if_identifiable": null,
+      "estimated_sales": 120,
+      "sales_multiplier": 15,
+      "estimate_scope": "covered_date_range_participants",
+      "is_complete": true
+    }
+  },
+  "sales_model": "user_assumption: observed/inferred unique participants × 15",
+  "limitations": [
+    "×15 is a user-specified heuristic, not observed transactions or a calibrated sales model.",
+    "Masked email/name signatures may merge different people; missing identities use one review as one inferred participant.",
+    "Coupang catalog reviews may combine options and sellers; this is not seller-specific sales.",
+    "A dated list can be complete for the requested interval while hidden rating-only coverage remains unknown.",
+    "One person may contribute to multiple options; option participant totals must not be added to obtain the product union."
+  ],
+  "option_groups": [
+    {
+      "option_key": "item:27518063827",
+      "item_id": "27518063827",
+      "option_label": "아그레가 휴대용 여행용 손저울, 1개, 메탈실버(스트랩)",
+      "observed_labels": [
+        "아그레가 휴대용 여행용 손저울, 1개, 메탈실버(스트랩)"
+      ],
+      "identity_basis": "catalog_item_id",
+      "review_records": 29,
+      "windows": {
+        "1": {
+          "months": 1,
+          "start_inclusive": "2026-09-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 0,
+          "rating_only_events": 0,
+          "review_events": 0,
+          "participants_observed_or_inferred": 0,
+          "review_participants": 0,
+          "rating_only_participants": 0,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 0,
+          "participant_count_is_exact": true,
+          "participants_exact_if_identifiable": 0,
+          "estimated_sales": 0,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        },
+        "3": {
+          "months": 3,
+          "start_inclusive": "2026-07-21",
+          "end_inclusive": "2026-10-21",
+          "rating_or_review_events": 8,
+          "rating_only_events": 6,
+          "review_events": 2,
+          "participants_observed_or_inferred": 8,
+          "review_participants": 2,
+          "rating_only_participants": 6,
+          "both_kinds_participants": 0,
+          "identity_ambiguous_events": 8,
+          "participant_count_is_exact": false,
+          "participants_exact_if_identifiable": null,
+          "estimated_sales": 120,
+          "sales_multiplier": 15,
+          "estimate_scope": "covered_date_range_participants",
+          "is_complete": true
+        }
+      },
+      "vendor_items": [
+        {
+          "vendor_item_id": "94577826883",
+          "vendor_names": [
+            "판매자: 아그레가"
+          ],
+          "windows": {
+            "1": {
+              "months": 1,
+              "start_inclusive": "2026-09-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 0,
+              "rating_only_events": 0,
+              "review_events": 0,
+              "participants_observed_or_inferred": 0,
+              "review_participants": 0,
+              "rating_only_participants": 0,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 0,
+              "participant_count_is_exact": true,
+              "participants_exact_if_identifiable": 0,
+              "estimated_sales": 0,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            },
+            "3": {
+              "months": 3,
+              "start_inclusive": "2026-07-21",
+              "end_inclusive": "2026-10-21",
+              "rating_or_review_events": 8,
+              "rating_only_events": 6,
+              "review_events": 2,
+              "participants_observed_or_inferred": 8,
+              "review_participants": 2,
+              "rating_only_participants": 6,
+              "both_kinds_participants": 0,
+              "identity_ambiguous_events": 8,
+              "participant_count_is_exact": false,
+              "participants_exact_if_identifiable": null,
+              "estimated_sales": 120,
+              "sales_multiplier": 15,
+              "estimate_scope": "covered_date_range_participants",
+              "is_complete": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "option_coverage": "Only options observed in collected reviews; not a complete catalog of selectable options.",
+  "product_url": "https://www.coupang.com/vp/products/9299533568",
+  "product_id": "9299533568",
+  "product_title": "아그레가 휴대용 여행용 손저울 - 전자저울 | 쿠팡",
+  "navigation": "OpenCLI existing Chrome; read-only rendered review data",
+  "llm_calls": 0,
+  "finished_at_kst": "2026-10-21T19:23:47.298887+09:00"
+}

@@ -1,4 +1,4 @@
 interface:
   display_name: "Qwen 상품 소싱"
-  short_description: "Compare shopping products with local Qwen and OpenCLI"
+  short_description: "Compare products and audit Coupang review-based sales"
   default_prompt: "$qwen-product-sourcing을 사용해 요청한 상품을 국내외에서 검색하고 사진·가격 비교 HTML과 엑셀을 만들어줘."
