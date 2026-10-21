@@ -160,3 +160,24 @@ def test_undispatched_click_recovers_only_its_single_leased_tab(monkeypatch):
     monkeypatch.setattr(audit.subprocess,'run',run)
     assert audit.Browser([],'fixture').call('click','#next')=={'clicked':True}
     assert calls==[['click','#next'],['tab','list'],['tab','select'],['click','#next']]
+
+
+def test_parallel_native_input_activates_only_worker_tab_in_background(monkeypatch):
+    import json
+    import subprocess
+    from app import coupang_reviews as audit
+    calls = []
+    def run(argv, **kwargs):
+        assert argv[-2:] == ['--window', 'background']
+        calls.append(argv[1:3])
+        data = [{'page': 'worker-page', 'active': False}] if argv[1:3] == ['tab','list'] else True
+        return subprocess.CompletedProcess(argv, 0, json.dumps({'ok':True,'data':data}), '')
+    monkeypatch.setattr(audit.subprocess, 'run', run)
+    coordinator = audit.CollectionCoordinator(0)
+    browser = audit.Browser([], 'worker-session', coordinator)
+    browser.call('click', '#next')
+    assert calls == [['tab','list'],['tab','select'],['click','#next']]
+    coordinator.stopped.set()
+    with pytest.raises(ValueError, match='stopped'):
+        browser.call('open', 'https://www.coupang.com/')
+    browser.call('close')

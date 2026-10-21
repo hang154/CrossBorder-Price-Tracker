@@ -83,6 +83,15 @@ and collection date. Search rank is observed order, not proven organic rank.
 stay partial. `--resume` verifies completed evidence and retries unfinished audits
 without repeating successful browser collection. Date-complete audits with
 mismatched rating counters are retained as uncertain, not blindly recollected.
+Product audits default to two concurrent workers with two-second staggered starts.
+CLI and UI server support `--workers 1..4`, `--start-interval`, and
+`--window-mode background|foreground`. Default background avoids bringing the
+Chrome window forward; it is not a windowless/headless browser. Native clicks
+are serialized with worker-tab activation while independent loads and reads overlap.
+All workers use the existing profile/connection; do not rotate identities or bypass
+access restrictions. Explicit access-denied/CAPTCHA detection stops the batch and
+preserves evidence. A 2026-10-21 headless probe returned HTTP 403; do not claim that
+backend works. Short two-product tests showed little speed gain; report actual timings.
 UI offers retry when collection or model execution is unfinished; start a new
 search for a fresh observation of already covered dates.
 Do not silently change the keyword or fill fewer than ten real results with guesses.

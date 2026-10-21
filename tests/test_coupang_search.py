@@ -12,6 +12,11 @@ from app.coupang_reviews import summarize
 from app.sourcing_pipeline import atomic_json
 
 
+@pytest.fixture(autouse=True)
+def no_stagger_in_unit_tests(monkeypatch):
+    monkeypatch.setattr(agent, "DEFAULT_START_INTERVAL", 0)
+
+
 def mock_runtime(monkeypatch, no_tool=False, partial=False):
     requests, audits = [], []
     native_client = httpx.Client
@@ -26,7 +31,7 @@ def mock_runtime(monkeypatch, no_tool=False, partial=False):
     monkeypatch.setattr(agent.httpx, 'Client', lambda **kwargs: native_client(transport=httpx.MockTransport(respond)))
     rows = [{'product_id': str(i), 'rank': i, 'title': '상품 '+str(i), 'price': 1000, 'review_count': 20} for i in range(1, 12)]
     monkeypatch.setattr(agent.subprocess, 'run', lambda *a, **k: subprocess.CompletedProcess([], 0, json.dumps({'ok': True, 'data': rows}), ''))
-    def crawl(url, out, prefix, day, multiplier, max_pages, resume=False, on_progress=None):
+    def crawl(url, out, prefix, day, multiplier, max_pages, resume=False, on_progress=None, **kwargs):
         out.mkdir(parents=True, exist_ok=True)
         if resume and (out/'state.json').exists() and json.loads((out/'state.json').read_text()).get('done'):
             return json.loads((out/'report.json').read_text())
@@ -129,3 +134,47 @@ def test_opening_resume_does_not_overwrite_live_checkpoint(tmp_path):
     original = (tmp_path/'job.json').read_bytes()
     agent.SearchAgent('손저울', tmp_path, [], max_pages=200, resume=True)
     assert (tmp_path/'job.json').read_bytes() == original
+
+
+def test_parallel_workers_overlap_and_keep_atomic_progress(tmp_path, monkeypatch):
+    mock_runtime(monkeypatch)
+    run = agent.SearchAgent('청바지', tmp_path, [], workers=2)
+    run.search()
+    original = agent.crawl
+    barrier = threading.Barrier(2)
+    lock = threading.Lock()
+    active = peak = 0
+    def crawl(*args, **kwargs):
+        nonlocal active, peak
+        with lock:
+            active += 1
+            peak = max(peak, active)
+        barrier.wait(timeout=5)
+        result = original(*args, **kwargs)
+        with lock:
+            active -= 1
+        return result
+    monkeypatch.setattr(agent, 'crawl', crawl)
+    run.audit()
+    saved = json.loads(run.path.read_text())
+    assert peak == 2
+    assert all(p['status'] == 'complete' for p in saved['products'])
+    assert saved['collection']['workers'] == 2
+
+
+def test_access_restriction_stops_remaining_products(tmp_path, monkeypatch):
+    mock_runtime(monkeypatch)
+    run = agent.SearchAgent('청바지', tmp_path, [], workers=1)
+    run.search()
+    original = agent.crawl
+    calls = []
+    def blocked(*args, **kwargs):
+        calls.append(args[0])
+        r = original(*args, **kwargs)
+        r['coverage']['error'] = 'ValueError: Access restriction detected; collection stopped'
+        return r
+    monkeypatch.setattr(agent, 'crawl', blocked)
+    run.audit()
+    assert len(calls) == 1
+    assert run.state['collection']['stopped_on_restriction']
+    assert all(p['status'] == 'failed' for p in run.state['products'][1:])

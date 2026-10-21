@@ -9,13 +9,17 @@ from pathlib import Path
 import subprocess
 import time
 import tempfile
+import threading
+from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 
-from app.coupang_reviews import KST, crawl
+from app.coupang_reviews import KST, crawl, CollectionCoordinator
 from app.sourcing_agent import BASE, MODEL, connection, tool, validate_arguments
 from app.sourcing_pipeline import atomic_json, digest
 
+
+DEFAULT_START_INTERVAL = 2.0
 
 def now():
     return dt.datetime.now(KST).isoformat()
@@ -26,7 +30,7 @@ def compact(report):
 
 
 class SearchAgent:
-    def __init__(self, keyword, out, prefix, as_of=None, max_pages=100, resume=False):
+    def __init__(self, keyword, out, prefix, as_of=None, max_pages=100, resume=False, workers=2, start_interval=None, window_mode="background"):
         if not isinstance(keyword, str):
             raise ValueError('검색어는 텍스트여야 합니다.')
         keyword = keyword.strip()
@@ -34,6 +38,16 @@ class SearchAgent:
             raise ValueError('검색어는 1~120자의 일반 텍스트여야 합니다.')
         if not isinstance(max_pages, int) or isinstance(max_pages, bool) or not 1 <= max_pages <= 1000:
             raise ValueError('상품별 최대 페이지는 1~1000이어야 합니다.')
+        if isinstance(workers, bool) or not isinstance(workers, int) or not 1 <= workers <= 4:
+            raise ValueError('동시 상품 수는 1~4여야 합니다.')
+        start_interval = DEFAULT_START_INTERVAL if start_interval is None else start_interval
+        if not isinstance(start_interval, (int, float)) or not 0 <= start_interval <= 60:
+            raise ValueError('상품 시작 간격은 0~60초여야 합니다.')
+        if window_mode not in ["background", "foreground"]:
+            raise ValueError("Invalid window mode")
+        self.window_mode = window_mode
+        self.workers, self.start_interval = workers, start_interval
+        self.state_lock = threading.RLock()
         self.out, self.prefix = Path(out), prefix
         self.out.mkdir(parents=True, exist_ok=True)
         self.path = self.out/'job.json'
@@ -51,17 +65,19 @@ class SearchAgent:
                 'model': MODEL, 'base_url': BASE, 'sales_multiplier': 15,
                 'started_at_kst': now(), 'model_calls': 0}
         self.state['max_pages_per_product'] = max_pages
+        self.state['collection'] = {'workers': workers, 'window_mode': window_mode, 'start_interval_seconds': start_interval, 'native_input': 'serialized per active worker tab', 'access_restriction': 'stop batch', 'identity': 'existing Chrome profile and connection'}
         if is_new:
             self.save()
 
     def save(self):
-        self.state['updated_at_kst'] = now()
-        atomic_json(self.path, self.state)
+        with self.state_lock:
+            self.state['updated_at_kst'] = now()
+            atomic_json(self.path, self.state)
 
     def search(self):
         if self.state['products']:
             return self.search_summary()
-        args = [*self.prefix, 'coupang', 'search', self.state['keyword'], '--limit', '10', '--window', 'foreground']
+        args = [*self.prefix, 'coupang', 'search', self.state['keyword'], '--limit', '10', '--window', self.window_mode]
         result = subprocess.run(args, capture_output=True, text=True, timeout=150)
         payload = json.loads(result.stdout)
         atomic_json(self.out/'search-response.json', payload)
@@ -95,29 +111,48 @@ class SearchAgent:
     def audit(self):
         if not self.state['products']:
             raise ValueError('먼저 search_products를 실행해야 합니다.')
-        for p in self.state['products']:
-            # A fully traversed date range with mismatched all-time counters is
-            # retained as uncertain; repeating the same 800 pages cannot fix it.
+        coordinator = CollectionCoordinator(self.start_interval, self.window_mode)
+        started = time.monotonic()
+        def one(p):
+            # Preserve date-complete evidence, including uncertain all-time counters.
             if p.get('report_sha256') and p.get('analysis',{}).get('coverage',{}).get('date_range_complete'):
-                continue
-            p['status'] = 'running'
-            p.pop('error', None)
-            self.state['active_product_id'] = p['product_id']
-            self.save()
+                return
+            if not coordinator.admit():
+                with self.state_lock:
+                    p.update(status='failed', error='접근 제한으로 추가 수집을 중단했습니다.')
+                    self.save()
+                return
+            with self.state_lock:
+                p.update(status='running', collection_started_at_kst=now())
+                p.pop('error', None)
+                self.save()
             folder = self.out/'products'/p['product_id']
             def progress(value):
-                p['progress'] = value
-                self.save()
+                with self.state_lock:
+                    p['progress'] = value
+                    self.save()
             try:
+                options = {'coordinator': coordinator}
                 r = crawl(p['url'], folder, self.prefix, self.as_of, 15, self.max_pages,
-                          resume=(folder/'state.json').exists(), on_progress=progress)
-                p['analysis'] = compact(r)
-                p['status'] = 'complete' if all(w['is_complete'] for w in r['windows'].values()) else 'partial'
-                p['report_sha256'] = hashlib.sha256((folder/'report.json').read_bytes()).hexdigest()
+                          resume=(folder/'state.json').exists(), on_progress=progress, **options)
+                if 'access restriction' in str(r.get('coverage',{}).get('error','')).lower():
+                    coordinator.stopped.set()
+                with self.state_lock:
+                    p['analysis'] = compact(r)
+                    p['status'] = 'complete' if all(w['is_complete'] for w in r['windows'].values()) else 'partial'
+                    p['report_sha256'] = hashlib.sha256((folder/'report.json').read_bytes()).hexdigest()
             except Exception as exc:
-                p['status'], p['error'] = 'failed', type(exc).__name__+': '+str(exc)
-            self.save()
+                with self.state_lock:
+                    p['status'], p['error'] = 'failed', type(exc).__name__+': '+str(exc)
+            finally:
+                with self.state_lock:
+                    p['collection_finished_at_kst'] = now()
+                    self.save()
+        with ThreadPoolExecutor(max_workers=self.workers, thread_name_prefix='coupang-product') as pool:
+            list(pool.map(one, self.state['products']))
         self.state.pop('active_product_id', None)
+        self.state['collection'].update(elapsed_seconds=round(time.monotonic()-started,3),
+                                        stopped_on_restriction=coordinator.stopped.is_set())
         self.save()
         return {'products': [{'product_id': p['product_id'], 'status': p['status'],
                 'windows': p.get('analysis', {}).get('windows'), 'error': p.get('error')}
@@ -227,8 +262,11 @@ def main():
     parser.add_argument('--as-of', type=dt.date.fromisoformat)
     parser.add_argument('--max-pages', type=int, default=100)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--workers', type=int, default=2)
+    parser.add_argument('--window-mode', choices=['background', 'foreground'], default='background')
+    parser.add_argument('--start-interval', type=float, default=DEFAULT_START_INTERVAL)
     args = parser.parse_args()
-    agent = SearchAgent(args.keyword, args.output_dir, ['node', str(args.opencli_main.resolve())], args.as_of, args.max_pages, args.resume)
+    agent = SearchAgent(args.keyword, args.output_dir, ['node', str(args.opencli_main.resolve())], args.as_of, args.max_pages, args.resume, args.workers, args.start_interval, args.window_mode)
     state = agent.run()
     print(json.dumps({'status': state['status'], 'products': len(state['products']), 'output': str(agent.path), 'error': state.get('error')}, ensure_ascii=False))
     return 0 if state['status'] == 'complete' else 1

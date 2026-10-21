@@ -10,6 +10,8 @@ from pathlib import Path
 import re
 import subprocess
 import time
+import threading
+import uuid
 from urllib.parse import urlsplit
 
 from app.sourcing_pipeline import atomic_json, digest
@@ -111,12 +113,51 @@ def render(report, target):
     target.write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>쿠팡 리뷰 기반 판매량 추정</title><style>body{font:16px/1.7 system-ui;color:#20384a;background:#f5f7f9;max-width:1150px;margin:32px auto;padding:20px}table{width:100%;border-collapse:collapse;background:white}td,th{padding:12px;border-bottom:1px solid #d6e0e5;text-align:left}article{overflow:auto}.note{background:#fff4df;padding:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{color:#176ca2}</style><h1>쿠팡 별점·리뷰 참여자 집계</h1><p>'+esc(report.get('product_title',''))+'</p><p><a href="'+esc(report['product_url'])+'">원본 상품</a> · 기준일 '+report['as_of_kst']+' (한국시간)</p><p class="note">추정 판매량 = 관측·추정 중복 제거 참여자 × '+str(report['windows']['1']['sales_multiplier'])+'. 실제 주문 수가 아닙니다. 마스킹 식별값은 사람 구분의 추정치이며, 한 사람이 글과 별점을 모두 남겨도 합계에서 한 번 셉니다.</p><article><table><thead><tr>'+''.join('<th>'+x+'</th>' for x in ['기간','집계 날짜(포함)','관측·추정 인원','글/사진 리뷰 건','별점만 건','양쪽 참여 인원','×'+str(report['windows']['1']['sales_multiplier'])+' 추정 판매량','수집 범위'])+'</tr></thead><tbody>'+''.join(rows)+'</tbody></table></article>'+options+'<h2>수집 근거와 한계</h2><pre>'+esc(json.dumps({k:report[k] for k in ['coverage','deduplicated_records','missing_dates','date_basis','date_basis_note','limitations']},ensure_ascii=False,indent=2))+'</pre></html>',encoding='utf-8')
 
 
+class CollectionCoordinator:
+    """Share native input safely; overlap independent page loads and extraction."""
+    def __init__(self, start_interval=2.0, window_mode="background"):
+        if window_mode not in ["background", "foreground"]:
+            raise ValueError("Invalid window mode")
+        self.window_mode = window_mode
+        self.native_lock = threading.RLock()
+        self.start_lock = threading.Lock()
+        self.stopped = threading.Event()
+        self.start_interval = start_interval
+        self.next_start = 0.0
+
+    def admit(self):
+        with self.start_lock:
+            delay = max(0, self.next_start-time.monotonic())
+            if self.stopped.wait(delay):
+                return False
+            self.next_start = time.monotonic()+self.start_interval
+            return not self.stopped.is_set()
+
+
 class Browser:
-    def __init__(self, prefix, session):
+    def __init__(self, prefix, session, coordinator=None):
         self.prefix, self.session = prefix, session
+        self.coordinator = coordinator
 
     def call(self, action, *args, _retry=True):
-        r=subprocess.run([*self.prefix,'browser',action,*map(str,args),'--session',self.session,'--window','foreground'],capture_output=True,text=True,timeout=90)
+        if self.coordinator:
+            if self.coordinator.stopped.is_set() and action != 'close':
+                raise ValueError('Collection stopped after access restriction')
+            if action in ['open', 'click', 'tab', 'close']:
+                with self.coordinator.native_lock:
+                    if self.coordinator.stopped.is_set() and action != 'close':
+                        raise ValueError('Collection stopped after access restriction')
+                    if action == 'click':
+                        tabs = self._call('tab', 'list')
+                        if not isinstance(tabs, list) or len(tabs) != 1 or not tabs[0].get('page'):
+                            raise ValueError('Cannot identify this worker tab safely')
+                        if not tabs[0].get('active'):
+                            self._call('tab', 'select', tabs[0]['page'])
+                    return self._call(action, *args, _retry=_retry)
+        return self._call(action, *args, _retry=_retry)
+
+    def _call(self, action, *args, _retry=True):
+        r=subprocess.run([*self.prefix,'browser',action,*map(str,args),'--session',self.session,'--window',self.coordinator.window_mode if self.coordinator else 'background'],capture_output=True,text=True,timeout=90)
         try: payload=json.loads(r.stdout)
         except ValueError: raise ValueError('Invalid browser JSON; exit '+str(r.returncode))
         if r.returncode or payload.get('ok') is not True:
@@ -138,6 +179,11 @@ class Browser:
         for _ in range(30):
             s=self.snapshot()
             if s.get('error'):
+                blocked = self.call('eval', "(() => {const t=(document.title+' '+document.body.innerText.slice(0,4000)).toLowerCase();return /access denied|too many requests|접속이.*제한|비정상적인 접근|verify you are human|captcha/.test(t)})()")
+                if blocked is True:
+                    if self.coordinator:
+                        self.coordinator.stopped.set()
+                    raise ValueError('Access restriction detected; collection stopped')
                 time.sleep(.4)
                 continue
             dates=[r['created_at'] for r in s['records'] if isinstance(r.get('created_at'),(int,float))]
@@ -167,17 +213,17 @@ class Browser:
         return True
 
 
-def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None):
+def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     with (out/'.audit.lock').open('a') as lock:
         try:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another audit owns this output directory')
-        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress)
+        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress,coordinator)
 
 
-def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None):
+def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None):
     parsed=urlsplit(url)
     match=re.fullmatch(r'/vp/products/(\d+)/?',parsed.path)
     if parsed.scheme!='https' or parsed.hostname not in ['www.coupang.com','coupang.com'] or not match or parsed.username is not None or parsed.password is not None:
@@ -199,7 +245,7 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
         state['pages']=[]
     else:
         state={'fingerprint':fingerprint,'pages':[],'started_at_kst':dt.datetime.now(KST).isoformat()}
-    browser=Browser(prefix,'coupang-reviews-'+product)
+    browser=Browser(prefix,'coupang-reviews-'+product+'-'+uuid.uuid4().hex[:8], coordinator) if coordinator else Browser(prefix,'coupang-reviews-'+product)
     coverage={};records={};stop='page_limit';first=None;previous_date=None
     try:
         browser.call('open',url)

@@ -15,7 +15,8 @@ from app.sourcing_pipeline import atomic_json, digest
 
 
 class Jobs:
-    def __init__(self, root, prefix):
+    def __init__(self, root, prefix, workers=2, start_interval=2.0, window_mode="background"):
+        self.collection_options = dict(workers=workers, start_interval=start_interval, window_mode=window_mode)
         self.root, self.prefix = Path(root).resolve(), prefix
         self.root.mkdir(parents=True, exist_ok=True)
         self.queue, self.lock, self.pending = queue.Queue(), threading.Lock(), set()
@@ -58,7 +59,7 @@ class Jobs:
                 keyword, day = saved['keyword'], dt.date.fromisoformat(saved['as_of_kst'])
             else:
                 jid, day = uuid.uuid4().hex, None
-            agent = SearchAgent(keyword, self.folder(jid), self.prefix, day, max_pages, resume=jid is not None and (self.folder(jid)/'job.json').exists())
+            agent = SearchAgent(keyword, self.folder(jid), self.prefix, day, max_pages, resume=jid is not None and (self.folder(jid)/'job.json').exists(), **self.collection_options)
             agent.state['status'] = 'queued'
             agent.save()
             self.pending.add(jid)
@@ -70,7 +71,7 @@ class Jobs:
             jid = self.queue.get()
             try:
                 s = self.read(jid)
-                SearchAgent(s['keyword'], self.folder(jid), self.prefix, dt.date.fromisoformat(s['as_of_kst']), s['max_pages_per_product'], True).run()
+                SearchAgent(s['keyword'], self.folder(jid), self.prefix, dt.date.fromisoformat(s['as_of_kst']), s['max_pages_per_product'], True, **self.collection_options).run()
             except Exception as exc:
                 s = self.read(jid)
                 s.update(status='interrupted', error=type(exc).__name__+': '+str(exc), updated_at_kst=now())
@@ -151,8 +152,11 @@ def main():
     parser.add_argument('--opencli-main', type=Path, required=True)
     parser.add_argument('--output-dir', type=Path, default=Path('sourcing-runs/coupang-search'))
     parser.add_argument('--port', type=int, default=8879)
+    parser.add_argument('--workers', type=int, choices=range(1,5), default=2)
+    parser.add_argument('--start-interval', type=float, default=2.0)
+    parser.add_argument('--window-mode', choices=['background','foreground'], default='background')
     args = parser.parse_args()
-    jobs = Jobs(args.output_dir, ['node', str(args.opencli_main.resolve())])
+    jobs = Jobs(args.output_dir, ['node', str(args.opencli_main.resolve())], args.workers, args.start_interval, args.window_mode)
     server = ThreadingHTTPServer(('127.0.0.1', args.port), handler(jobs, secrets.token_hex(24)))
     print('쿠팡 검색 UI: http://127.0.0.1:'+str(server.server_port), flush=True)
     try:
