@@ -205,6 +205,31 @@ python -m app.sourcing_agent \
 재질·동일 SKU·가격차 원인은 미확인으로 저장합니다. 동일 상품과 실제 수입 원가를
 확정하는 시스템은 아니며, 배송·세금·수수료는 가격 배수에서 제외합니다.
 
+### Codex 스킬
+
+재사용 가능한 스킬은 [skills/qwen-product-sourcing/SKILL.md](skills/qwen-product-sourcing/SKILL.md)에
+있습니다. 폴더 전체를 `$CODEX_HOME/skills/`(미설정 시 `~/.codex/skills/`)에 설치하고
+`$qwen-product-sourcing`으로 호출합니다. 저장소 내부에서 직접 실행할 수도 있습니다.
+
+```bash
+python skills/qwen-product-sourcing/scripts/run_sourcing.py \
+  --repo . --opencli-main ../OpenCLI/dist/src/main.js \
+  --config configs/sourcing-agent.new-products.example.json \
+  --output-dir sourcing-runs/new-products
+```
+
+기존 비교에 상품을 추가하려면 이전 상품별 `reviewed-report.json`을
+`--include-report`로 반복 지정합니다. 합친 결과는 새 실행 폴더의
+`combined/index.html`, `combined/research.xlsx`, `combined/manifest.json`입니다.
+원래 보고서는 보존하며, 입력이 같은 재개에는 `--resume`을 추가합니다.
+새 예제 상품은 캐리어 저울·수동 채소 다지기·접이식 깔때기입니다.
+
+[6종 비교 HTML](reports/sourcing-comparison-20261021/index.html)은 기존 3종과
+새 3종의 후보 90건·비교 6건을 합친 2026-10-21 관측 스냅샷입니다.
+다운로드해 브라우저에서 열면 사진과 가격 막대, 후보 검색이 오프라인에서 동작합니다.
+[manifest](reports/sourcing-comparison-20261021/manifest.json)에 원본 보고서 및 HTML
+해시를 기록했습니다. 실시간 가격이나 동일 SKU 확정 자료는 아닙니다.
+
 ## License
 
 MIT

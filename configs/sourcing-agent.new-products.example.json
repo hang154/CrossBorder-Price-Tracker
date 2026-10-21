@@ -1,0 +1,11 @@
+{
+  "limit": 3,
+  "max_steps_per_product": 16,
+  "api_timeout_seconds": 180,
+  "krw_per_currency": {},
+  "products": [
+    {"id": "luggage-scale", "request": "휴대용 디지털 캐리어 손저울 50kg. 국내 네이버와 1688/Alibaba 상품을 키워드 및 실제 사진 업로드로 찾고 유사 후보 가격을 비교. 최대 측정 무게, 배터리 및 구성품 미확인 표시."},
+    {"id": "manual-chopper", "request": "줄을 당기는 수동 채소 다지기 500ml. 네이버·1688·Alibaba 키워드와 사진 검색으로 유사 후보 비교. 전동형은 제외하고 칼날 수 및 용량 차이 미확인 표시."},
+    {"id": "collapsible-funnel", "request": "실리콘 접이식 깔때기. 국내 네이버와 1688/Alibaba에서 키워드 및 사진 검색으로 유사 후보 가격 비교. 개당 수량 가정, 지름 및 재질 확정 불가 표시."}
+  ]
+}

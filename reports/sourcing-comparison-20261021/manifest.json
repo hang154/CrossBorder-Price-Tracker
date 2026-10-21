@@ -1,0 +1,47 @@
+{
+  "snapshot_date_kst": "2026-10-21",
+  "model": "Qwen3.8-27B-uncensored-FP8",
+  "products": [
+    "pet-hair",
+    "bag-sealer",
+    "oil-photo",
+    "collapsible-funnel",
+    "luggage-scale",
+    "manual-chopper"
+  ],
+  "new_products": [
+    "luggage-scale",
+    "manual-chopper",
+    "collapsible-funnel"
+  ],
+  "candidates": 90,
+  "comparisons": 6,
+  "html_sha256": "361cd37b42975b9e6a86dbbab1df4f42d14c7b57bfe95b9b746469414ee53c0a",
+  "source_report_hashes": [
+    {
+      "product_id": "pet-hair",
+      "sha256": "4da9c9a9b70a9b6a31dec822bb8e96d7e1a4310fb00481472fcb02ef4b838b7c"
+    },
+    {
+      "product_id": "bag-sealer",
+      "sha256": "f0e9211e4321c883ccf75bb8f289b51c7a40fdb310db9d3f81f3446d8ce2712f"
+    },
+    {
+      "product_id": "oil-photo",
+      "sha256": "0a13f1c4c1560f622db3e1f39b1ea56beafd3d23250183e78324dc31155b8a93"
+    },
+    {
+      "product_id": "collapsible-funnel",
+      "sha256": "4fa1c860a5a0aa95c12441b63bcf25f5f9755742593c23d6189d9353172a8b1d"
+    },
+    {
+      "product_id": "luggage-scale",
+      "sha256": "e220e1722ecd5e843785807dae89b10cfeba9ffae0ad4efe5fa29070df5733da"
+    },
+    {
+      "product_id": "manual-chopper",
+      "sha256": "999e92f012d1f7d2c01d82c6f23fbc272c9dc5d01fbf02cd0bf5288561d2d6a7"
+    }
+  ],
+  "scope": "Candidate similarity and displayed goods prices; identical SKU, quality, quantities and landed costs not established."
+}
