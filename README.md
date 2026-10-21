@@ -1,215 +1,105 @@
-# CrossBorder-Price-Tracker 🔍💰
+# Qwen 사입·상품 소싱 에이전트 모음
 
-跨境电商多平台价格追踪器 — 实时监控 Amazon / AliExpress / Shopee / 1688 商品价格变动，智能提醒降价。
+국내 판매 후보와 1688·Alibaba.com 공급 후보를 실제 브라우저로 조사하고,
+사진·가격·판매 단위·리뷰 근거를 연결해 HTML과 Excel로 정리하는 저장소입니다.
+Qwen은 계획·분류·도구 선택을 담당하고, 가격 계산·기간 집계·근거 검증은 코드가 수행합니다.
 
-## 功能
+2026-10-21 기준으로 만들어진 사입 관련 실행 경로를 이 README에 통합했습니다.
+기존 가격 추적 기능과 이전 설명은 [통합 전 README](docs/README.previous.md)에 보존합니다.
 
-### 核心功能
-- 📊 **多平台抓取**: Amazon (US/UK/DE/JP) + AliExpress + Shopee + 1688
-- 📈 **价格历史**: SQLite 持久化，趋势追踪
-- 🔔 **降价提醒**: Telegram / Email / Webhook 通知
-- 🕷️ **反检测**: 代理轮转 + UA随机化 + 请求限速
-- 📦 **批量监控**: CSV/JSON 导入商品列表
-- 🐳 **Docker 部署**: 一键启动，开箱即用
+## 저장소 구성과 복원
 
-### v2.0 新功能
-- 💱 **多币种转换**: 18种货币实时转换，跨平台价格统一对比
-- 🔀 **跨平台比价**: 自动发现相似商品，找出最优价格
-- 📐 **价格预测**: 线性回归 + 移动平均线 + 异常检测 + 买入信号
-- 📋 **智能规则引擎**: 8种告警类型，可配置触发条件/冷却/频率限制
-- 📁 **命名监控列表**: 分组管理商品，批量操作，列表合并
-- 📤 **多格式导出**: CSV / JSON / HTML / Markdown 导出报告
+- **이 저장소:** [hang154/CrossBorder-Price-Tracker](https://github.com/hang154/CrossBorder-Price-Tracker) — Qwen 에이전트, 리뷰 조사, 보고서, Excel, Codex 스킬.
+- **실행 도구:** [hang154/OpenCLI](https://github.com/hang154/OpenCLI) — 실제 브라우저 조작과 쇼핑 사이트 어댑터. [사입용 설명](https://github.com/hang154/OpenCLI/blob/main/SOURCING_README.md).
+- **연결 버전:** [configs/sourcing-stack.lock.json](configs/sourcing-stack.lock.json) — 함께 사용할 OpenCLI 커밋과 백업 범위.
+- 두 저장소의 `main`에 기존 관련 커밋과 미커밋 구현을 모았습니다. 백업 당시 별도 로컬 기능 브랜치는 없었으므로 브랜치 병합은 필요하지 않았습니다.
 
-## 快速开始
+두 저장소를 같은 부모 폴더에 복제합니다. 아래 명령은 Linux 기준입니다.
 
 ```bash
-# 安装
-pip install -r requirements.txt
+git clone https://github.com/hang154/OpenCLI.git
+git clone https://github.com/hang154/CrossBorder-Price-Tracker.git
 
-# 添加商品监控
-python -m app.cli add "https://www.amazon.com/dp/B09V3KXJPB"
+cd CrossBorder-Price-Tracker
+# lock의 OpenCLI 커밋을 확인하고 고정합니다.
+python3 -c 'import json; print(json.load(open("configs/sourcing-stack.lock.json"))["opencli"]["commit"])'
+# 출력된 커밋을 사용: git -C ../OpenCLI checkout <commit>
 
-# 批量导入
-python -m app.cli import products.csv
-
-# 运行一次价格检查
-python -m app.cli check
-
-# 启动定时监控 (每小时)
-python -m app.cli monitor --interval 3600
-
-# 查看价格历史
-python -m app.cli history B09V3KXJPB
-
-# 导出报告 (支持 text/json/html/markdown)
-python -m app.cli report --format html --days 30
-
-# 查看统计
-python -m app.cli stats
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+cd ../OpenCLI
+npm ci
+npm run build
+cd ../CrossBorder-Price-Tracker
 ```
 
-## Docker 部署
+Node.js 20.18.1 이상이 필요합니다. OpenCLI의
+[Browser Bridge 설치](https://github.com/hang154/OpenCLI/blob/main/extension/README.md)를 마치고,
+사용할 Chrome 및 사이트 로그인 상태를 연결합니다. 사이트가 인증을 요구하면 기존 브라우저에서
+확인해야 합니다. Docker나 서버 API만 설치해도 로그인 세션이 자동 복원되는 구조는 아닙니다.
 
-```bash
-cp .env.example .env
-# 编辑 .env 配置代理和通知
-docker compose up -d
-```
+## 로컬 Qwen 연결
 
-## 配置
+요청 별칭은 `Qwen3.8-27B-uncensored-FP8`, 연결은 기존 로컬 Qwen 호환 API를 사용합니다.
+`app.sourcing_agent.BASE`에 설정된 전용 주소이며 외부 유료 LLM으로 자동 전환하지 않습니다.
+키는 `ADINTEL_QWEN_API_KEY` 환경 변수 또는 기존 Azrael의 활성 bearer-file 연결에서 읽습니다.
+환경 변수 이름만 제공하며 키 값·세션·쿠키는 저장소에 넣지 않습니다.
 
-```env
-# 代理配置
-PROXY_TYPE=socks5          # http/socks5/rotating
-PROXY_HOST=127.0.0.1
-PROXY_PORT=9595
-PROXY_USER=user
-PROXY_PASS=pass
+실제 2026-10-21 실행에서 서버가 반환한 모델 이름은
+`Qwen3.8-27B-abliterated-AWQ-W4A16`이었습니다. 요청 별칭만 보고 실제 가중치를 FP8로
+단정하지 않습니다. 정확한 실행 모델은 저장된 API 응답의 `model` 값을 확인합니다.
+새 컴퓨터에는 기존 API 연결 설정과 접근 권한을 따로 복원해야 합니다.
 
-# Telegram 通知
-TG_BOT_TOKEN=xxx
-TG_CHAT_ID=xxx
+## 1. 통합 상품 탐색·사진 검색·비교 에이전트
 
-# 降价阈值
-PRICE_DROP_THRESHOLD=5     # 降价超过5%触发通知
-CHECK_INTERVAL=3600        # 检查间隔(秒)
-```
+**진입점:** [app/sourcing_agent.py](app/sourcing_agent.py),
+[app/sourcing_pipeline.py](app/sourcing_pipeline.py), [app/sourcing_excel.py](app/sourcing_excel.py).
 
-## 模块详解
-
-### 💱 多币种转换 (Currency Converter)
-支持 USD, EUR, GBP, JPY, CNY, CAD 等 18 种货币自动转换，比较不同平台不同货币标价的真实价格。
-
-### 🔀 跨平台比价 (Price Comparator)
-- **相似商品发现**: 基于标题 Jaccard 相似度自动匹配
-- **Deal Score**: 0-100 综合评分（历史位置 + 目标价 + 趋势）
-- **价格波动分析**: 标准差、变异系数、稳定性评分
-
-### 📐 价格预测 (Price Predictor)
-- **SMA / EMA**: 简单/指数移动平均线
-- **线性回归**: 趋势预测 + R² 置信度 + 7天预测
-- **异常检测**: Z-score 方法识别异常价格波动
-- **季节模式**: 识别每周最佳购买日
-- **买入信号**: BUY / HOLD / WAIT 综合信号
-
-### 📋 智能规则引擎 (Alert Rules)
-8 种告警类型:
-| 类型 | 说明 |
-|------|------|
-| `price_drop` | 降价百分比超过阈值 |
-| `price_rise` | 涨价百分比超过阈值 |
-| `target_price` | 达到目标价格 |
-| `back_in_stock` | 商品补货 |
-| `out_of_stock` | 商品缺货 |
-| `new_lowest` | 历史新低 |
-| `percentage_change` | 任意方向变动超过阈值 |
-| `absolute_change` | 绝对价格变动超过阈值 |
-
-支持: 平台过滤 / 标签过滤 / 冷却时间 / 每日触发上限
-
-### 📁 监控列表 (Watchlist Manager)
-命名分组管理，支持: 批量URL导入 / 批量移除 / 列表合并 / 商品搜索
-
-### 📤 导出引擎 (Export Engine)
-| 格式 | 说明 |
-|------|------|
-| CSV | 电子表格兼容 |
-| JSON | API/程序集成 |
-| HTML | 带样式的可视化报告 |
-| Markdown | 文档/Wiki集成 |
-
-## 支持平台
-
-| 平台 | 状态 | 备注 |
-|------|------|------|
-| Amazon US/UK/DE/JP | ✅ | Product API + 页面抓取双模式 |
-| AliExpress | ✅ | API + 页面解析 |
-| Shopee | ✅ | 移动端API |
-| 1688 | ✅ | 页面抓取 |
-
-## 架构
-
-```
-app/
-├── cli.py                  # CLI 入口 (9个命令)
-├── config.py               # 配置管理
-├── models/
-│   ├── product.py          # 商品模型 + 平台检测
-│   └── database.py         # SQLite 数据库
-├── scrapers/
-│   ├── base.py             # 抓取基类 (重试+代理+限速)
-│   ├── amazon.py           # Amazon 抓取器
-│   ├── aliexpress.py       # AliExpress 抓取器
-│   ├── shopee.py           # Shopee 抓取器
-│   └── ali1688.py          # 1688 抓取器
-├── services/
-│   ├── monitor.py          # 监控调度
-│   ├── notifier.py         # 多渠道通知
-│   ├── reporter.py         # 报告生成
-│   ├── comparator.py       # 🆕 跨平台比价引擎
-│   ├── predictor.py        # 🆕 价格预测
-│   ├── rules.py            # 🆕 智能告警规则引擎
-│   ├── watchlist.py        # 🆕 监控列表管理
-│   └── exporter.py         # 🆕 多格式导出引擎
-└── utils/
-    ├── proxy.py            # 代理管理
-    ├── ua.py               # UA 随机化
-    └── currency.py         # 🆕 多币种转换
-```
-
-## 测试
-
-```bash
-# 运行全部测试
-python -m pytest tests/ -v
-
-# 211 个测试，覆盖全部模块
-```
-
-## 로컬 Qwen 상품 탐색 에이전트
-
-`app.sourcing_agent`는 로컬 `Qwen3.8-27B-uncensored-FP8`의 실제 함수 호출로
-검색어 계획 → 네이버/1688/Alibaba 키워드 검색 → 국내 사진의 1688/Alibaba 업로드
-검색 → 후보 사진 대조 → 가격 계산 → JSON·사진 포함 XLSX·독립 HTML 출력을 수행합니다.
-기존 OpenCLI Browser Bridge 연결과 로그인 상태를 사용합니다. 외부 LLM 공급자는 사용하지 않습니다.
+Qwen이 상품별 검색어를 계획하고 네이버·1688·Alibaba 키워드 검색, 국내 상품 사진의 실제
+1688/Alibaba 업로드 검색, 후보 사진 검토, 가격 비교, 보고서 생성을 도구로 실행합니다.
+관측한 상품 ID와 정확한 제목 인용을 검사하며 가격·수량 가정에 따른 배수는 코드가 계산합니다.
 
 ```bash
 python -m app.sourcing_agent \
   --config configs/sourcing-agent.example.json \
   --opencli-main ../OpenCLI/dist/src/main.js \
-  --output-dir sourcing-runs/my-agent-run
-
-# 동일 입력으로 재개: 완료 상품은 모델 요청도 생략하고, 완료 검색은 재사용합니다.
+  --output-dir sourcing-runs/my-products
+# 같은 입력과 출력 폴더로 중단된 실행 재개
 python -m app.sourcing_agent \
   --config configs/sourcing-agent.example.json \
   --opencli-main ../OpenCLI/dist/src/main.js \
-  --output-dir sourcing-runs/my-agent-run --resume
+  --output-dir sourcing-runs/my-products --resume
 ```
 
-설정의 `products`는 임의의 상품 `id`와 자연어 `request` 목록입니다. 선택적으로
-`images`에 설정 파일 기준 상품 사진 경로를 넣을 수 있습니다. 사진이 없으면 국내
-검색 결과의 첫 상품 사진을 사용합니다. `domestic_units_assumed` 기본값은 1이며
-실제 판매 수량을 확인했다는 뜻은 아닙니다. 외화 가격은 명시한 `krw_per_currency`가
-없으면 환산하지 않습니다. 예제는 6개 상품군이며 실행 범위는 설정 목록으로 정합니다.
+설정의 `products`에 `id`, 자연어 `request`를 지정합니다. 선택 사항 `images`는 설정 파일
+기준 사진 경로, `domestic_units_assumed`는 수량 가정입니다. 사진이 없으면 국내 검색 사진을
+활용합니다. `krw_per_currency`가 없으면 외화 금액을 임의 환산하지 않습니다.
+상품별 `agent-state.json`, 원본 모델 응답, `pipeline/report.json`, `reviewed-report.json`,
+HTML·사진 포함 XLSX가 남습니다. 미완료 근거는 `needs_review`로 보존합니다.
+이 범용 경로의 완료 조건에는 양쪽 해외 플랫폼과 사진 검색이 포함됩니다.
+한 플랫폼 차단 시 다른 플랫폼의 관측도 버리지 않지만 전체 완료로 표시하지 않습니다.
 
-인증은 `ADINTEL_QWEN_API_KEY` 또는 기존 로컬 Azrael의 활성 Qwen bearer 파일을
-읽습니다. 키와 로그인 쿠키는 출력·저장소에 넣지 않습니다. 실행 자료는 Git에서 제외된
-`sourcing-runs/`에 둡니다. 같은 출력 폴더의 중복 실행은 잠금으로 차단합니다.
+LLM 없이 정해진 검색만 수행하거나 저장 자료를 다시 비교할 수도 있습니다.
 
-실제 API 응답과 도구 결과, 미완료 도구 호출을 상품별로 저장합니다. 중단 시 원래
-계획을 보존하여 재개하며, 실패한 검색만 다시 요청할 수 있습니다. 실행한 5개 검색
-경로와 사진 근거·비교 결과가 갖춰져야 코드가 `complete`로 판정합니다. 결과가
-부족하면 `needs_review` 및 종료 코드 1을 반환하고 부분 자료를 남깁니다.
+```bash
+python -m app.sourcing plan --query-zh '虎眼石 手链' --query-en 'tiger eye bracelet' \
+  --site both --output sourcing-runs/search-plan.json
+python -m app.sourcing_pipeline run --config configs/sourcing-smoke.example.json \
+  --opencli-main ../OpenCLI/dist/src/main.js --output-dir sourcing-runs/pipeline
+python -m app.sourcing_pipeline --help
+```
 
-제목 근거는 원문에 존재하는 인용만 허용합니다. 사진 설명은 미검증 시각 가설로,
-재질·동일 SKU·가격차 원인은 미확인으로 저장합니다. 동일 상품과 실제 수입 원가를
-확정하는 시스템은 아니며, 배송·세금·수수료는 가격 배수에서 제외합니다.
+`app.sourcing`은 단일 검색 계획/실행, `sourcing_pipeline`은 체크포인트·부분 실패·자료 재사용,
+`sourcing_excel`은 수식 문자열 주입 방지와 비교 XLSX를 담당합니다.
 
-### Codex 스킬
+## 2. Codex 재사용 스킬과 기존 보고서 통합
 
-재사용 가능한 스킬은 [skills/qwen-product-sourcing/SKILL.md](skills/qwen-product-sourcing/SKILL.md)에
-있습니다. 폴더 전체를 `$CODEX_HOME/skills/`(미설정 시 `~/.codex/skills/`)에 설치하고
-`$qwen-product-sourcing`으로 호출합니다. 저장소 내부에서 직접 실행할 수도 있습니다.
+**진입점:** [skills/qwen-product-sourcing/SKILL.md](skills/qwen-product-sourcing/SKILL.md),
+[실행 래퍼](skills/qwen-product-sourcing/scripts/run_sourcing.py).
+
+스킬 폴더 전체를 사용하는 환경의 스킬 경로에 설치하고 `$qwen-product-sourcing`으로 호출합니다.
+설치 없이 저장소의 래퍼를 실행할 수도 있습니다.
 
 ```bash
 python skills/qwen-product-sourcing/scripts/run_sourcing.py \
@@ -218,94 +108,209 @@ python skills/qwen-product-sourcing/scripts/run_sourcing.py \
   --output-dir sourcing-runs/new-products
 ```
 
-기존 비교에 상품을 추가하려면 이전 상품별 `reviewed-report.json`을
-`--include-report`로 반복 지정합니다. 합친 결과는 새 실행 폴더의
-`combined/index.html`, `combined/research.xlsx`, `combined/manifest.json`입니다.
-원래 보고서는 보존하며, 입력이 같은 재개에는 `--resume`을 추가합니다.
-새 예제 상품은 캐리어 저울·수동 채소 다지기·접이식 깔때기입니다.
+기존 상품별 `reviewed-report.json`을 `--include-report FILE`로 반복 지정하면 새 실행 폴더의
+`combined/index.html`, `combined/research.xlsx`, `combined/manifest.json`으로 합칩니다.
+원본은 보존합니다. 같은 입력 재개는 `--resume`을 사용합니다.
+기존에 공개한 [6종 비교 스냅샷](reports/sourcing-comparison-20261021/index.html)은 당시 관측이며
+실시간 가격이 아닙니다. 새 개인 조사 자료를 이 폴더에 자동 공개하지 않습니다.
 
-[6종 비교 HTML](reports/sourcing-comparison-20261021/index.html)은 기존 3종과
-새 3종의 후보 90건·비교 6건을 합친 2026-10-21 관측 스냅샷입니다.
-다운로드해 브라우저에서 열면 사진과 가격 막대, 후보 검색이 오프라인에서 동작합니다.
-[manifest](reports/sourcing-comparison-20261021/manifest.json)에 원본 보고서 및 HTML
-해시를 기록했습니다. 실시간 가격이나 동일 SKU 확정 자료는 아닙니다.
+## 3. 쿠팡 기간별 리뷰·별점 조사
 
-### 쿠팡 최근 별점·리뷰 참여자 집계
+**진입점:** [app/coupang_reviews.py](app/coupang_reviews.py),
+[브라우저 추출 코드](app/coupang_review_extract.js). **이 경로 자체는 LLM을 호출하지 않습니다.**
 
 ```bash
 python -m app.coupang_reviews \
   --url https://www.coupang.com/vp/products/9299533568 \
   --opencli-main ../OpenCLI/dist/src/main.js \
-  --output-dir sourcing-runs/coupang-review-example
+  --output-dir sourcing-runs/reviews --max-pages 100
 ```
 
-최신순 리뷰 페이지를 자동 이동해 글/사진 리뷰와 별점만 남긴 기록을 함께 저장하고,
-최근 1개월·3개월의 중복 제거 관측·추정 참여자에 각각 15를 곱합니다. 한국 날짜 기준
-동일 일자의 1/3개월 전부터 오늘까지 양 끝 날짜를 포함하며, 기간을 결과에 표시합니다.
-`--as-of YYYY-MM-DD`, `--full-scan`, `--max-pages 100`, `--resume`을 지원합니다.
-결과는 `report.json`, `index.html` 및 개인정보를 해시 처리한 페이지별 근거 파일입니다.
-구매 옵션명·`itemId`·`vendorItemId`를 기록하고 옵션별 1개월·3개월 참여자와 ×15 추정치를
-별도로 계산합니다. 같은 옵션의 여러 판매자는 구분해 저장하며, 옵션 미확인 기록은 별도
-그룹으로 남깁니다. 옵션별 인원 합계와 전체 중복 제거 인원은 다를 수 있습니다.
+최근 1개월·3개월의 글/사진 리뷰와 별점만 남긴 기록을 수집해 관측·추정 참여자 중복을 제거하고
+×15 가정으로 판매량을 추정합니다. 한국 날짜 기준 양 끝 날짜를 포함합니다.
+`--as-of YYYY-MM-DD`, `--date-basis created|display`, `--full-scan`, `--resume`을 지원합니다.
+`report.json`, `index.html`, 페이지별 근거와 해시가 남습니다.
 
-날짜는 기본적으로 원래 작성 시각(`createdAt`)을 사용하며 3개월 경계까지 탐색합니다.
-`--full-scan`은 전체 목록을 확인합니다. 화면 날짜 모드는 오래된 수정 리뷰 때문에 전체를 탐색합니다.
-화면 표시 시각 기준은 `--date-basis display`로 선택합니다. 리뷰 수정 때문에 두 시각이
-다를 수 있습니다. 별점 총수와 리뷰 목록 총수를 대조하고 페이지 누락·제한은 부분
-집계로 표시합니다. 작성자의 마스킹 식별값은 정확한 고유 고객 ID가 아니므로 인원은
-추정일 수 있습니다. ×15는 사용자가 정한 가정이며 실제 거래량이나 판매자별 매출이
-아닙니다. 이 집계 경로는 OpenCLI와 코드로 동작하며 LLM 호출로 숫자를 생성하지 않습니다.
+`created`는 최초 작성일, `display`는 수정될 수 있는 화면 표시일입니다. `itemId`,
+`vendorItemId`, 구매 옵션명과 판매자 기록으로 옵션별 결과도 저장합니다. 마스킹 ID 기반
+사람 구분은 추정이며, 옵션별 사람 수를 더해 전체 고유 인원이라고 부르지 않습니다.
+기간 누락·페이지 제한·별점 총수 불일치는 부분 집계입니다. 누적 리뷰 총수를 월판매량에
+대입하지 않습니다. ×15는 실제 주문·매출이나 검증된 전환율이 아닙니다.
 
-### 키워드 검색 UI · Qwen 상위 10개 판매량 조사
+## 4. 쿠팡 키워드 상위 10개 조사 에이전트·웹 UI
+
+**진입점:** [app/coupang_search_agent.py](app/coupang_search_agent.py),
+[app/coupang_search_web.py](app/coupang_search_web.py), [화면](app/coupang_search.html).
+
+Qwen이 `search_products → audit_top_products → finish_search` 도구를 호출합니다.
+검색 노출 상위 10개와 기간별·옵션별 조사 결과가 연결됩니다. 순위는 광고·개인화가 포함될 수
+있는 당시 관측 순서입니다. 10개를 못 찾으면 확보 수량을 표시하고 만들어 채우지 않습니다.
 
 ```bash
+python -m app.coupang_search_agent --keyword '호안석 팔찌' \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/coupang-keyword --workers 2 --start-interval 2
+
 python -m app.coupang_search_web \
   --opencli-main ../OpenCLI/dist/src/main.js \
   --output-dir sourcing-runs/coupang-search --port 8879
+# 브라우저에서 http://127.0.0.1:8879/
 ```
 
-`http://127.0.0.1:8879/`에서 사람이 키워드를 입력하면 로컬 Qwen3.8이
-`search_products → audit_top_products → finish_search` 도구를 실제 호출합니다.
-검색 노출 상위 10개의 상품·대표 가격이 먼저 표시되고, 1/3개월 참여자 ×15 및
-구매 옵션별 추정치가 수집되는 대로 나타납니다. 광고·개인화로 검색 순위가 달라질
-수 있고 동일 상품 ID는 한 번 조사합니다. 실제 주문 수와 구분해 표시합니다.
+CLI는 `--workers 1..4`, `--window-mode background|foreground`, `--start-interval`로 상품 조사를
+조절합니다. 여러 상품의 페이지 로딩·추출은 겹칠 수 있지만 실제 탭 전환·입력은 공유 잠금으로
+순서를 지킵니다. 접근 제한을 만나면 배치 추가 수집을 멈춥니다. 이는 LLM 요청 32개나 브라우저
+32개 동시 처리를 뜻하지 않습니다. UI의 작업 큐와 상품별 동시성도 구분합니다.
+UI와 CLI의 현재 기본값·지원 옵션은 각각 `--help`와 실행 `job.json`에서 확인합니다.
 
-채팅 요청이나 자동화에서는 같은 에이전트를 실행합니다.
+`--resume`은 완료 근거의 해시를 검증하고 미완료 조사만 이어갑니다. 기간을 덮었지만 총수가
+불일치한 자료는 불확실성을 유지해 재사용합니다. 새 관측은 새 출력 폴더로 실행합니다.
+검색 가격·진행 상태·원본 모델 응답·상품별 근거가 저장되며 UI의 브라우저 History와 재연결을
+지원합니다. 모델 도구 호출 없이 코드만 실행한 경우를 Qwen 실행 성공으로 표시하지 않습니다.
+
+## 5. 팔찌·반지·염주·묵주 대량 카탈로그
+
+**진입점:** [app/jewelry_catalog.py](app/jewelry_catalog.py),
+[app/catalog_review.py](app/catalog_review.py), [HTML 구성](app/catalog_visuals.js).
+
+Qwen이 다양한 소재·형태·판매자 품질 주장별 주제를 계획하고, OpenCLI가 1688와 Alibaba.com에서
+실제 후보를 수집합니다. 분류 → 검토 후보 선택 → 상품·공급자 공개 페이지 관측 → 사진 포함
+HTML/XLSX 순서입니다. 원문 인용·판매자 지표·사진·미확인 상태를 보존합니다.
+특정 사이트가 막히면 해당 사이트의 후속 조사를 중단하고 다른 관측을 보존합니다.
 
 ```bash
-python -m app.coupang_search_agent --keyword '여행용 손저울' \
+# UTF-8 텍스트 파일에 조사할 상품·소재·가격대 등 맥락을 작성합니다.
+python -m app.jewelry_catalog --brief-file configs/jewelry-brief.example.txt \
   --opencli-main ../OpenCLI/dist/src/main.js \
-  --output-dir sourcing-runs/coupang-keyword-example
+  --output-dir sourcing-runs/jewelry --limit 12
+python -m app.catalog_review classify --output-dir sourcing-runs/jewelry
+python -m app.catalog_review shortlist --output-dir sourcing-runs/jewelry --count 18
+python -m app.catalog_review inspect --output-dir sourcing-runs/jewelry \
+  --opencli-main ../OpenCLI/dist/src/main.js
+python -m app.catalog_review report --output-dir sourcing-runs/jewelry
 ```
 
-작업별 `job.json`, 원본 Qwen 응답, 검색 응답, 상품별 리뷰 근거와 HTML이 남습니다.
-모델이 도구를 호출하지 않으면 중단으로 기록하며 코드 실행을 Qwen 실행으로
-표시하지 않습니다. 집계·중복 제거·×15 계산은 코드가 수행합니다.
+`catalog.json`, `annotations.json`, `shortlist.json`, 상품/공급자 관측, `reviewed-catalog.json`,
+`catalog.xlsx`, `index.html`이 핵심 결과입니다. 상세 실행 파일명은 각 폴더의 실제 파일로 확인합니다.
+대량 수집기와 분류 프롬프트는 현재 장신구에 맞춰져 있습니다. 모든 상품군을 자동 지원한다고
+보지 않습니다. 천주교 묵주·불교 염주·정교회 기도 매듭의 형태를 구분하고, 미확인 종교 형태나
+천연·925·감정서·축원·행운 효과를 사실로 확정하지 않습니다.
 
-UI 작업은 한 번에 한 개씩 실행하며 대기열과 서버 재시작 후 중단 상태를 보존합니다.
-CLI의 `--resume` 또는 UI의 재시도는 완료된 상품의 해시를 확인해 재사용하고 미완료
-상품만 다시 탐색합니다. 기간 수집은 끝났지만 별점/목록 총수가 불일치하는 결과는
-불확실성을 유지하고 보존하며, 새 관측이 필요하면 새 검색을 실행합니다. `--max-pages`(기본 100, 상품별)와 `--as-of`를 지원합니다.
-페이지 상한에 걸리거나 전체 별점/목록 수가 불일치하면 부분 집계로 표시합니다.
-고유 상품이 10개 미만이면 확보한 수량을 표시하며 나머지를 만들어 채우지 않습니다.
-`--resume` 시 기준일·검색어·연결 경로는 유지하고 페이지 상한과 병렬 실행 설정을 바꿀 수 있습니다.
-작업 폴더는 로컬에 보존되며 Git에 포함하지 않습니다.
+## 6. 소재·규격별 관측 최저가 후보
 
-상품 리뷰 수집은 기본 2개씩 병렬 실행하며 시작을 2초 간격으로 분산합니다.
-상품별 탭·진행 상황·근거 파일을 분리하고, 공유 창의 클릭은 해당 탭을 활성화한 뒤
-잠금으로 직렬 처리합니다. 페이지 응답 대기와 추출은 겹쳐 실행합니다.
-`--workers 1..4`, `--start-interval 2`, `--window-mode background|foreground`는
-검색 CLI와 UI 서버 모두에서 지원합니다. 기본 `background`는 Chrome 창을 앞으로
-띄우지 않는 모드이며, 창을 제거하는 headless 모드가 아닙니다. 동일 프로필·접속을
-유지하며 다른 방문자로 가장하지 않습니다. 명시적 접근 제한을 발견하면 배치를
-중단하고 기존 결과를 보존합니다.
+**진입점:** [app/material_prices.py](app/material_prices.py).
+앞 단계 `report`가 만든 `reviewed-catalog.json`을 입력으로 사용합니다.
 
-2026-10-21 소규모 실측(동일 두 상품, 상품당 3페이지): 기존 직렬 25.388초,
-첫 병렬 26.488초, 탭 선택을 줄인 백그라운드 병렬 24.288초. 각각 60건을
-보존했고 페이지 상한 때문에 모두 부분 수집입니다. 단일 비교여서 유의한 속도 향상이나
-대량 처리 성능을 보장하지 않습니다. 별도 Playwright headless 검사는 HTTP 403으로
-실패했습니다. 원본 측정은 로컬 `sourcing-runs/coupang-{parallel,background}-20261021/`에 있습니다.
+```bash
+python -m app.material_prices --output-dir sourcing-runs/jewelry
+# 최저가 그룹을 HTML/XLSX에 반영
+python -m app.catalog_review report --output-dir sourcing-runs/jewelry
+```
 
-## License
+Qwen이 소재·완제품/낱알/줄/참·크기·등급의 원문 인용을 추출하고 코드가 이를 검증합니다.
+목재명·합금·도금·인조 표기·통화·규격·판매 단위를 구분해 `material-price-ranking.json`을 만듭니다.
+규격 미확인은 별도 표시합니다. 가격은 조사 후보 안의 최저 표시가이며 전 세계 최저가,
+동일 옵션 확정가, 배송·세금 포함 원가는 아닙니다.
 
-MIT
+## 7. Qwen 웹 조작 검증과 격리 브라우저 실험
+
+**일반 연결 검증:** [app/qwen_browser_verify.py](app/qwen_browser_verify.py).
+기존 OpenCLI를 통해 제한된 네이버 시작점·사진 검색·비교·실패 복구 경로를 확인합니다.
+
+```bash
+python -m app.qwen_browser_verify --opencli-main ../OpenCLI/dist/src/main.js \
+  --reference-image /absolute/path/product.jpg --output-dir sourcing-runs/browser-check \
+  --stage all
+```
+
+**격리 실험:** [app/isolated_browser_agent.py](app/isolated_browser_agent.py).
+Qwen이 직접 관측한 셀렉터·입력·클릭·스크롤·JavaScript·스크린샷 도구로 Alibaba를 조사합니다.
+현재 실험 과제는 호안석 팔찌로 고정되어 있으며 범용 상품 입력 에이전트는 아닙니다.
+
+```bash
+python -m pip install 'playwright>=1.45,<2'
+# Linux Bubblewrap와 /opt/google/chrome/chrome 설치가 필요합니다.
+python -m app.isolated_browser_agent --output-dir sourcing-runs/isolated-alibaba --steps 16
+```
+
+새 mount/user/pid 네임스페이스, 새 Chrome 프로필, 출력 폴더만 쓰기 가능, 공유 네트워크를
+사용합니다. 사용자 홈·기존 쿠키·인증 키는 브라우저에 마운트하지 않고 API 인증은 호스트에서
+처리합니다. `--no-sandbox`는 이 OS 격리 구성 안의 Chrome 실행 인자입니다.
+로그인 또는 CAPTCHA를 우회하는 기능은 없습니다. 기존 실제 실행에서는 검색 후보를 읽었지만
+상세 페이지 인증으로 중단됐습니다. `browser-result.json`, 원본 응답, 스크린샷이 근거입니다.
+
+## 8. 사용자 Excel 양식 자동 작성 에이전트
+
+**진입점:** [app/template_excel_agent.py](app/template_excel_agent.py).
+
+기존 장신구 카탈로그에서 Qwen이 후보를 고르고 쿠팡·도매꾹을 실제 검색해 사용자의
+`스월백 소싱 연습 파일.xlsx` 빈 번호 행에 입력합니다. 원본·기존 예제·병합 셀을 보존하고
+새 복사본에 `조사근거`, `에이전트설정`, `실행검증` 시트를 추가합니다.
+
+```bash
+python -m app.template_excel_agent \
+  --template /absolute/path/스월백\ 소싱\ 연습\ 파일.xlsx \
+  --catalog sourcing-runs/jewelry/reviewed-catalog.json \
+  --out sourcing-runs/workbook --count 5
+# 필요 시 --keyword '호안석 팔찌' 반복 지정
+# 비용 가정 변경: --settings configs/template-costs.example.json
+```
+
+이 경로는 tracker와 OpenCLI가 형제 폴더에 있는 구성에서 tracker 디렉터리에서 실행합니다.
+`--count`는 1~11이며 실제 빈 행 수도 검사합니다. 양식 자체는 사용자 제공 파일이라 저장소에
+포함하지 않습니다. 다른 구조의 Excel에 자동 매핑하는 범용 양식 인식기는 아닙니다.
+
+Qwen은 `inspect_template`, `foreign_candidates`, `search_marketplace`, `audit_reviews`,
+`stage_row`, `export_workbook` 도구를 사용합니다. 실제 가격은 관측 ID로 조회해 코드가 씁니다.
+한 번 이상 날짜별 리뷰 조사를 시도하지만 전체 기간/별점 범위가 불완전하면 월판매량·매출은
+공란입니다. 원화 표시 해외 가격에서 CNY를 역산하지 않습니다. 비용이 없으면 마진·ROAS도
+공란입니다. 수수료 11%, 물류 3,000원, 환율 300은 **예제 가정**이며 검증된 현행 요율이 아닙니다.
+
+신규 행의 알려진 수식 결과는 캐시로 저장하고 Excel에서 열 때 다시 계산합니다. 기존 안내의
+환율 200과 원래 수식 300 불일치는 원본에 보존하며 신규 행은 설정 시트를 참조합니다.
+산출물은 `스월백_소싱_Qwen_작성.xlsx`, `state.json`, 원본 `qwen-*.json`, 검색/리뷰 근거,
+`verification.json`입니다. 같은 인풋·출력 폴더로 실행하면 저장 상태를 재사용합니다.
+실제 실행 자료는 별도로 보존하며 이 README의 코드 백업에 원본 사용자 Excel을 포함하지 않습니다.
+
+## 9. 기존 가격 추적·알림 도구
+
+[app/cli.py](app/cli.py), `app/scrapers/`, `app/services/`, `app/models/`에는 upstream에서 온
+Amazon·AliExpress·Shopee·1688 가격 수집, DB 기록, 통화 변환, 비교, 가격 예측, watchlist,
+알림·보고서 기능이 있습니다. 이것은 Qwen 사입 에이전트와 별도 경로입니다.
+
+```bash
+python -m app.cli --help
+```
+
+사용자 승인 없이 알림 발송·구매·판매자 연락을 시작하지 않습니다. 기존 upstream 설명의
+플랫폼 지원 표시는 모든 사이트의 현재 실접속 성공을 보장하는 검증 기록이 아닙니다.
+
+## 결과 판정과 검증
+
+실행 폴더의 `agent-state.json` / `job.json` / `state.json`과 원본 API 응답을 함께 확인합니다.
+HTTP 200·JSON 형식 통과는 분석·상품 매칭 정확도의 보장이 아닙니다. `partial`, `needs_review`,
+`blocked`와 미확인 가정은 그대로 남깁니다. 모델 응답과 코드 계산·실제 브라우저 관측을 구분합니다.
+
+2026-10-21 통합 시점의 오프라인 검증은 Python 전체 **347개 통과**, 관련 OpenCLI 어댑터
+**57개 통과**입니다. 브라우저 UI 테스트를 포함하지만 사이트 전체 재조사나 실시간 가격 갱신은
+이번 코드 백업 작업에서 실행하지 않았습니다. Python의 기존 `utcnow()` 폐기 예정 경고는 남아 있습니다.
+
+```bash
+python -m pytest tests -q
+# OpenCLI 쪽 관련 어댑터 검사 명령은 그 저장소 SOURCING_README.md 참조
+```
+
+특히 `test_sourcing_agent.py`, `test_sourcing_pipeline.py`, `test_sourcing_handoff.py`,
+`test_coupang_reviews.py`, `test_coupang_search.py`, `test_coupang_search_browser.py`,
+`test_catalog_review.py`, `test_material_prices.py`, `test_template_excel_agent.py`가 새 경로를 검사합니다.
+
+## 백업 범위
+
+GitHub에는 소스·테스트·README·재사용 설정·스킬·이미 공개된 비교 샘플을 보관합니다.
+`sourcing-runs/`의 사용자 조사 원본, 개인 Excel, 모델 API 키, Chrome 프로필·쿠키, `.env`,
+가상환경·`node_modules`·`dist`는 포함하지 않습니다. 새 환경에서 실제 실행하려면 이 실행 자료와
+접근 설정을 사용자의 로컬 백업에서 별도로 복원해야 합니다. 이 코드 백업만으로 과거 개인 조사
+데이터 전체가 복원된다고 보지 않습니다.
+
+기준 시점 이후 다른 작업에서 생긴 변경은 별도 커밋 대상이며 덮어쓰거나 강제로 푸시하지 않습니다.
+라이선스는 [LICENSE](LICENSE)를 따릅니다. OpenCLI의 라이선스는 해당 저장소에서 확인하세요.

@@ -1,0 +1,40 @@
+{
+  "as_of": "2026-10-21",
+  "tracker": {
+    "repository": "https://github.com/hang154/CrossBorder-Price-Tracker",
+    "branch": "main",
+    "entrypoint": "README.md"
+  },
+  "opencli": {
+    "repository": "https://github.com/hang154/OpenCLI",
+    "branch": "main",
+    "commit": "aee46c6f4ee46dbe79fcaeae13a01be5cb627a99",
+    "layout": "../OpenCLI/dist/src/main.js"
+  },
+  "requested_model_alias": "Qwen3.8-27B-uncensored-FP8",
+  "observed_response_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "source_backup": [
+    "app",
+    "tests",
+    "configs",
+    "skills",
+    "README.md",
+    "docs/README.previous.md"
+  ],
+  "excluded_runtime": [
+    "API credentials",
+    "Chrome cookies/profiles",
+    "sourcing-runs",
+    "user-provided workbook",
+    "venv",
+    "node_modules",
+    "dist"
+  ],
+  "integration": {
+    "tracker_base": "ab7d5dd",
+    "opencli_base": "7d5b7aa",
+    "branches": "both main; no separate local feature branches",
+    "policy": "additive commits, no force push",
+    "tracker_integrated_tip": "629af4eb35252b94fe8f4d42e765d7aab75b511d"
+  }
+}
