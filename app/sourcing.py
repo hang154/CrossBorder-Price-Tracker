@@ -7,6 +7,7 @@ import math
 import os
 from pathlib import Path
 import subprocess
+from urllib.parse import urlsplit, parse_qs
 from app.models.product import detect_platform,extract_product_id
 
 def normalize_rows(site,payload):
@@ -16,8 +17,20 @@ def normalize_rows(site,payload):
     if not isinstance(rows,list): raise ValueError('Expected OpenCLI result rows')
     result=[];seen=set()
     for row in rows:
-        url=row.get('item_url','');pid=extract_product_id(url,site)
-        if detect_platform(url)!=site or not pid: continue
+        if not isinstance(row,dict):continue
+        url=row.get('item_url','')
+        if site=='naver':
+            pid=str(row.get('product_id',''))
+            try:
+                source=urlsplit(row.get('source_url',''));target=urlsplit(url)
+                valid_source=(source.scheme=='https' and ((source.hostname=='search.naver.com' and source.path=='/search.naver' and parse_qs(source.query).get('query'))
+                              or (source.hostname=='openapi.naver.com' and source.path=='/v1/search/shop.json' and row.get('strategy')=='official_api')))
+                if not valid_source or not pid.isascii() or not pid.isdigit() or target.scheme!='https' or not target.hostname:continue
+                if row.get('strategy')!='official_api' and not (target.hostname=='naver.com' or target.hostname.endswith('.naver.com')):continue
+            except (ValueError,TypeError):continue
+        else:
+            pid=extract_product_id(url,site)
+            if detect_platform(url)!=site or not pid: continue
         if pid in seen: continue
         seen.add(pid)
         price=row.get('price_min');currency=row.get('currency')
@@ -26,7 +39,9 @@ def normalize_rows(site,payload):
                        'price':price if known else None,'currency':currency if known else None,
                        'moq':row.get('moq_value'),'supplier':row.get('seller_name'),
                        'observed_at':row.get('fetched_at'),'source_url':row.get('source_url'),
-                       'price_scope':'listing_not_landed_cost','identical_product_verified':False,
+                       'price_scope':'domestic_listing_shipping_not_included' if site=='naver' else 'listing_not_landed_cost',
+                       'image_url':row.get('image_url'),'shipping_fee':row.get('shipping_fee'),
+                       'is_sponsored':row.get('is_sponsored'),'search_surface':row.get('search_surface'),'identical_product_verified':False,
                        'search_type':row.get('search_type','keyword'),'query_image_sha256':row.get('query_image_sha256'),
                        'raw_listing':row})
     if not result: raise ValueError('No valid source-linked product rows; not a successful discovery')
@@ -37,11 +52,20 @@ def cli_prefix(args):
 
 def commands(args):
     prefix=cli_prefix(args)
-    sites=[getattr(args,'site','both')] if getattr(args,'site','both')!='both' else ['1688','alibaba']
+    selected=getattr(args,'site','both')
+    sites={'both':['1688','alibaba'],'all':['1688','alibaba','naver']}.get(selected,[selected])
     image=getattr(args,'image',None)
-    return [(site,[*prefix,site,'image-search' if image else 'search',
-                   str(Path(image).resolve()) if image else (args.query_zh if site=='1688' else args.query_en),
-                   '--limit',str(args.limit),'-f','json']) for site in sites]
+    jobs=[]
+    for site in sites:
+        if site=='naver':
+            name='search-api' if getattr(args,'naver_provider','browser')=='api' else 'search'
+            jobs.append((site,[*prefix,'naver-shopping',name,args.query_ko,'--limit',str(args.limit),'-f','json']))
+        else:
+            jobs.append((site,[*prefix,site,'image-search' if image else 'search',
+                              str(Path(image).resolve()) if image else (args.query_zh if site=='1688' else args.query_en),
+                              '--limit',str(args.limit),'-f','json']))
+    return jobs
+
 
 def image_provenance(path):
     path=Path(path).resolve()
@@ -71,34 +95,42 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('action',choices=['plan','run']);p.add_argument('--query-zh');p.add_argument('--query-en')
     p.add_argument('--image',type=Path,help='Upload this one local product image to the selected marketplace(s)')
-    p.add_argument('--site',choices=['both','1688','alibaba'],default='both')
+    p.add_argument('--site',choices=['both','all','1688','alibaba','naver'],default='both')
+    p.add_argument('--query-ko',help='Explicit Korean keywords for Naver; required for --site naver/all')
+    p.add_argument('--naver-provider',choices=['browser','api'],default='browser')
     p.add_argument('--limit',type=int,default=5);p.add_argument('--opencli-main');p.add_argument('--output',type=Path,required=True)
     a=p.parse_args()
     if not 1<=a.limit<=100:p.error('limit must be 1–100')
     if a.image and (a.query_zh or a.query_en):p.error('choose image search or keyword search; no implicit fallback')
-    if not a.image and ((a.site in ('both','1688') and not a.query_zh) or (a.site in ('both','alibaba') and not a.query_en)):
+    if a.site in ('naver','all') and not (a.query_ko or '').strip():p.error('--query-ko is required for Naver search')
+    if a.site=='naver' and a.image:p.error('Naver image search is not supported; use --query-ko (or --site all for combined discovery)')
+    if not a.image and ((a.site in ('both','all','1688') and not a.query_zh) or (a.site in ('both','all','alibaba') and not a.query_en)):
         p.error('provide keywords for selected sites, or --image')
     try: image=image_provenance(a.image) if a.image else None
     except (ValueError,OSError) as e:p.error(str(e))
     report={'created_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'action':a.action,'search_type':'image' if image else 'keyword','query_image':image,'jobs':[],'model_api_calls':0,'supplier_messages_sent':0}
+            'action':a.action,'search_type':('image_and_keyword' if a.site=='all' else 'image') if image else 'keyword','query_image':image,'jobs':[],'model_api_calls':0,'supplier_messages_sent':0}
     failed=False
     jobs=commands(a);connection={'ready':True,'method':'not_needed_for_plan'}
-    if a.action=='run':
+    if a.action=='run' and not (a.site=='naver' and a.naver_provider=='api'):
         try: connection=browser_ready(cli_prefix(a))
         except (OSError,subprocess.TimeoutExpired) as e: connection={'ready':False,'error':type(e).__name__}
     report['browser_connection']=connection
     for site,argv in jobs:
-        job={'site':site,'argv':argv,'state':'prepared'}
-        if a.action=='run' and not connection['ready']:
+        job={'site':site,'argv':argv,'state':'prepared','search_type':'image' if image and site!='naver' else 'keyword'}
+        needs_browser=not (site=='naver' and a.naver_provider=='api')
+        if a.action=='run' and needs_browser and not connection['ready']:
             job.update(state='blocked_or_failed',error='Browser Bridge not connected; connect extension or configure existing CDP before retry');failed=True
         elif a.action=='run':
             try:
                 r=subprocess.run(argv,capture_output=True,text=True,timeout=120,check=False)
                 job['exit_code']=r.returncode
-                if r.returncode:raise ValueError('OpenCLI nonzero exit '+str(r.returncode))
+                if r.returncode:
+                    try: error_code=json.loads(r.stdout).get('error',{}).get('code','UNKNOWN')
+                    except (ValueError,AttributeError):error_code='UNKNOWN'
+                    raise ValueError('OpenCLI nonzero exit '+str(r.returncode)+' ('+str(error_code)+')')
                 rows=normalize_rows(site,json.loads(r.stdout))
-                if image:
+                if image and site!='naver':
                     if image_provenance(a.image)!=image:raise ValueError('image changed during search')
                     if any(row['search_type']!='image' or row['query_image_sha256']!=image['sha256'] for row in rows):
                         raise ValueError('image query provenance missing/mismatched; refusing unrelated results')
