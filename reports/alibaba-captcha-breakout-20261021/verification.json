@@ -1,0 +1,78 @@
+{
+ "verified_at_utc": "2026-10-21T11:35:16.246704+00:00",
+ "unique_candidates": 491,
+ "classification": {
+  "relevant": 298,
+  "uncertain": 81,
+  "irrelevant": 112
+ },
+ "forms": {
+  "bracelet": 228,
+  "components": 114,
+  "buddhist_mala": 52,
+  "ring": 58,
+  "other": 33,
+  "prayer_rope": 6
+ },
+ "sites": {
+  "1688": 419,
+  "alibaba": 72
+ },
+ "inspection_states": {
+  "not_selected": 467,
+  "observed": 18,
+  "listing_only": 6
+ },
+ "source_hash_checks": 76,
+ "embedded_workbook_photos": 24,
+ "browser_checks": {
+  "initial": true,
+  "filter": true,
+  "totalShown": 379,
+  "rings": 28,
+  "observed": 18,
+  "unavailable": 0
+ },
+ "api_response_models": {
+  "Qwen3.8-27B-abliterated-AWQ-W4A16": 30
+ },
+ "alibaba_blocked": false,
+ "files": {
+  "index.html": "0892e00a301edda0274dc14ff2972bdbfdd6e75a4ed72c109d8aaeff968c3498",
+  "catalog.xlsx": "c9e1592922f07efc46181d1df51d611154f301a946d6120be22293d27a0f161c",
+  "reviewed-catalog.json": "e125dadc1890235c4ce2a3b4bb0612585b68a7327fb0dbea8f57a7db5409c04f",
+  "material-price-ranking.json": "153cb78ad9f983b308ad94169fc89b422325b6ab5372d6ae06c0ef863f02eaf5"
+ },
+ "final_change": "Alibaba 접근 제한 돌파: 3개 Alibaba 상세+공급업체 프로필을 브라우저 원문으로 재관찰(unavailable 0건).",
+ "visualization_checks": {
+  "initial": true,
+  "charts": true,
+  "filteredPhotos": true,
+  "allPhotos": true,
+  "chartClick": true
+ },
+ "material_minimum_checks": {
+  "groups": true,
+  "filter": true,
+  "proof": true,
+  "search": true,
+  "detailBlocked": true,
+  "qwen_classified": 379,
+  "multi_candidate_groups": 37,
+  "groups_with_explicit_size": 3,
+  "tests_passed": 8
+ },
+ "isolated_browser": {
+  "search": "observed",
+  "detail": "captcha_blocked",
+  "elapsed_seconds": 111.97,
+  "actual_record": "isolated-alibaba-v2/browser-result.json",
+  "isolation_probe": "isolated-alibaba-v2/isolation-probe.json"
+ },
+ "alibaba_block_resolved": {
+  "block_log": "alibaba-verification-block.json",
+  "breakthrough": "alibaba-detail-breakthrough.json",
+  "adapter": "OpenCLI clis/alibaba/detail.js",
+  "mode": "direct browser; slider/mirror ladder ready but unused this session"
+ }
+}

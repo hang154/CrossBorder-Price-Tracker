@@ -298,6 +298,11 @@ HTTP 200·JSON 형식 통과는 분석·상품 매칭 정확도의 보장이 아
 ```bash
 python -m pytest tests -q
 # OpenCLI 쪽 관련 어댑터 검사 명령은 그 저장소 SOURCING_README.md 참조
+
+Alibaba.com 상세 페이지가 슬라이드 검증으로 차단된 상황의 재시도·재관찰 절차는
+[ALIBABA_ACCESS.md](ALIBABA_ACCESS.md)에 절차와 근거 예시(`reports/alibaba-captcha-breakout-20261021/`)로
+보존했다. OpenCLI의 `alibaba detail` 사다리(직접 로드 → 슬라이더 해체 → 텍스트 미러)를
+쓰고, 미러 관측은 `text_proxy`로 직접 관찰과 구분해 기록한다.
 ```
 
 특히 `test_sourcing_agent.py`, `test_sourcing_pipeline.py`, `test_sourcing_handoff.py`,

@@ -2,7 +2,7 @@
 
 Python 3.9+에서 `pip install -r requirements.txt`를 실행합니다. `OpenCLI`는
 `https://github.com/hang154/OpenCLI`의 글로벌 1688 어댑터가 포함된 버전을 사용합니다.
-검증 기준 OpenCLI 커밋은 `7d5b7aaa36c2fd06164b337705848bb01abb62f9`입니다.
+검증 기준 OpenCLI 커밋은 `2baa3e5bde4099300b4411fc93ffea01d8681ee4`(상세 페이지 차단 돌파 사다리 포함)입니다.
 브라우저 확장을 연결하고 기존 Chrome에서 1688에 로그인해야 합니다.
 API 키·쿠키·로그인 정보를 설정 파일이나 저장소에 넣지 않습니다.
 

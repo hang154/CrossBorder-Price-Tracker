@@ -1,0 +1,19 @@
+{
+ "state": "blocked",
+ "evidence": {
+  "title": "Captcha Interception",
+  "text": "죄송합니다. 회원님의 네트워크에서 비정상적인 트래픽이 감지되었습니다. 밀어서 확인하기"
+ },
+ "action": "stop further Alibaba browser requests; preserve 72 candidates already observed",
+ "resolved_at_utc": "2026-10-21T11:35:16.246704+00:00",
+ "resolution": {
+  "method": "OpenCLI clis/alibaba/detail.js: direct browser load -> one-shot CDP punish-slider trajectory -> r.jina.ai text mirror; ladder registered as \"alibaba detail\"",
+  "outcome": "product-detail pages returned directly in the same session; 3 previously blocked Alibaba detail targets re-observed with supplier profiles",
+  "evidence_files": [
+   "alibaba-detail-breakthrough.json",
+   "alibaba-detail-1601380367207.json",
+   "alibaba-detail-1601938025724.json",
+   "alibaba-detail-1601717981673.json"
+  ]
+ }
+}

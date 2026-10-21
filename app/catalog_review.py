@@ -230,6 +230,14 @@ def report(out):
     if (out/'supplement-inspections.json').exists():
         for item in json.loads((out/'supplement-inspections.json').read_text())['items']:
             inspections.setdefault(item['key'], item)
+    if (out/'alibaba-detail-breakthrough.json').exists():
+        # A late success after the CAPTCHA block must replace the earlier "unavailable" record.
+        for item in json.loads((out/'alibaba-detail-breakthrough.json').read_text())['items']:
+            prior = {k: v for k, v in inspections.get(item['key'], {}).items() if k not in {'error', 'supplier_error', 'state'}}
+            pages = (item.get('product_page', {}).get('text', '') + '\n' + item.get('supplier_page', {}).get('text', ''))
+            item = {**prior, **item}
+            item.setdefault('signals', seller_signals(pages))
+            inspections[item['key']] = item
     visual = {r['key']:r for r in json.loads((out/'material-photo-review.json').read_text())['items']} if (out/'material-photo-review.json').exists() else {}
     for row in rows:
         row['annotation'] = annotations.get(row['key'], {'relevance':'unreviewed','form':'other','quality_claim_tier':'standard_or_unspecified','material_quote':'','quality_quote':''})
