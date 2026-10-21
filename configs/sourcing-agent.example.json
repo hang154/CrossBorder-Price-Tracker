@@ -1,0 +1,14 @@
+{
+  "limit": 3,
+  "max_steps_per_product": 16,
+  "api_timeout_seconds": 180,
+  "krw_per_currency": {},
+  "products": [
+    {"id": "film", "request": "국내 창문 사생활 보호 무점착 안개 필름과 1688/Alibaba 유사 상품을 키워드 및 사진으로 찾아 가격 비교. 크기 차이는 미확인으로 표시."},
+    {"id": "oil-sprayer", "request": "470ml 오일 분무기. 네이버·1688·Alibaba 키워드 및 국내 상품 사진 검색. 실제 판매 수량 미확인 시 1개 가정."},
+    {"id": "pet-hair", "request": "세척 가능한 반영구 털 제거 롤러, 국내외 사진 검색 및 후보 가격 비교."},
+    {"id": "under-sink", "request": "싱크대 하부 2단 슬라이딩 선반. 치수 및 구성 일치 미확인으로 표시."},
+    {"id": "drain-catcher", "request": "실리콘 배수구 머리카락 거름망. 지름과 묶음 수량 미확인으로 표시."},
+    {"id": "bag-sealer", "request": "충전식 미니 비닐 밀봉기. 건전지형과 충전식 차이 및 부속품 미확인으로 표시."}
+  ]
+}

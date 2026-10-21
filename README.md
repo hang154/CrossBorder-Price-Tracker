@@ -166,6 +166,45 @@ python -m pytest tests/ -v
 # 211 个测试，覆盖全部模块
 ```
 
+## 로컬 Qwen 상품 탐색 에이전트
+
+`app.sourcing_agent`는 로컬 `Qwen3.8-27B-uncensored-FP8`의 실제 함수 호출로
+검색어 계획 → 네이버/1688/Alibaba 키워드 검색 → 국내 사진의 1688/Alibaba 업로드
+검색 → 후보 사진 대조 → 가격 계산 → JSON·사진 포함 XLSX·독립 HTML 출력을 수행합니다.
+기존 OpenCLI Browser Bridge 연결과 로그인 상태를 사용합니다. 외부 LLM 공급자는 사용하지 않습니다.
+
+```bash
+python -m app.sourcing_agent \
+  --config configs/sourcing-agent.example.json \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/my-agent-run
+
+# 동일 입력으로 재개: 완료 상품은 모델 요청도 생략하고, 완료 검색은 재사용합니다.
+python -m app.sourcing_agent \
+  --config configs/sourcing-agent.example.json \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --output-dir sourcing-runs/my-agent-run --resume
+```
+
+설정의 `products`는 임의의 상품 `id`와 자연어 `request` 목록입니다. 선택적으로
+`images`에 설정 파일 기준 상품 사진 경로를 넣을 수 있습니다. 사진이 없으면 국내
+검색 결과의 첫 상품 사진을 사용합니다. `domestic_units_assumed` 기본값은 1이며
+실제 판매 수량을 확인했다는 뜻은 아닙니다. 외화 가격은 명시한 `krw_per_currency`가
+없으면 환산하지 않습니다. 예제는 6개 상품군이며 실행 범위는 설정 목록으로 정합니다.
+
+인증은 `ADINTEL_QWEN_API_KEY` 또는 기존 로컬 Azrael의 활성 Qwen bearer 파일을
+읽습니다. 키와 로그인 쿠키는 출력·저장소에 넣지 않습니다. 실행 자료는 Git에서 제외된
+`sourcing-runs/`에 둡니다. 같은 출력 폴더의 중복 실행은 잠금으로 차단합니다.
+
+실제 API 응답과 도구 결과, 미완료 도구 호출을 상품별로 저장합니다. 중단 시 원래
+계획을 보존하여 재개하며, 실패한 검색만 다시 요청할 수 있습니다. 실행한 5개 검색
+경로와 사진 근거·비교 결과가 갖춰져야 코드가 `complete`로 판정합니다. 결과가
+부족하면 `needs_review` 및 종료 코드 1을 반환하고 부분 자료를 남깁니다.
+
+제목 근거는 원문에 존재하는 인용만 허용합니다. 사진 설명은 미검증 시각 가설로,
+재질·동일 SKU·가격차 원인은 미확인으로 저장합니다. 동일 상품과 실제 수입 원가를
+확정하는 시스템은 아니며, 배송·세금·수수료는 가격 배수에서 제외합니다.
+
 ## License
 
 MIT
