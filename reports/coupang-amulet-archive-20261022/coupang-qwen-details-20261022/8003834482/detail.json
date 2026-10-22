@@ -1,0 +1,151 @@
+{
+  "product_id": "8003834482",
+  "search_rank": 9,
+  "search_title": "휘뚜마뚜 마네키네코 1+1 복 부르는 고양이 손흔드는 행운 돈 일본 고양이 세트, 화이트 & 베이지",
+  "search_price": 10900,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-qwen-details-20261022/candidates.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 4534,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/0655/a9cfae1592b77297d5c5e400974d501e173ca5d9ab9171e1a5de18baf55f.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2459,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/1697/f3e589c5656ad0dc9ec7d51b378417d2822ccb4e494fcae32307da18d1e4.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 4534,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ab6/1e4e36d46a12f7938c310e673151161be78b3340495245beb0587cf615c3.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 697,
+      "index": 4,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bb40/4f9e1b8a4be433e0611cffc6853c74346e976c92afc02d1264d7ff0c2a94.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 4534,
+      "index": 5,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/321b/91bfe40bba192e15d4400ec881a426fa84632724632f89c57ffa97be596d.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2720,
+      "index": 6,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/045a/0fd13eb965a8479b5757de6b66d9b31e34ccc543bfbe6cfd48f208c61254.png",
+      "width": 780
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c562/c0f6c51751ae33aad3ef1071d237283c3e84e8a0a01649575fcad0992b4f.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t휘뚜마뚜 마네키네코 1+1 복 부르는 고양이\tKC 인증정보\t상품 상세페이지 참조\n정격전압, 소비전력\t상품 상세페이지 참조\t출시년월\t상품 상세페이지 참조\n제조자(수입자)\t상품 상세페이지 참조\t제조국\t상품 상세페이지 참조\n필수 표기 정보 더보기\n더보기",
+  "price": "10900",
+  "product_identifiers": "수량: 1개\n쿠팡상품번호: 8003834482 - 22299175909",
+  "selected_options": "1+1 마네키네코:\n화이트 & 베이지",
+  "title": "휘뚜마뚜 마네키네코 1+1 복 부르는 고양이 손흔드는 행운 돈 일본 고양이 세트",
+  "url": "https://www.coupang.com/vp/products/8003834482",
+  "videos": [],
+  "observed_at_kst": "2026-10-22T01:50:34.306618+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/0655/a9cfae1592b77297d5c5e400974d501e173ca5d9ab9171e1a5de18baf55f.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/0655/a9cfae1592b77297d5c5e400974d501e173ca5d9ab9171e1a5de18baf55f.png",
+      "http_status": 200,
+      "file": "images/001.png",
+      "bytes": 2742451,
+      "sha256": "b70993ec85ce86f80da502c6c2de6538dc7fe029f94297233b4a5beed2b23257",
+      "width": 780,
+      "height": 4534,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/1697/f3e589c5656ad0dc9ec7d51b378417d2822ccb4e494fcae32307da18d1e4.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/1697/f3e589c5656ad0dc9ec7d51b378417d2822ccb4e494fcae32307da18d1e4.png",
+      "http_status": 200,
+      "file": "images/002.png",
+      "bytes": 1681077,
+      "sha256": "5ad16488411b868bfba2549caeb322ea72b23461162cb4e4ce86df1adb08a82b",
+      "width": 780,
+      "height": 2459,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ab6/1e4e36d46a12f7938c310e673151161be78b3340495245beb0587cf615c3.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ab6/1e4e36d46a12f7938c310e673151161be78b3340495245beb0587cf615c3.png",
+      "http_status": 200,
+      "file": "images/003.png",
+      "bytes": 2793446,
+      "sha256": "d0531f077fc28d62cc09f79ec27a6f95691835c154275403ed15bc48aa33bbf4",
+      "width": 780,
+      "height": 4534,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bb40/4f9e1b8a4be433e0611cffc6853c74346e976c92afc02d1264d7ff0c2a94.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bb40/4f9e1b8a4be433e0611cffc6853c74346e976c92afc02d1264d7ff0c2a94.png",
+      "http_status": 200,
+      "file": "images/004.png",
+      "bytes": 222388,
+      "sha256": "a326627b419ab51495b9cf0be89b511386fc3bc41ced3bb7d089973911adc717",
+      "width": 779,
+      "height": 697,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/321b/91bfe40bba192e15d4400ec881a426fa84632724632f89c57ffa97be596d.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/321b/91bfe40bba192e15d4400ec881a426fa84632724632f89c57ffa97be596d.png",
+      "http_status": 200,
+      "file": "images/005.png",
+      "bytes": 3775338,
+      "sha256": "21ed1145be9e5b119bf558c0c04d640a30b72c97292dd0cd1709e2562683227e",
+      "width": 780,
+      "height": 4534,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/045a/0fd13eb965a8479b5757de6b66d9b31e34ccc543bfbe6cfd48f208c61254.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/045a/0fd13eb965a8479b5757de6b66d9b31e34ccc543bfbe6cfd48f208c61254.png",
+      "http_status": 200,
+      "file": "images/006.png",
+      "bytes": 2228801,
+      "sha256": "1b8ecb07480709ea0fa24e2d5076a36067a505dcae88a266a0055ab79a452944",
+      "width": 780,
+      "height": 2720,
+      "format": "PNG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c562/c0f6c51751ae33aad3ef1071d237283c3e84e8a0a01649575fcad0992b4f.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c562/c0f6c51751ae33aad3ef1071d237283c3e84e8a0a01649575fcad0992b4f.png",
+      "http_status": 200,
+      "file": "images/007.png",
+      "bytes": 231243,
+      "sha256": "a14c4314a8bdcbc0036c6f75edbe2d4831e7f3d7b39a29e5a85ea42bfe980478",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

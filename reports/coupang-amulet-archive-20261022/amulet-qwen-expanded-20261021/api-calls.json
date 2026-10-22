@@ -1,0 +1,98 @@
+[
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-000.json",
+    "sha256": "05f457f0c3a9793f1449a7b3c3e5d742ad19b20078d59ca6cc47916ca3a30188",
+    "seconds": 1.171,
+    "usage": {
+      "prompt_tokens": 510,
+      "total_tokens": 554,
+      "completion_tokens": 44,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 0
+    }
+  },
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-001.json",
+    "sha256": "7e2087262f26c59ec6ba579a998e2e6f57d6e452f0c706d11c6ea74a07fce5cb",
+    "seconds": 2.112,
+    "usage": {
+      "prompt_tokens": 2341,
+      "total_tokens": 2411,
+      "completion_tokens": 70,
+      "prompt_tokens_details": {
+        "cached_tokens": 64
+      },
+      "reasoning_tokens": 0
+    }
+  },
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-002.json",
+    "sha256": "572f9b89da5b4e0d25e32d74bbb0e4f08b9ed50391328c4e4c6f05724c729732",
+    "seconds": 1.27,
+    "usage": {
+      "prompt_tokens": 2420,
+      "total_tokens": 2461,
+      "completion_tokens": 41,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "reasoning_tokens": 0
+    }
+  },
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-003.json",
+    "sha256": "b7f01954939d00f9f6a80f03b47db9322b28b9fb4a6c8a5e5cdab431f4f72bd3",
+    "seconds": 0.914,
+    "usage": {
+      "prompt_tokens": 2626,
+      "total_tokens": 2667,
+      "completion_tokens": 41,
+      "prompt_tokens_details": {
+        "cached_tokens": 64
+      },
+      "reasoning_tokens": 0
+    }
+  },
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-004.json",
+    "sha256": "6eeefd9cef01b1663381f3f25fc17c28a050036a35dd29cdd47161a43f6f749d",
+    "seconds": 1.746,
+    "usage": {
+      "prompt_tokens": 2864,
+      "total_tokens": 3036,
+      "completion_tokens": 172,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 0
+    }
+  },
+  {
+    "requested_model": "Qwen3.8-27B-uncensored-FP8",
+    "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+    "http_status": 200,
+    "file": "qwen-response-005.json",
+    "sha256": "1954859d77eaabf2494852a72360175e47503002fd1782947ce31d8edd20cca8",
+    "seconds": 6.323,
+    "usage": {
+      "prompt_tokens": 3586,
+      "total_tokens": 3980,
+      "completion_tokens": 394,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 0
+    }
+  }
+]

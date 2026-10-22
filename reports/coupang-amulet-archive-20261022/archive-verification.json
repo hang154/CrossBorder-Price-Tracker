@@ -1,0 +1,37 @@
+{
+ "archived_at_utc": "2026-10-22T03:45:05.690677+00:00",
+ "runs": {
+  "amulet-details-20261021": {
+   "status": "10/10 complete",
+   "note": "2026-10-21 차단 전 수집. 부적 검색 상위 10개 상세 원문·이미지 아카이브.",
+   "source_job_sha256": "fc8edf09bf63a570fa4164bec93215925447d9ecad867198b9cbe7aa0a245679"
+  },
+  "amulet-qwen-expanded-20261021": {
+   "status": "0/10 (차단 스캐폴더)",
+   "note": "Qwen 3회 검색 중 부적 search 성공·상세 10건은 액세스 제한으로 실패. ledger와 API 증적만 보존."
+  },
+  "coupang-qwen-details-20261022": {
+   "status": "9/9 complete",
+   "note": "차단 대기열 해제 후 재실행. 라이브 검색 재시도 3건과 prior candidates로 검색어별 3개씩 선정."
+  }
+ },
+ "revalidation": {
+  "assets_sha256": "181/181 일치 (이미지 파일 바이트 단위 해시 재계산)",
+  "raw_html_capture": "상세 원본 HTML의 모든 http(s) 이미지·영상 src가 assets/videos/unsupported 기록에 대응 (19/19)",
+  "description_equals_detail_text": "19/19",
+  "expanded_state_true": "19/19",
+  "qwen_response_hashes": "25/25 일치",
+  "model_provenance": {
+   "requested": "Qwen3.8-27B-uncensored-FP8",
+   "reported_by_endpoint": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+   "note": "응답이 보고한 실제 모델은 AWQ-W4A16이며 FP8을 주장하지 않는다(25회 전부 동일 페어)."
+  },
+  "prior_source_job_hashes": "44/44 일치 (rank·가격出处 SHA 보존)"
+ },
+ "maintained_limitations": [
+  "선택된 옵션 기준 관측. 전 옵션 관측 아님 (상세 옵션 null인 상품 존재).",
+  "detail_text가 오디오 비어드 이미지 driven 설명은 0 글자일 수 있고, 텍스트는 판매자 주장의 전사이며 효능 검증이 아니다.",
+  "가격은 observe 시점 표시가. 가격 변경 대응 없음.",
+  "검색이 빈 표면은 비어 있는 것으로 두고 재검색만 시도. 라이브 재검색 원본은 coupang-search-jobs/live-search-retry-20261022/에 해시로 보존."
+ ]
+}

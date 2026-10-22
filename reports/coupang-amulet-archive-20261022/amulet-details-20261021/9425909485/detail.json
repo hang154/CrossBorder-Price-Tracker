@@ -1,0 +1,97 @@
+{
+  "product_id": "9425909485",
+  "search_rank": 6,
+  "search_title": "소원성취부적 효험 동으로 제작한 반영구 부적, 1개, D무병장수",
+  "search_price": 6900,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 5000,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6bd2/4fefe71e0a876735c45225d5d40cfd17c62fe487cda13ff54e590c1ebd2b.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 5000,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/cf6d/ab1b5f3d5be56426a42f38c14f55da2a1693f82ddb9014e44a452cade707.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2681,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/3cab/c691630edd3e2379548777851a83470d8e90fc45f28a82b837898409ffd0.jpg",
+      "width": 780
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1153/e61476e56797341c97a0e0c3882717ca3ed129c4dd174fc6a1e6bef6073b.jpg"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t상품 상세페이지 참조\t인증/허가 사항\t상품 상세페이지 참조\n제조국(원산지)\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n소비자상담 관련 전화번호\t상품 상세페이지 참조",
+  "price": "6900",
+  "product_identifiers": "쿠팡상품번호: 9425909485 - 28019241693",
+  "selected_options": null,
+  "title": "소원성취부적 효험 동으로 제작한 반영구 부적, 1개, A관운합격",
+  "url": "https://www.coupang.com/vp/products/9425909485",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:51:47.026271+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6bd2/4fefe71e0a876735c45225d5d40cfd17c62fe487cda13ff54e590c1ebd2b.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6bd2/4fefe71e0a876735c45225d5d40cfd17c62fe487cda13ff54e590c1ebd2b.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 614256,
+      "sha256": "feeebc6499b99a8458bffcdf42e686cddbbced1630c3f2592b824443e0b5732f",
+      "width": 780,
+      "height": 5000,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/cf6d/ab1b5f3d5be56426a42f38c14f55da2a1693f82ddb9014e44a452cade707.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/cf6d/ab1b5f3d5be56426a42f38c14f55da2a1693f82ddb9014e44a452cade707.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 609650,
+      "sha256": "b329ff510ce1142c01dadd4e235c2d9093cf25480f088c13df9765885a5b0c86",
+      "width": 780,
+      "height": 5000,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/3cab/c691630edd3e2379548777851a83470d8e90fc45f28a82b837898409ffd0.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/3cab/c691630edd3e2379548777851a83470d8e90fc45f28a82b837898409ffd0.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 290552,
+      "sha256": "eaf9cb9a65f133e28098444249bb95f0a5556f6275c44393307b6ba13bdeaae9",
+      "width": 780,
+      "height": 2681,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1153/e61476e56797341c97a0e0c3882717ca3ed129c4dd174fc6a1e6bef6073b.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1153/e61476e56797341c97a0e0c3882717ca3ed129c4dd174fc6a1e6bef6073b.jpg",
+      "http_status": 200,
+      "file": "images/004.jpg",
+      "bytes": 68489,
+      "sha256": "9656b329baa16c405d8acf584f60cf23f5a8a0457247b39c3efaa9a1a575047c",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

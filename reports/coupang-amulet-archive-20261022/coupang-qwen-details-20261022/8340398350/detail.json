@@ -1,0 +1,206 @@
+{
+  "product_id": "8340398350",
+  "search_rank": 6,
+  "search_title": "호안석 팔찌 천연 블루 타이거아이 10mm 남녀공용 원석팔찌 로미온",
+  "search_price": 26950,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-qwen-details-20261022/candidates.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 140,
+      "index": 1,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/1b54/27d671dd48e11dd4ab3c0a243e434e3e55c64de2e3a663c2d4531be883f2.png",
+      "width": 778
+    },
+    {
+      "alt": "",
+      "height": 997,
+      "index": 2,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/a3a5/aa9d4dbfd42b41e4d3710edd1523a395e465446fbacdd1f56d8bb1936fa9.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 997,
+      "index": 3,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/3233/4665ca84405723e5e632b285efa443486a7831cd73b72d51d6df804e15d1.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 1040,
+      "index": 4,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/09ba/4b46071dee917ab1c765835c6f3643a98fd3d75a9d0d6b5a8801b2e0648a.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 997,
+      "index": 5,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/e96a/1efd48271066853619ca97f3c3fddda4a0f37820a70e0a1b96caa1b117cb.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 780,
+      "index": 6,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/d076/500da74ba1f93289e2cf62fd016ede04aabb150798974c5e813fb231aec6.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 997,
+      "index": 7,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/db27/3391f8dcf2455a3525b31f3433ed85653a411113d9036b4cfbb6f1a6dd48.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 997,
+      "index": 8,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/29ec/f91ffd2eeaa1a77ae1af8ea9e8a78aa614ce8b1f7c6008bf64bac7ee5ca2.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 9,
+      "src": "",
+      "width": 0
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 10,
+      "src": "",
+      "width": 0
+    }
+  ],
+  "detail_text": " \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n ",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1586/43666db801169ceaa0a8245a591e500659234b72ea1d54f970f4d2d55782.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n종류\t상품 상세페이지 참조\t소재\t상품 상세페이지 참조\n치수\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n제조국\t상품 상세페이지 참조\t취급시 주의사항\t상품 상세페이지 참조\n필수 표기 정보 더보기\n더보기",
+  "price": "26950",
+  "product_identifiers": "사용대상 구분: 남녀공용\n디자인: 종교\n사용대상: 남녀공용\n특징: 염주팔찌\n제조년도: 23년\n쿠팡상품번호: 8340398350 - 24086318269",
+  "selected_options": null,
+  "title": "호안석 팔찌 천연 블루 타이거아이 10mm 남녀공용 원석팔찌 로미온",
+  "url": "https://www.coupang.com/vp/products/8340398350",
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/?loop=1&autoplay=1&mute=1&playlist=q-Dq_JMVEUo",
+      "tag": "IFRAME"
+    }
+  ],
+  "observed_at_kst": "2026-10-22T01:50:14.974649+09:00",
+  "assets": [
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/1b54/27d671dd48e11dd4ab3c0a243e434e3e55c64de2e3a663c2d4531be883f2.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/1b54/27d671dd48e11dd4ab3c0a243e434e3e55c64de2e3a663c2d4531be883f2.png",
+      "http_status": 200,
+      "file": "images/001.png",
+      "bytes": 31902,
+      "sha256": "1b5427d671dd48e11dd4ab3c0a243e434e3e55c64de2e3a663c2d4531be883f2",
+      "width": 778,
+      "height": 140,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/a3a5/aa9d4dbfd42b41e4d3710edd1523a395e465446fbacdd1f56d8bb1936fa9.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/a3a5/aa9d4dbfd42b41e4d3710edd1523a395e465446fbacdd1f56d8bb1936fa9.png",
+      "http_status": 200,
+      "file": "images/002.png",
+      "bytes": 776502,
+      "sha256": "a3a5aa9d4dbfd42b41e4d3710edd1523a395e465446fbacdd1f56d8bb1936fa9",
+      "width": 779,
+      "height": 997,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/3233/4665ca84405723e5e632b285efa443486a7831cd73b72d51d6df804e15d1.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/3233/4665ca84405723e5e632b285efa443486a7831cd73b72d51d6df804e15d1.png",
+      "http_status": 200,
+      "file": "images/003.png",
+      "bytes": 733332,
+      "sha256": "32334665ca84405723e5e632b285efa443486a7831cd73b72d51d6df804e15d1",
+      "width": 779,
+      "height": 997,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/09ba/4b46071dee917ab1c765835c6f3643a98fd3d75a9d0d6b5a8801b2e0648a.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/09ba/4b46071dee917ab1c765835c6f3643a98fd3d75a9d0d6b5a8801b2e0648a.png",
+      "http_status": 200,
+      "file": "images/004.png",
+      "bytes": 1187220,
+      "sha256": "09ba4b46071dee917ab1c765835c6f3643a98fd3d75a9d0d6b5a8801b2e0648a",
+      "width": 780,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/e96a/1efd48271066853619ca97f3c3fddda4a0f37820a70e0a1b96caa1b117cb.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/e96a/1efd48271066853619ca97f3c3fddda4a0f37820a70e0a1b96caa1b117cb.png",
+      "http_status": 200,
+      "file": "images/005.png",
+      "bytes": 544531,
+      "sha256": "e96a1efd48271066853619ca97f3c3fddda4a0f37820a70e0a1b96caa1b117cb",
+      "width": 779,
+      "height": 997,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/d076/500da74ba1f93289e2cf62fd016ede04aabb150798974c5e813fb231aec6.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/d076/500da74ba1f93289e2cf62fd016ede04aabb150798974c5e813fb231aec6.png",
+      "http_status": 200,
+      "file": "images/006.png",
+      "bytes": 761891,
+      "sha256": "d076500da74ba1f93289e2cf62fd016ede04aabb150798974c5e813fb231aec6",
+      "width": 780,
+      "height": 780,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/db27/3391f8dcf2455a3525b31f3433ed85653a411113d9036b4cfbb6f1a6dd48.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/db27/3391f8dcf2455a3525b31f3433ed85653a411113d9036b4cfbb6f1a6dd48.png",
+      "http_status": 200,
+      "file": "images/007.png",
+      "bytes": 587957,
+      "sha256": "db273391f8dcf2455a3525b31f3433ed85653a411113d9036b4cfbb6f1a6dd48",
+      "width": 779,
+      "height": 997,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/29ec/f91ffd2eeaa1a77ae1af8ea9e8a78aa614ce8b1f7c6008bf64bac7ee5ca2.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/29ec/f91ffd2eeaa1a77ae1af8ea9e8a78aa614ce8b1f7c6008bf64bac7ee5ca2.png",
+      "http_status": 200,
+      "file": "images/008.png",
+      "bytes": 626052,
+      "sha256": "29ecf91ffd2eeaa1a77ae1af8ea9e8a78aa614ce8b1f7c6008bf64bac7ee5ca2",
+      "width": 779,
+      "height": 997,
+      "format": "PNG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1586/43666db801169ceaa0a8245a591e500659234b72ea1d54f970f4d2d55782.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1586/43666db801169ceaa0a8245a591e500659234b72ea1d54f970f4d2d55782.png",
+      "http_status": 200,
+      "file": "images/009.png",
+      "bytes": 392876,
+      "sha256": "6921d13d7c60a629502310e5b250677e1276eeb72271bbe4162b5539ff131ff1",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

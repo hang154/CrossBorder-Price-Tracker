@@ -1,0 +1,42 @@
+{
+  "id": "9d7476dc93764ccc9edf6191b189846c",
+  "object": "chat.completion",
+  "created": 1792592931,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "I have 30 candidates. Let me select TEN new product IDs (all with 부적 in title, none in the existing exclusion list) and inspect their detail pages. I'll start with the first batch:\n\n",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_63c53174773d4949973a44dd",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "search_products",
+              "arguments": "{\"keyword\": \"부적\"}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2341,
+    "total_tokens": 2411,
+    "completion_tokens": 70,
+    "prompt_tokens_details": {
+      "cached_tokens": 64
+    },
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

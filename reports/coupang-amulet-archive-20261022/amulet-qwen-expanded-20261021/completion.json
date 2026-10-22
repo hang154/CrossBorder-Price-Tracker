@@ -1,0 +1,17 @@
+{
+  "products": 10,
+  "model_calls": 6,
+  "statuses": [
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed",
+    "failed"
+  ],
+  "elapsed_seconds": 33.14
+}

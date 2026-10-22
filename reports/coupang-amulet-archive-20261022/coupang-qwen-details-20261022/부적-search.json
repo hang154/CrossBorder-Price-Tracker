@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "error": {
+    "code": "EMPTY_RESULT",
+    "message": "coupang search returned no data",
+    "exitCode": 66,
+    "hint": "No products matched \"부적\". Try a more specific keyword or remove --filter."
+  }
+}

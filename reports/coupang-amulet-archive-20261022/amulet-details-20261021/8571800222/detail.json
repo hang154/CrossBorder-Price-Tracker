@@ -1,0 +1,97 @@
+{
+  "product_id": "8571800222",
+  "search_rank": 10,
+  "search_title": "간절한 소원을 이뤄주는 복원당(1952) 소원 부적 |, 23. 귀인협조부(필요한 사람이 제때)",
+  "search_price": 34250,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 4875,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/55bc/80ed3dc2a36a8e523811f80beebf5cc8e80d5795a92d981b2b10625bb0fd.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 4875,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5cc6/02a0c4a48ca580b1d64a2c435fec96091a870b99c0daa235bfc25942f5d8.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 3705,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bca2/7245775bcb2f9cf4d0c7baaa72a94e365a4615bc68a2fe5147a38ddf229e.jpg",
+      "width": 780
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2a1b/c1c48c0680ccb7eb57ad12d90b2576546240b022f958509eb4526d7f4171.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n제품 소재\t상품 상세페이지 참조\t색상\t상품 상세페이지 참조\n치수\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n제조국\t상품 상세페이지 참조\t세탁방법 및 취급시 주의사항\t상품 상세페이지 참조\n필수 표기 정보 더보기\n더보기",
+  "price": "26630",
+  "product_identifiers": "도서형태: 큰글씨\n발행언어: 한국어\n쿠팡상품번호: 8571800222 - 24774465142",
+  "selected_options": "이루고자 하는 소원\n5. 질병퇴치부(건강부)",
+  "title": "간절한 소원을 이뤄주는 복원당(1952) 소원 부적 |",
+  "url": "https://www.coupang.com/vp/products/8571800222",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:52:24.588465+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/55bc/80ed3dc2a36a8e523811f80beebf5cc8e80d5795a92d981b2b10625bb0fd.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/55bc/80ed3dc2a36a8e523811f80beebf5cc8e80d5795a92d981b2b10625bb0fd.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 972490,
+      "sha256": "05f0a9de119b2c6de0aedefcfda3615f7d24b5583742cb650971d7a10dc49331",
+      "width": 780,
+      "height": 4875,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5cc6/02a0c4a48ca580b1d64a2c435fec96091a870b99c0daa235bfc25942f5d8.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5cc6/02a0c4a48ca580b1d64a2c435fec96091a870b99c0daa235bfc25942f5d8.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 841216,
+      "sha256": "b2320e6180d56409b58c689c51b4a0ca50fce9d1fd02666fce36222e48ec94ee",
+      "width": 780,
+      "height": 4875,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bca2/7245775bcb2f9cf4d0c7baaa72a94e365a4615bc68a2fe5147a38ddf229e.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/bca2/7245775bcb2f9cf4d0c7baaa72a94e365a4615bc68a2fe5147a38ddf229e.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 667672,
+      "sha256": "ef0d3e225619040938518976453d033446f83193cab4a51b7f800366b3eb3872",
+      "width": 780,
+      "height": 3705,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2a1b/c1c48c0680ccb7eb57ad12d90b2576546240b022f958509eb4526d7f4171.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2a1b/c1c48c0680ccb7eb57ad12d90b2576546240b022f958509eb4526d7f4171.png",
+      "http_status": 200,
+      "file": "images/004.png",
+      "bytes": 195785,
+      "sha256": "ef3277119a63eb4b2276f5d4396202a9b09a66918d3b00aff9798aa88a92bb38",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

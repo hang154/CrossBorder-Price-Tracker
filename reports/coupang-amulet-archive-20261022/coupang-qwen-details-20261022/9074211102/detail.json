@@ -1,0 +1,61 @@
+{
+  "product_id": "9074211102",
+  "search_rank": 2,
+  "search_title": "대광법사 친필 수제부적 금전.매매 소원.건강, 1번 공부",
+  "search_price": 3000,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-qwen-details-20261022/candidates.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 9313,
+      "index": 1,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/1ce9/ab0d7f157367cbe231664781d1c8aa74890b7b6acf4e89c2baad40eb7d57.jpg",
+      "width": 780
+    }
+  ],
+  "detail_text": "\n\n",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/96b3/31d8f55135615f655df271fa40d3a0b6888b79963776ab36d5e5e1b41a71.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t상세정보 별도표기\t인증/허가 사항\t상세정보 별도표기\n제조국(원산지)\t상세정보 별도표기\t제조자(수입자)\t상세정보 별도표기\n소비자상담 관련 전화번호\t010-5226-6677 / 김진원",
+  "price": "3900",
+  "product_identifiers": "ISBN: 부적\n쿠팡상품번호: 9074211102 - 26652016060",
+  "selected_options": "출판사\n12번 바람방지",
+  "title": "대광법사 친필 수제부적 금전.매매 소원.건강",
+  "url": "https://www.coupang.com/vp/products/9074211102",
+  "videos": [],
+  "observed_at_kst": "2026-10-22T01:49:52.840372+09:00",
+  "assets": [
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/1ce9/ab0d7f157367cbe231664781d1c8aa74890b7b6acf4e89c2baad40eb7d57.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/1ce9/ab0d7f157367cbe231664781d1c8aa74890b7b6acf4e89c2baad40eb7d57.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 1114900,
+      "sha256": "f275fffea6ad418821509e5d04eb2106ecb27c8f5c0e312364fb760a164d6952",
+      "width": 780,
+      "height": 9313,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/96b3/31d8f55135615f655df271fa40d3a0b6888b79963776ab36d5e5e1b41a71.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/96b3/31d8f55135615f655df271fa40d3a0b6888b79963776ab36d5e5e1b41a71.png",
+      "http_status": 200,
+      "file": "images/002.png",
+      "bytes": 151731,
+      "sha256": "869d315cfb1bb7c0bb0b030866dbb2ba6272d168c6e194544399655c4539b8f7",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

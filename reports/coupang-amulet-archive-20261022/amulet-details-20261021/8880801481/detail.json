@@ -1,0 +1,133 @@
+{
+  "product_id": "8880801481",
+  "search_rank": 8,
+  "search_title": "수제 경면주사 부적 34종 가로 7 세로 15 - 종로불교사, 1개, 02. 공부부",
+  "search_price": 3000,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 156,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ca9/6560582a7dab681d6fa2abfc3b7c09dc8a7a52401b53a38b8df15f0eced2.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 3900,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/932e/d2d923c38b139298b296b9ddbdde194415785ab0ebe4c8ff5740e99f3b67.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2781,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/672e/23bb0373d4dfbf6de806127cc339e56dbc3cd7f61bb0e40f046a052ca278.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2741,
+      "index": 4,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/612d/0507238d99cdb27742630c887811ea2e3232fb224127103001cedc041e09.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 329,
+      "index": 5,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/40b8/e1c28fb8366f3165d341a060d5fd631aff0101cb6c3bf89fa3319a36b0bf.jpg",
+      "width": 778
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e491/4f61a58b5799cc53ff00e8b03c2e8b40dea97c52147dc0c1b797e4209de9.jpg"
+  },
+  "mandatory_information": "필수 표기 정보\n\n종류\t상품 상세페이지 참조\t소재\t상품 상세페이지 참조\n치수\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n제조국\t상품 상세페이지 참조\t취급시 주의사항\t상품 상세페이지 참조\n필수 표기 정보 더보기\n더보기",
+  "price": "35000",
+  "product_identifiers": "쿠팡상품번호: 8880801481 - 25875683260",
+  "selected_options": null,
+  "title": "수제 경면주사 부적 34종 가로 7 세로 15 - 종로불교사, 50개, 02. 공부부",
+  "url": "https://www.coupang.com/vp/products/8880801481",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:52:07.298974+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ca9/6560582a7dab681d6fa2abfc3b7c09dc8a7a52401b53a38b8df15f0eced2.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/5ca9/6560582a7dab681d6fa2abfc3b7c09dc8a7a52401b53a38b8df15f0eced2.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 13750,
+      "sha256": "9cf5dad71169702d240760c7ae2c951c2e82ae94d733a96a3e862e91b41c7275",
+      "width": 780,
+      "height": 156,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/932e/d2d923c38b139298b296b9ddbdde194415785ab0ebe4c8ff5740e99f3b67.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/932e/d2d923c38b139298b296b9ddbdde194415785ab0ebe4c8ff5740e99f3b67.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 540238,
+      "sha256": "2d2ad5a6a0a8276e9bd993b793a2c3004da00da57cbc1a922d33a324b2fb4a40",
+      "width": 780,
+      "height": 3900,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/672e/23bb0373d4dfbf6de806127cc339e56dbc3cd7f61bb0e40f046a052ca278.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/672e/23bb0373d4dfbf6de806127cc339e56dbc3cd7f61bb0e40f046a052ca278.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 394642,
+      "sha256": "5e07d82f2829bb5285e650c93a339ab260a60097d3154070898f9d8e07bf8a7f",
+      "width": 780,
+      "height": 2781,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/612d/0507238d99cdb27742630c887811ea2e3232fb224127103001cedc041e09.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/612d/0507238d99cdb27742630c887811ea2e3232fb224127103001cedc041e09.jpg",
+      "http_status": 200,
+      "file": "images/004.jpg",
+      "bytes": 405837,
+      "sha256": "e1b580894c298ded971ed04cc228628ebb21a88a931afb2c99d18020aad917d9",
+      "width": 780,
+      "height": 2741,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/40b8/e1c28fb8366f3165d341a060d5fd631aff0101cb6c3bf89fa3319a36b0bf.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/40b8/e1c28fb8366f3165d341a060d5fd631aff0101cb6c3bf89fa3319a36b0bf.jpg",
+      "http_status": 200,
+      "file": "images/005.jpg",
+      "bytes": 38085,
+      "sha256": "4cf2a00e6aae036b1078563049e27b4d9b128c69efb19aebee026d5c56839bd7",
+      "width": 778,
+      "height": 329,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e491/4f61a58b5799cc53ff00e8b03c2e8b40dea97c52147dc0c1b797e4209de9.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e491/4f61a58b5799cc53ff00e8b03c2e8b40dea97c52147dc0c1b797e4209de9.jpg",
+      "http_status": 200,
+      "file": "images/006.jpg",
+      "bytes": 75408,
+      "sha256": "dcaa612b7553d9c107b704fcd8049f4b99f32662d81f6a6f24d8965af55177cc",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

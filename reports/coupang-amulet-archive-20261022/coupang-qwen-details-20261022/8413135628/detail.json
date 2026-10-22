@@ -1,0 +1,156 @@
+{
+  "product_id": "8413135628",
+  "search_rank": 7,
+  "search_title": "서온리 재물 운 복 들어오는 도자기 황금 돼지 특 대형 저금통, 1개, 골드킹엑스라지",
+  "search_price": 31900,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-qwen-details-20261022/candidates.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 780,
+      "index": 1,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/97bf/0313c0bdd071bb292856890ff00dfca67804bb7de5504dfc1c6665aa8cb3.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 780,
+      "index": 2,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/d9e4/f43180cebe9be3eac775916764ecfce4aa645e5de1f2b55f806062192546.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 780,
+      "index": 3,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/02a9/d6c96fc3c7a36d2003e3d33cda95ff08587da812303496aa9439f7472587.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 464,
+      "index": 4,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/02e3/5a8ba4d80d55e5d2a529f75050c72496180e6acc74347f2bf64e8185a735.png",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 15600,
+      "index": 5,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/3e4c/5c5396515bd2666dea885550d4812cdbd9b86df1bbbea1624e272abef352.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 499,
+      "index": 6,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/9d2b/d0989effa263f648eec692ebd26ddb6f6f2370df10d2aa0cd76100d8f40c.jpg",
+      "width": 778
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/dd9a/326652a7ee4a7b9204ff358cc6aef3ae0c0d70cd8b09c72ba02d74c539db.jpg"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t서온리 재물 운 복 들어오는 황금 돼지 특 대형 저금통\t인증/허가 사항\t해당사항 없음\n제조국(원산지)\t중국\t제조자(수입자)\t서온리oem\n소비자상담 관련 전화번호\t서온리 고객센터 010-5750-2388",
+  "price": "14900",
+  "product_identifiers": "색상계열: 골드계열\n캐릭터: 펭수\n선물세트 여부: 선물세트\n최소연령: 0없음\n메모스티커 유무: 메모스티커 포함\n쿠팡상품번호: 8413135628 - 24327161900",
+  "selected_options": null,
+  "title": "서온리 재물 운 복 들어오는 도자기 황금 돼지 특 대형 저금통, 1개, 골드라지",
+  "url": "https://www.coupang.com/vp/products/8413135628",
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/2fUDUr0v_Uk?loop=1&autoplay=1&mute=1&playlist=2fUDUr0v_Uk",
+      "tag": "IFRAME"
+    }
+  ],
+  "observed_at_kst": "2026-10-22T01:50:26.783150+09:00",
+  "assets": [
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/97bf/0313c0bdd071bb292856890ff00dfca67804bb7de5504dfc1c6665aa8cb3.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/97bf/0313c0bdd071bb292856890ff00dfca67804bb7de5504dfc1c6665aa8cb3.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 96322,
+      "sha256": "97bf0313c0bdd071bb292856890ff00dfca67804bb7de5504dfc1c6665aa8cb3",
+      "width": 780,
+      "height": 780,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/d9e4/f43180cebe9be3eac775916764ecfce4aa645e5de1f2b55f806062192546.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/d9e4/f43180cebe9be3eac775916764ecfce4aa645e5de1f2b55f806062192546.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 156485,
+      "sha256": "d9e4f43180cebe9be3eac775916764ecfce4aa645e5de1f2b55f806062192546",
+      "width": 780,
+      "height": 780,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/02a9/d6c96fc3c7a36d2003e3d33cda95ff08587da812303496aa9439f7472587.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/02a9/d6c96fc3c7a36d2003e3d33cda95ff08587da812303496aa9439f7472587.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 181174,
+      "sha256": "02a9d6c96fc3c7a36d2003e3d33cda95ff08587da812303496aa9439f7472587",
+      "width": 780,
+      "height": 780,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/02e3/5a8ba4d80d55e5d2a529f75050c72496180e6acc74347f2bf64e8185a735.png",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/02e3/5a8ba4d80d55e5d2a529f75050c72496180e6acc74347f2bf64e8185a735.png",
+      "http_status": 200,
+      "file": "images/004.png",
+      "bytes": 188987,
+      "sha256": "02e35a8ba4d80d55e5d2a529f75050c72496180e6acc74347f2bf64e8185a735",
+      "width": 779,
+      "height": 464,
+      "format": "PNG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/3e4c/5c5396515bd2666dea885550d4812cdbd9b86df1bbbea1624e272abef352.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/3e4c/5c5396515bd2666dea885550d4812cdbd9b86df1bbbea1624e272abef352.jpg",
+      "http_status": 200,
+      "file": "images/005.jpg",
+      "bytes": 1966466,
+      "sha256": "69e53afd282d37993f7f54066bf421bd1492d31c901f039bda75b30c514bbd24",
+      "width": 780,
+      "height": 15600,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/9d2b/d0989effa263f648eec692ebd26ddb6f6f2370df10d2aa0cd76100d8f40c.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/9d2b/d0989effa263f648eec692ebd26ddb6f6f2370df10d2aa0cd76100d8f40c.jpg",
+      "http_status": 200,
+      "file": "images/006.jpg",
+      "bytes": 67921,
+      "sha256": "9d2bd0989effa263f648eec692ebd26ddb6f6f2370df10d2aa0cd76100d8f40c",
+      "width": 778,
+      "height": 499,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/dd9a/326652a7ee4a7b9204ff358cc6aef3ae0c0d70cd8b09c72ba02d74c539db.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/dd9a/326652a7ee4a7b9204ff358cc6aef3ae0c0d70cd8b09c72ba02d74c539db.jpg",
+      "http_status": 200,
+      "file": "images/007.jpg",
+      "bytes": 26382,
+      "sha256": "53bd6939702a824cd7c7ca856e3e3f8b8f7e1bbafe41f200a62094c1c0e89564",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

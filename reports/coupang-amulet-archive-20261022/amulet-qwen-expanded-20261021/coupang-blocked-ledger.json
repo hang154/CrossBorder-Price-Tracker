@@ -1,0 +1,77 @@
+{
+ "blocked_at_utc": "2026-10-21T16:03:59.493316+00:00",
+ "state": "blocked_edge_ip_acl",
+ "surfaces": "www.coupang.com /vp/products, m.coupang.com/vm/products, /robots.txt — HTTP 403 AkamaiGHost \"Access Denied\" (참조번호 보존) from both local exits (유선 175.121.6.111, 무선 58.230.12.110)",
+ "headers_evidence": "== 2026-10-22T01:03:08+09:00 coupang edge block evidence ==\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 395\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.4e9fbcb.1792598588.c054fe2\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 395\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.4eafbcb.1792598588.a1a66e40\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n\nHTTP/2 403 \nserver: AkamaiGHost\nmime-version: 1.0\ncontent-type: text/html\ncontent-length: 383\nexpires: Wed, 21 Oct 2026 16:03:08 GMT\nx-reference-error: 18.dce9fbcb.1792598588.723d863e\ndate: Wed, 21 Oct 2026 16:03:08 GMT\nstrict-transport-security: max-age=31536000\n\n",
+ "qwen_actions": {
+  "searched": [
+   {
+    "keyword": "부적",
+    "candidates": 40
+   }
+  ],
+  "selected_product_ids": [
+   "9079193243",
+   "9074211102",
+   "9747637805",
+   "9074212644",
+   "9174439527",
+   "8026636635",
+   "8225366477",
+   "8605544153",
+   "9575164549",
+   "8785777014"
+  ],
+  "statuses": {
+   "9079193243": "failed",
+   "9074211102": "failed",
+   "9747637805": "failed",
+   "9074212644": "failed",
+   "9174439527": "failed",
+   "8026636635": "failed",
+   "8225366477": "failed",
+   "8605544153": "failed",
+   "9575164549": "failed",
+   "8785777014": "failed"
+  }
+ },
+ "escalations_tried": {
+  "browser_session": "Access Denied 페이지 자체를 반환. _abck/bm_* 센서 쿠키 존재하나 원인이 아님(세션/eplained 동일).",
+  "mobile_site": "403",
+  "curl_full_browser_headers": "www/m/robots.txt 모두 403",
+  "second_exit_ip": "무선 출구 58.230.12.110도 403",
+  "r_jina_mirror": "차단 페이지 본문을 그대로 반환(미러가 차단됨이 아니라 Coupang이 미러를 차단)",
+  "allorigins_codetabs": "522",
+  "corsproxy": "401",
+  "google_translate_proxy": "지역 미지원",
+  "microlink": "Access Denied 렌더링",
+  "bing_cache": "도달 불가",
+  "wayback": [
+   "신규 10개 ID CDX空虚",
+   "save-now 스냅샷 생성 실패(역시 차단)",
+   "archive.today 캡처 없음",
+   "스냅샷이 있어도 Coupang 상세는 동 origin XHR 렌더링이라 본문 복원 불가"
+  ]
+ },
+ "why_no_alibaba_style_ladder": "차단이 슬라이더 CAPTCHA가 아닌 Akamai 엣지 IP ACL( Seluruh 표면 403)이라 브라우저 궣적·미러가 전부 같은 페이지를 본다. 승인된 신규 출구(예: 모바일 테더링) 없이賽는 사다리가 없다.",
+ "usable_immediately_detail_pages": {
+  "coupang-qwen-details-20261022": {
+   "observed_complete": 0,
+   "blocked_failed": 9
+  },
+  "amulet-qwen-expanded-20261021": {
+   "observed_complete": 0,
+   "blocked_failed": 10
+  },
+  "amulet-details-20261021": {
+   "observed_complete": 10,
+   "blocked_failed": 0
+  }
+ },
+ "resume_policy": {
+  "ko": "새 상세/검색은 탐침(HTTP 200 + product-detail-content 확인) 통과 후에만 재개. 동일 대기열로 python /tmp/qwen_amulet_expand.py (사본: reports/coupang-edge-block-20261022/resume-expand-run.py; 필요시 동일 경로에 복사 후 실행) 실행이면 후보·선정·차단 기록이 재사용된다.",
+  "unsafe_ko": "제3자 IP 기록을 Coupang 실패로混合하거나, 아카이브 스냅샷을 현재 가격/재고로 취급하지 않는다."
+ },
+ "new_details_collected_this_attempt": 0,
+ "salvage_note": "amulet-details-20261021 10건은 차단 전 수집된 complete 상세(상세 이미지·자산 SHA-256 포함). amulet-qwen-expanded-20261021과 coupang-qwen-details-20261022는 각각 10건·9건 모두 차단 실패 스캐폴더이며 새 본문은 0건이다. 세 검색어(부적·팔찌·재물운) 검색도 같은 엣지를 사용해 EMPTY_RESULT였다."
+}

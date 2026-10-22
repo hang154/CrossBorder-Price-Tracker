@@ -1,0 +1,187 @@
+{
+  "product_id": "7318559460",
+  "search_rank": 3,
+  "search_title": "풍방 풍수백화점 행운 매매 재물 건강 사랑 삼재 공부 소원성취 경면주사 친필손부적 54종, 07번 금전재물부적",
+  "search_price": 4800,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 2116,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c69e/46961e5f9fc122f4df26eb49353d523621731201cc6076ce887e5a960f07.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2176,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/f9a6/708882039eaa72dd2d2ce2fb14c2c67222432e51105efd008109898dcd77.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 1795,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6277/2c44c159bf14deac54c3fa6dac3187ce5ecc8e213321f59a3b265955f628.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 1142,
+      "index": 4,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8c63/c87680c447a0a3c824d0a9b1bf602c0cf5d680ea54f097dac0147d97ac15.jpg",
+      "width": 779
+    },
+    {
+      "alt": "",
+      "height": 2139,
+      "index": 5,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6028/363f0a98794ff9492d491731925978b2ac31a6aa9c18d3a09a6edf5ca0be.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2267,
+      "index": 6,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a606/7d2948bca0ebfa32e060070d4f762bd830800bee9467200d8a8e02cac7e0.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2249,
+      "index": 7,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6c7e/104bfd2abfad139b9a645502f805a1a5e6e3dcbf28bfd3795ffb1932a067.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 1750,
+      "index": 8,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a555/6b249df2a759ae40105582ab02cd369fd7a9d2c44d1e44827544a7b6c9fc.jpg",
+      "width": 780
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/a370/555771fae20a881f5e609bc13b1059a17ca5a6c3f032cf3756fb031a336a.jpg"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t손으로 직접 쓴 후 월광스님 개광한 54종 부적\t인증/허가 사항\t해당사항 없음\n제조국(원산지)\t상세페이지 별도기재\t제조자(수입자)\t풍수백화점\n소비자상담 관련 전화번호\t053-637-1578 or 010-6291-1120",
+  "price": "4800",
+  "product_identifiers": "재질: 종이\n색상계열: 오렌지계열\n수량: 1개\n쿠팡상품번호: 7318559460 - 18765543194",
+  "selected_options": "색상\n54번 철물동토부적\n사이즈:\n9cm x 19cm",
+  "title": "풍방 풍수백화점 행운 매매 재물 건강 사랑 삼재 공부 소원성취 경면주사 친필손부적 54종",
+  "url": "https://www.coupang.com/vp/products/7318559460",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:51:30.084887+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c69e/46961e5f9fc122f4df26eb49353d523621731201cc6076ce887e5a960f07.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c69e/46961e5f9fc122f4df26eb49353d523621731201cc6076ce887e5a960f07.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 335776,
+      "sha256": "53d324ad38a5039e312fbcdbe20eb101841008df62ae8d1324b02029f2d3302b",
+      "width": 780,
+      "height": 2116,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/f9a6/708882039eaa72dd2d2ce2fb14c2c67222432e51105efd008109898dcd77.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/f9a6/708882039eaa72dd2d2ce2fb14c2c67222432e51105efd008109898dcd77.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 346498,
+      "sha256": "31b80ca4bffb197cd716b8e99ead0c1bd6d884b26c04adaed5c9f6f56aac1f92",
+      "width": 780,
+      "height": 2176,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6277/2c44c159bf14deac54c3fa6dac3187ce5ecc8e213321f59a3b265955f628.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6277/2c44c159bf14deac54c3fa6dac3187ce5ecc8e213321f59a3b265955f628.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 216714,
+      "sha256": "07c29f6034d38a190472b87c64b7d6549e38865674b3f2ab466c1a8da31bb7b6",
+      "width": 780,
+      "height": 1795,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8c63/c87680c447a0a3c824d0a9b1bf602c0cf5d680ea54f097dac0147d97ac15.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8c63/c87680c447a0a3c824d0a9b1bf602c0cf5d680ea54f097dac0147d97ac15.jpg",
+      "http_status": 200,
+      "file": "images/004.jpg",
+      "bytes": 261839,
+      "sha256": "f669c6c41bef0db3d61b3822d0eb65e72bb75f103f67653e18fafc12c33b4c07",
+      "width": 779,
+      "height": 1142,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6028/363f0a98794ff9492d491731925978b2ac31a6aa9c18d3a09a6edf5ca0be.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6028/363f0a98794ff9492d491731925978b2ac31a6aa9c18d3a09a6edf5ca0be.jpg",
+      "http_status": 200,
+      "file": "images/005.jpg",
+      "bytes": 403120,
+      "sha256": "9ddbe730e2dfb81214cfb6917becbcf6d2ad0d2e1816a6b6cf0353406dc090a8",
+      "width": 780,
+      "height": 2139,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a606/7d2948bca0ebfa32e060070d4f762bd830800bee9467200d8a8e02cac7e0.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a606/7d2948bca0ebfa32e060070d4f762bd830800bee9467200d8a8e02cac7e0.jpg",
+      "http_status": 200,
+      "file": "images/006.jpg",
+      "bytes": 455331,
+      "sha256": "527cdae7bda83b3e55d71e249dcd126ee1f54bcf6149e575743123a5e01cc608",
+      "width": 780,
+      "height": 2267,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6c7e/104bfd2abfad139b9a645502f805a1a5e6e3dcbf28bfd3795ffb1932a067.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/6c7e/104bfd2abfad139b9a645502f805a1a5e6e3dcbf28bfd3795ffb1932a067.jpg",
+      "http_status": 200,
+      "file": "images/007.jpg",
+      "bytes": 453145,
+      "sha256": "2c86f71c3697cb37f123b9e86fdcfeb91ced9f657ef873bc39f0467261fa2bc5",
+      "width": 780,
+      "height": 2249,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a555/6b249df2a759ae40105582ab02cd369fd7a9d2c44d1e44827544a7b6c9fc.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/a555/6b249df2a759ae40105582ab02cd369fd7a9d2c44d1e44827544a7b6c9fc.jpg",
+      "http_status": 200,
+      "file": "images/008.jpg",
+      "bytes": 327961,
+      "sha256": "6530130673e90fe7296989fedeb2f6eb890dadb3cc1cdfdd8eccf1b8cfc68191",
+      "width": 780,
+      "height": 1750,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/a370/555771fae20a881f5e609bc13b1059a17ca5a6c3f032cf3756fb031a336a.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/a370/555771fae20a881f5e609bc13b1059a17ca5a6c3f032cf3756fb031a336a.jpg",
+      "http_status": 200,
+      "file": "images/009.jpg",
+      "bytes": 69384,
+      "sha256": "e8afdc4dcb64267fc2cf081e2f8c00385a0e487d5ed2f7eb3c7cc0b94d7e95e7",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

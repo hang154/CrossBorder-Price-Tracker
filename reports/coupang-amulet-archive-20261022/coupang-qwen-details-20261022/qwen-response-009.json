@@ -1,0 +1,42 @@
+{
+  "id": "bfffbf49350c4b0b8992e13a9c85e920",
+  "object": "chat.completion",
+  "created": 1792600490,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_3be6a3c5297545c492dde49a",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "load_prior_candidates",
+              "arguments": "{\"confirm\": true}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 13496,
+    "total_tokens": 13524,
+    "completion_tokens": 28,
+    "prompt_tokens_details": {
+      "cached_tokens": 1984
+    },
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

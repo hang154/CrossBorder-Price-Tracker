@@ -1,0 +1,40 @@
+{
+  "id": "2f360395bb004f4fa698514b837ec9a0",
+  "object": "chat.completion",
+  "created": 1792597508,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_887f534f74494d34bfbc371e",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "search_products",
+              "arguments": "{\"keyword\": \"팔찌\"}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 823,
+    "total_tokens": 850,
+    "completion_tokens": 27,
+    "prompt_tokens_details": null,
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

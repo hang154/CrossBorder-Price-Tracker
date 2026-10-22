@@ -1,0 +1,61 @@
+{
+  "product_id": "8485366839",
+  "search_rank": 7,
+  "search_title": "소원부적 스님이 직접 쓴 수제기도부적, 16번 보신평안부, 1개",
+  "search_price": 10000,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 44834,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2026/03/26/19/6/9a355204-ed63-40f1-9567-2779d575437a.jpg",
+      "width": 860
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/03/26/19/7/35427d74-1ab9-4b5f-9577-b10f2751f128.jpg"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t소원부적 스님이 직접 쓴 수제기도부적, 03번 화합부, 1개\t인증/허가 사항\t해당없음(14세이상)\n제조국(원산지)\t한국\t제조자(수입자)\t소원부적\n소비자상담 관련 전화번호\t쿠팡고객센터 1577-7011",
+  "price": "10000",
+  "product_identifiers": "쿠팡상품번호: 8485366839 - 20400219022",
+  "selected_options": null,
+  "title": "소원부적 스님이 직접 쓴 수제기도부적, 03번 화합부, 1개",
+  "url": "https://www.coupang.com/vp/products/8485366839",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:52:05.164921+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2026/03/26/19/6/9a355204-ed63-40f1-9567-2779d575437a.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2026/03/26/19/6/9a355204-ed63-40f1-9567-2779d575437a.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 3595840,
+      "sha256": "f20f67827a8a38d06b31382200db0084d46ae57f97a59a0b9772210814d7a7f8",
+      "width": 860,
+      "height": 44834,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/03/26/19/7/35427d74-1ab9-4b5f-9577-b10f2751f128.jpg",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/03/26/19/7/35427d74-1ab9-4b5f-9577-b10f2751f128.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 52780,
+      "sha256": "7280e575851622aa43cfb7578909bc56c55c3dd72229388e3e49d2f4840babbf",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

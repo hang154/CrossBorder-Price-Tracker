@@ -1,0 +1,42 @@
+{
+  "id": "02cf9c5486de491e85aed5eaca4b37cb",
+  "object": "chat.completion",
+  "created": 1792597514,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_3d65801895a245e4afa1d734",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "search_products",
+              "arguments": "{\"keyword\": \"재물운\"}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1011,
+    "total_tokens": 1039,
+    "completion_tokens": 28,
+    "prompt_tokens_details": {
+      "cached_tokens": 64
+    },
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

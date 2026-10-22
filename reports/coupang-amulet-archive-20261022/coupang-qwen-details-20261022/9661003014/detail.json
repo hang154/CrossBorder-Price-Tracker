@@ -1,0 +1,156 @@
+{
+  "product_id": "9661003014",
+  "search_rank": 5,
+  "search_title": "[오브룸] 남자팔찌 5mm 쿠반 두꺼운 체인팔찌 서지컬스틸 길이조절가능",
+  "search_price": 9900,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-qwen-details-20261022/candidates.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 3315,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/7870/7ad8de9410c0985ebfcadfb6972d655c33c4cb0893168c3d72d152f5b869.png",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 2,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/4bc7/196558db0a26b29f3851187c5213ef604474ec2a5bca27aeeaeed325fd32.png",
+      "width": 0
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 3,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/ed88/5773cfcb0eb3c1de7efab7ded2944057aaae1481c951160b7a1ab4d89028.png",
+      "width": 0
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 4,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/68f7/78da2022a287565c14a09efb328674bc5867b7d284c30e51c90e9b41f217.png",
+      "width": 0
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 5,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c2f8/f46290eaaba1b2d8f5edb927c4b46fd7081f2d03ee540ffc5b7d6230b1b8.png",
+      "width": 0
+    },
+    {
+      "alt": "",
+      "height": 0,
+      "index": 6,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8b5c/0058b3e42e00d5667f3bda3ccb4891e3939c449f4a4a3ec667ea4796673c.png",
+      "width": 0
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/fa5b/2afd7ac51bb244f880f58380e9ddec46141ebe490e91addd3344dc2a164c.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n종류\t상품 상세페이지 참조\t소재\t상품 상세페이지 참조\n치수\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n제조국\t상품 상세페이지 참조\t취급시 주의사항\t상품 상세페이지 참조\n필수 표기 정보 더보기\n더보기",
+  "price": "9900",
+  "product_identifiers": "쿠팡상품번호: 9661003014 - 28881263603",
+  "selected_options": null,
+  "title": "[오브룸] 남자팔찌 5mm 쿠반 두꺼운 체인팔찌 서지컬스틸 길이조절가능",
+  "url": "https://www.coupang.com/vp/products/9661003014",
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/Mu1VoxJ-Jf8",
+      "tag": "IFRAME"
+    }
+  ],
+  "observed_at_kst": "2026-10-22T01:50:10.016988+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/7870/7ad8de9410c0985ebfcadfb6972d655c33c4cb0893168c3d72d152f5b869.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/7870/7ad8de9410c0985ebfcadfb6972d655c33c4cb0893168c3d72d152f5b869.png",
+      "http_status": 200,
+      "file": "images/001.png",
+      "bytes": 3887164,
+      "sha256": "fb9ec753faf3471a9a920df2b02bf00195f3972135e31409b034ae5f1301ec2b",
+      "width": 780,
+      "height": 3315,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/4bc7/196558db0a26b29f3851187c5213ef604474ec2a5bca27aeeaeed325fd32.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/4bc7/196558db0a26b29f3851187c5213ef604474ec2a5bca27aeeaeed325fd32.png",
+      "http_status": 200,
+      "file": "images/002.png",
+      "bytes": 2453955,
+      "sha256": "b401bd7b225caee288aeb4b8a7a7e7931ab9d23743572b43ea0f5175e3fd5e26",
+      "width": 780,
+      "height": 3346,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/ed88/5773cfcb0eb3c1de7efab7ded2944057aaae1481c951160b7a1ab4d89028.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/ed88/5773cfcb0eb3c1de7efab7ded2944057aaae1481c951160b7a1ab4d89028.png",
+      "http_status": 200,
+      "file": "images/003.png",
+      "bytes": 2448513,
+      "sha256": "61cf259c99d81986824efdd7e0cefd772a15b1ea7e68be548ae014323f1fc96e",
+      "width": 780,
+      "height": 2843,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/68f7/78da2022a287565c14a09efb328674bc5867b7d284c30e51c90e9b41f217.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/68f7/78da2022a287565c14a09efb328674bc5867b7d284c30e51c90e9b41f217.png",
+      "http_status": 200,
+      "file": "images/004.png",
+      "bytes": 4023211,
+      "sha256": "718545b3c4c7606e8dc2c3cfed9db5dcf37b1ee225df681a563a1ab2faa526a3",
+      "width": 780,
+      "height": 3899,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c2f8/f46290eaaba1b2d8f5edb927c4b46fd7081f2d03ee540ffc5b7d6230b1b8.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/c2f8/f46290eaaba1b2d8f5edb927c4b46fd7081f2d03ee540ffc5b7d6230b1b8.png",
+      "http_status": 200,
+      "file": "images/005.png",
+      "bytes": 1267702,
+      "sha256": "0ef49fd086587af140629fc5122fd4ae4a87224bcc1128d0794cec0d67b79e66",
+      "width": 780,
+      "height": 2780,
+      "format": "PNG"
+    },
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8b5c/0058b3e42e00d5667f3bda3ccb4891e3939c449f4a4a3ec667ea4796673c.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/vendor_inventory/8b5c/0058b3e42e00d5667f3bda3ccb4891e3939c449f4a4a3ec667ea4796673c.png",
+      "http_status": 200,
+      "file": "images/006.png",
+      "bytes": 576207,
+      "sha256": "8028cb0078fd07347bf1691e884eba790793952a2248609ecc7a9b533c814db7",
+      "width": 780,
+      "height": 1328,
+      "format": "PNG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/fa5b/2afd7ac51bb244f880f58380e9ddec46141ebe490e91addd3344dc2a164c.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/fa5b/2afd7ac51bb244f880f58380e9ddec46141ebe490e91addd3344dc2a164c.png",
+      "http_status": 200,
+      "file": "images/007.png",
+      "bytes": 391319,
+      "sha256": "8e3eceee1d4cfb3f633721f1b16c8883e6c35c49afbb8746eeb4baba1a6a02fa",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

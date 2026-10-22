@@ -1,0 +1,40 @@
+{
+  "id": "335c97d15d6e498a9e36e68f76ce8542",
+  "object": "chat.completion",
+  "created": 1792592918,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "I'll search for 부적 (amulet) products to find new detail pages.\n\n",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_79e49d9d2532431b9961bafa",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "search_products",
+              "arguments": "{\"keyword\": \"부적\"}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 510,
+    "total_tokens": 554,
+    "completion_tokens": 44,
+    "prompt_tokens_details": null,
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

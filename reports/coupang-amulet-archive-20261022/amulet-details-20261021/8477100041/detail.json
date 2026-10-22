@@ -1,0 +1,156 @@
+{
+  "product_id": "8477100041",
+  "search_rank": 4,
+  "search_title": "혜랑법사 친필부적 3장 1세트, 01번 재물운 금전재물+만사대길+소원성취",
+  "search_price": 29700,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 3067,
+      "index": 1,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/b465/751006902a4e3a8c9756991965be5d903af3633a58bb1420c59d5db77d69.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 3097,
+      "index": 2,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/fa5e/d0ab6dc1652e58cb0a44f9aa19a158169cbaaef2b1eac1044366f41a045c.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 5852,
+      "index": 3,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/347b/57ab89aa77845fbfb9093788fb65a49dad5090ae944a6c4aff32606a0e71.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 7074,
+      "index": 4,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/0955/75f348d01b8aea2b056a72e16d0e383bb62ade5143e9a88026f71d6947dc.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 2154,
+      "index": 5,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/1b68/f03e5d0b78b45ca41329b41dc6f522eb37f8967b7f3f916ca32fa2db729a.jpg",
+      "width": 780
+    },
+    {
+      "alt": "",
+      "height": 780,
+      "index": 6,
+      "src": "http://image1.coupangcdn.com/image/vendor_inventory/d8b3/ce3556ef59f19771775abefe41be290dbaa9160ef5383f55509b15b8d739.jpg",
+      "width": 780
+    }
+  ],
+  "detail_text": " \n\n \n\n ",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/092d/3d7e2aceec31bf0d894cbaef0bd40cb1cff50d3ac2e703031494ac82540f.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t상품 상세페이지 참조\t인증/허가 사항\t상품 상세페이지 참조\n제조국(원산지)\t상품 상세페이지 참조\t제조자(수입자)\t상품 상세페이지 참조\n소비자상담 관련 전화번호\t상품 상세페이지 참조",
+  "price": "29700",
+  "product_identifiers": "수량: 1개\n쿠팡상품번호: 8477100041 - 20335428283",
+  "selected_options": "색상\n01번 재물운 금전재물+만사대길+소원성취",
+  "title": "혜랑법사 친필부적 3장 1세트",
+  "url": "https://www.coupang.com/vp/products/8477100041",
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/?loop=1&autoplay=1&mute=1&playlist=dkRFjFsnT5A",
+      "tag": "IFRAME"
+    }
+  ],
+  "observed_at_kst": "2026-10-21T20:51:31.518554+09:00",
+  "assets": [
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/b465/751006902a4e3a8c9756991965be5d903af3633a58bb1420c59d5db77d69.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/b465/751006902a4e3a8c9756991965be5d903af3633a58bb1420c59d5db77d69.jpg",
+      "http_status": 200,
+      "file": "images/001.jpg",
+      "bytes": 426092,
+      "sha256": "b05fdc3efc9607c332b97b51c2c8c6650176d1cad7981f33b21fa279ca233257",
+      "width": 780,
+      "height": 3067,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/fa5e/d0ab6dc1652e58cb0a44f9aa19a158169cbaaef2b1eac1044366f41a045c.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/fa5e/d0ab6dc1652e58cb0a44f9aa19a158169cbaaef2b1eac1044366f41a045c.jpg",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 361342,
+      "sha256": "c5650ce6eaabad4b61dfdd80e431fab6251018114417c45b98cd14bcb7789670",
+      "width": 780,
+      "height": 3097,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/347b/57ab89aa77845fbfb9093788fb65a49dad5090ae944a6c4aff32606a0e71.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/347b/57ab89aa77845fbfb9093788fb65a49dad5090ae944a6c4aff32606a0e71.jpg",
+      "http_status": 200,
+      "file": "images/003.jpg",
+      "bytes": 844382,
+      "sha256": "40a2d314471022ae686d586ead693421e889550c57fcba559ea8a8fced9b18d2",
+      "width": 780,
+      "height": 5852,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/0955/75f348d01b8aea2b056a72e16d0e383bb62ade5143e9a88026f71d6947dc.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/0955/75f348d01b8aea2b056a72e16d0e383bb62ade5143e9a88026f71d6947dc.jpg",
+      "http_status": 200,
+      "file": "images/004.jpg",
+      "bytes": 994759,
+      "sha256": "d68090dd323e9587253166d1218145643b7f5645e93dd47fdb398e312be54275",
+      "width": 780,
+      "height": 7074,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/1b68/f03e5d0b78b45ca41329b41dc6f522eb37f8967b7f3f916ca32fa2db729a.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/1b68/f03e5d0b78b45ca41329b41dc6f522eb37f8967b7f3f916ca32fa2db729a.jpg",
+      "http_status": 200,
+      "file": "images/005.jpg",
+      "bytes": 330608,
+      "sha256": "ce9cc6f0f2877156b39ebe02c1dad6fdef62a55e06ee06e531d64fbaadc1c9d1",
+      "width": 780,
+      "height": 2154,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "http://image1.coupangcdn.com/image/vendor_inventory/d8b3/ce3556ef59f19771775abefe41be290dbaa9160ef5383f55509b15b8d739.jpg",
+      "requested_url": "https://image1.coupangcdn.com/image/vendor_inventory/d8b3/ce3556ef59f19771775abefe41be290dbaa9160ef5383f55509b15b8d739.jpg",
+      "http_status": 200,
+      "file": "images/006.jpg",
+      "bytes": 41153,
+      "sha256": "d8b3ce3556ef59f19771775abefe41be290dbaa9160ef5383f55509b15b8d739",
+      "width": 780,
+      "height": 780,
+      "format": "JPEG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/092d/3d7e2aceec31bf0d894cbaef0bd40cb1cff50d3ac2e703031494ac82540f.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/092d/3d7e2aceec31bf0d894cbaef0bd40cb1cff50d3ac2e703031494ac82540f.png",
+      "http_status": 200,
+      "file": "images/007.png",
+      "bytes": 318442,
+      "sha256": "91cfe8510d470fc78a84c1b6ffc1c7faadd4c761aa7bba6603b67ee8cfad436e",
+      "width": 492,
+      "height": 492,
+      "format": "PNG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

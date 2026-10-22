@@ -1,0 +1,40 @@
+{
+  "id": "877bd2000dc544129fac23b59e6d92e3",
+  "object": "chat.completion",
+  "created": 1792593028,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "I'll select ten new product IDs with 부적 in their titles, excluding the existing IDs, and archive their detail pages.\n\n",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_299f6ceccd0240febad3fa74",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "collect_details",
+              "arguments": "{\"product_ids\": [\"9079193243\", \"9074211102\", \"9747637805\", \"9074212644\", \"9174439527\", \"8026636635\", \"8225366477\", \"8605544153\", \"9575164549\", \"8785777014\"]}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2864,
+    "total_tokens": 3036,
+    "completion_tokens": 172,
+    "prompt_tokens_details": null,
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

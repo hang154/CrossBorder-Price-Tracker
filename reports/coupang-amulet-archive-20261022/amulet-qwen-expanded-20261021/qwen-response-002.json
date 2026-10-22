@@ -1,0 +1,42 @@
+{
+  "id": "1339631be2a342fc9abd9b8ae861715a",
+  "object": "chat.completion",
+  "created": 1792593014,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "I'll invoke the search tool with the specified keyword.\n\n",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_6f9a0d952e35477aa96ed09b",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "search_products",
+              "arguments": "{\"keyword\": \"삼재부적\"}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2420,
+    "total_tokens": 2461,
+    "completion_tokens": 41,
+    "prompt_tokens_details": {
+      "cached_tokens": 2304
+    },
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}

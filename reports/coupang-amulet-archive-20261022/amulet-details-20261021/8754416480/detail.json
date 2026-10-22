@@ -1,0 +1,61 @@
+{
+  "product_id": "8754416480",
+  "search_rank": 2,
+  "search_title": "진운대사 친필 손 부적 + 부적집 세트, 부동산매매부(부적), 랜덤발송(부적집), 1세트",
+  "search_price": 9370,
+  "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/coupang-search/03011778842540ef95c55617301506ed/job.json",
+  "currency": "KRW",
+  "detail_images": [
+    {
+      "alt": "",
+      "height": 8000,
+      "index": 1,
+      "src": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2025/04/23/16/1/d2fc8fd3-c9f3-4a9e-b205-8432728e44a3.png",
+      "width": 860
+    }
+  ],
+  "detail_text": "",
+  "expanded": true,
+  "main_image": {
+    "alt": "Product image",
+    "src": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/04/23/15/6/f70ee415-5881-4932-8172-cfc430cb1484.png"
+  },
+  "mandatory_information": "필수 표기 정보\n\n품명 및 모델명\t진운대사 친필 손 부적, 공부부\t인증/허가 사항\t해당없음\n제조국(원산지)\t한국\t제조자(수입자)\t더블린(정확한 제조사 정보 업체미제공)\n소비자상담 관련 전화번호\t쿠팡고객센터 1577-7011",
+  "price": "9370",
+  "product_identifiers": "쿠팡상품번호: 8754416480 - 25376116076",
+  "selected_options": null,
+  "title": "진운대사 친필 손 부적 + 부적집 세트, 공부부(부적), 랜덤발송(부적집), 1세트",
+  "url": "https://www.coupang.com/vp/products/8754416480",
+  "videos": [],
+  "observed_at_kst": "2026-10-21T20:51:15.664094+09:00",
+  "assets": [
+    {
+      "source_url": "//thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2025/04/23/16/1/d2fc8fd3-c9f3-4a9e-b205-8432728e44a3.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2025/04/23/16/1/d2fc8fd3-c9f3-4a9e-b205-8432728e44a3.png",
+      "http_status": 200,
+      "file": "images/001.png",
+      "bytes": 6172695,
+      "sha256": "8a6b1486729793171943ca4d2a869ac07329208600a9c933fcffcd7d72fedb32",
+      "width": 860,
+      "height": 8000,
+      "format": "PNG"
+    },
+    {
+      "source_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/04/23/15/6/f70ee415-5881-4932-8172-cfc430cb1484.png",
+      "requested_url": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/04/23/15/6/f70ee415-5881-4932-8172-cfc430cb1484.png",
+      "http_status": 200,
+      "file": "images/002.jpg",
+      "bytes": 31439,
+      "sha256": "cf771dd74bcd54e4f29a4bc5bdef7717bc870eccd5659fed9f96809b5bfd5840",
+      "width": 492,
+      "height": 492,
+      "format": "JPEG"
+    }
+  ],
+  "status": "complete",
+  "limitations": [
+    "선택된 옵션의 상세페이지입니다. 모든 옵션을 각각 방문한 자료가 아닙니다.",
+    "판매자 상세 설명의 주장과 효능은 검증하지 않았습니다.",
+    "별도 동영상·iframe 자료는 URL만 기록합니다."
+  ]
+}

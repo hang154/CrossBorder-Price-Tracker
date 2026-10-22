@@ -1,0 +1,190 @@
+{
+  "results": [
+    {
+      "product_id": "9079193243",
+      "search_rank": 1,
+      "search_title": "소문난 영험함 신유당 친필 정법부적 (경면주사 수작업 / 재물 삼재 소송 연애 학업 사랑 연인 등), 1개, 만사대길 세트",
+      "search_price": 39000,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Access restriction detected"
+    },
+    {
+      "product_id": "9074211102",
+      "search_rank": 2,
+      "search_title": "대광법사 친필 수제부적 금전.매매 소원.건강, 1번 공부",
+      "search_price": 3000,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "9747637805",
+      "search_rank": 3,
+      "search_title": "플리터스 금전운 재물운 사업운 장사운 휴대용 부적 카드 선물, 블랙",
+      "search_price": 8910,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "9074212644",
+      "search_rank": 4,
+      "search_title": "대광법사 2027년 영혼을갈아 친필 수제부적 금전.매매.소원.건강, 5번 금전재물",
+      "search_price": 9900,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "9174439527",
+      "search_rank": 5,
+      "search_title": "베리엣지 천연석 흑요석 호안석 오행 팔찌 합격 기원 액막이 행운 부적 남여공용",
+      "search_price": 34800,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "8026636635",
+      "search_rank": 6,
+      "search_title": "사주풀이 개인맞춤부적 오학당",
+      "search_price": 99000,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "8225366477",
+      "search_rank": 7,
+      "search_title": "로투스 대형 수제 부적 금전 재물 불교, 거북호신종합부(10번), 1개",
+      "search_price": 13880,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "8605544153",
+      "search_rank": 8,
+      "search_title": "직접 그린 나비부적 4종세트 숫나비부 암나비부 여우생식기부적 사랑 행운 인연 부부 결혼 재회부적 경면주사, 1개, 노랑숫나비세트(여성구매)",
+      "search_price": 13500,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "9575164549",
+      "search_rank": 9,
+      "search_title": "부적 행운 매매 재물 건강 사랑 삼재 공부 소원성취 경면주사 친필손부적, 금전재물부적, 1개",
+      "search_price": 4610,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    },
+    {
+      "product_id": "8785777014",
+      "search_rank": 10,
+      "search_title": "고타마 친필 수제 부적 + 봉투 세트, 삼재부",
+      "search_price": 6900,
+      "source_job": "/home/user-btc/다운로드/usf/product-sourcing/CrossBorder-Price-Tracker/sourcing-runs/amulet-qwen-expanded-20261021/candidates.json",
+      "status": "failed",
+      "error": "Collection stopped after access restriction"
+    }
+  ],
+  "excluded_ids": [
+    "7318559460",
+    "7888406009",
+    "8477100041",
+    "8485366839",
+    "8571800222",
+    "8754416480",
+    "8832695964",
+    "8880801481",
+    "9327328371",
+    "9425909485"
+  ],
+  "api_calls": [
+    {
+      "requested_model": "Qwen3.8-27B-uncensored-FP8",
+      "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+      "http_status": 200,
+      "file": "qwen-response-000.json",
+      "sha256": "05f457f0c3a9793f1449a7b3c3e5d742ad19b20078d59ca6cc47916ca3a30188",
+      "seconds": 1.171,
+      "usage": {
+        "prompt_tokens": 510,
+        "total_tokens": 554,
+        "completion_tokens": 44,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "requested_model": "Qwen3.8-27B-uncensored-FP8",
+      "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+      "http_status": 200,
+      "file": "qwen-response-001.json",
+      "sha256": "7e2087262f26c59ec6ba579a998e2e6f57d6e452f0c706d11c6ea74a07fce5cb",
+      "seconds": 2.112,
+      "usage": {
+        "prompt_tokens": 2341,
+        "total_tokens": 2411,
+        "completion_tokens": 70,
+        "prompt_tokens_details": {
+          "cached_tokens": 64
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "requested_model": "Qwen3.8-27B-uncensored-FP8",
+      "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+      "http_status": 200,
+      "file": "qwen-response-002.json",
+      "sha256": "572f9b89da5b4e0d25e32d74bbb0e4f08b9ed50391328c4e4c6f05724c729732",
+      "seconds": 1.27,
+      "usage": {
+        "prompt_tokens": 2420,
+        "total_tokens": 2461,
+        "completion_tokens": 41,
+        "prompt_tokens_details": {
+          "cached_tokens": 2304
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "requested_model": "Qwen3.8-27B-uncensored-FP8",
+      "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+      "http_status": 200,
+      "file": "qwen-response-003.json",
+      "sha256": "b7f01954939d00f9f6a80f03b47db9322b28b9fb4a6c8a5e5cdab431f4f72bd3",
+      "seconds": 0.914,
+      "usage": {
+        "prompt_tokens": 2626,
+        "total_tokens": 2667,
+        "completion_tokens": 41,
+        "prompt_tokens_details": {
+          "cached_tokens": 64
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "requested_model": "Qwen3.8-27B-uncensored-FP8",
+      "reported_model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+      "http_status": 200,
+      "file": "qwen-response-004.json",
+      "sha256": "6eeefd9cef01b1663381f3f25fc17c28a050036a35dd29cdd47161a43f6f749d",
+      "seconds": 1.746,
+      "usage": {
+        "prompt_tokens": 2864,
+        "total_tokens": 3036,
+        "completion_tokens": 172,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    }
+  ],
+  "elapsed_seconds": 26.815
+}

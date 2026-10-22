@@ -1,0 +1,42 @@
+{
+  "id": "1811b3e28445430d8b1f812c84bc03cf",
+  "object": "chat.completion",
+  "created": 1792597525,
+  "model": "Qwen3.8-27B-abliterated-AWQ-W4A16",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "id": "call_cf16bc93c2294d5195d13207",
+            "index": 0,
+            "type": "function",
+            "function": {
+              "name": "collect_details",
+              "arguments": "{\"product_ids\": [\"7318559460\", \"7888406009\", \"8477100041\", \"8485366839\", \"8571800222\", \"8754416480\", \"8832695964\", \"8880801481\", \"9327328371\"]}"
+            }
+          }
+        ]
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "matched_stop": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1725,
+    "total_tokens": 1860,
+    "completion_tokens": 135,
+    "prompt_tokens_details": {
+      "cached_tokens": 1536
+    },
+    "reasoning_tokens": 0
+  },
+  "metadata": {
+    "weight_version": "default"
+  }
+}
