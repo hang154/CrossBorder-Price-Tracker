@@ -101,6 +101,18 @@ agent may request failed jobs only. Collection calls are bounded to three per
 product; do not repeatedly restart a failing site. Report blocked/partial results
 and retain their observations. A nonzero exit is not success even if partial HTML exists.
 
+## Coupang fast-path verification
+
+The optional `scripts/coupang_fastpath_search.py` HTTP route produces product job
+JSON; it does not execute Qwen, review collection or full detail archiving.
+Use the environment with the `fastpath` extra (`curl_cffi`) installed. Default
+artificial pacing is zero. A robots.txt 200 proves only robots availability.
+A previous successful job does not prove current search access: retain fresh
+response classifications and actual extracted products. The 2026-10-22 21:21 KST
+recheck returned 403 on both default surfaces. Keep the SearchAgent browser
+home-search default until fresh execution and downstream validation succeed;
+do not describe the optional HTTP script as an integrated default pipeline.
+
 ## Coupang keyword search and sales UI
 
 When the user asks to search a keyword and see sales estimates, use the Qwen

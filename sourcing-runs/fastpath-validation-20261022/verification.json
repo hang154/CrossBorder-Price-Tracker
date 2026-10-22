@@ -1,0 +1,50 @@
+{
+  "checked_at_kst": "2026-10-22T21:22:53.856641+09:00",
+  "baseline_commit": "f20c6c7",
+  "historical_products": 40,
+  "fresh_http": {
+    "exit_code": 3,
+    "surfaces": [
+      {
+        "session": "chrome",
+        "status": 403,
+        "classification": "edge_denied"
+      },
+      {
+        "session": "chrome124@wlo1",
+        "status": 403,
+        "classification": "edge_denied"
+      },
+      {
+        "session": "chrome124@enp4s0",
+        "status": 403,
+        "classification": "edge_denied"
+      },
+      {
+        "session": "chrome124",
+        "status": 403,
+        "classification": "edge_denied"
+      }
+    ],
+    "products": 0
+  },
+  "browser": {
+    "ok": false,
+    "error_type": "CoupangAccessError",
+    "error": "Access restriction detected at eval; attempt stopped without a timed cooldown",
+    "elapsed_seconds": 3.71
+  },
+  "default_promoted": false,
+  "default_entry": "browser-home-search",
+  "artificial_pacing_seconds": 0,
+  "tests": {
+    "passed": 53,
+    "exit_code": 0
+  },
+  "evidence_sha256": {
+    "all-surfaces-evidence.jsonl": "da0ab7ba8f8e713aa09a0e047771a84284970d8d85c6c3eb1d43abb947e4f8e9",
+    "browser-result.json": "19b13473608c98e3f3e1da1b2dc1f8de2267852b75dbfafea903cea58a91f6d9",
+    "evidence.jsonl": "1efb47fa8a7934a31aebaa4d745d5d0b721e062d79a51b9f9e92799c2194784a",
+    "browser-navigation.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  }
+}

@@ -111,3 +111,23 @@ def test_canary_uses_robots_and_marks_state(tmp_path):
     assert path.canary() is True
     st = json.loads(Path(tmp_state(tmp_path)).read_text())
     assert st['canary_status'] == 200
+
+
+def test_default_refetch_has_no_sleep(tmp_path, monkeypatch):
+    monkeypatch.setattr(fp.time, 'sleep', lambda _: pytest.fail('default must not sleep'))
+    seq = iter([(200, 'headerSearchKeyword'), (200, CHALLENGE), (200, DETAIL_BODY)])
+    session = fp.FastSession(transport=lambda url, referer=None: next(seq))
+    path = fp.CoupangFastPath([session], state_path=tmp_state(tmp_path))
+    assert path.detail_html('7318559460') == DETAIL_BODY
+
+
+def test_robots_success_does_not_certify_search(tmp_path):
+    session = fp.FastSession(transport=lambda url, referer=None: (200, 'User-agent: *'))
+    state = fp.CoupangFastPath([session], state_path=tmp_state(tmp_path)).status()
+    assert state['robots_available'] is True
+    assert state['window_open'] is None
+
+
+def test_robots_error_body_cannot_report_ready(tmp_path):
+    session = fp.FastSession(transport=lambda url, referer=None: (403, 'user-agent: *'))
+    assert fp.CoupangFastPath([session], state_path=tmp_state(tmp_path)).canary() is False

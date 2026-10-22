@@ -1,0 +1,6 @@
+{
+  "ok": false,
+  "error_type": "CoupangAccessError",
+  "error": "Access restriction detected at eval; attempt stopped without a timed cooldown",
+  "elapsed_seconds": 3.71
+}

@@ -27,8 +27,8 @@ the run logs stored there):
 Design stance: blocking events mark observations; they never install a timed
 cooldown (standing user decision of 2026-10-22). Every ladder step is an
 immediate probe recorded with response evidence. When all fast surfaces are
-denied the caller is told to use the browser entry; robots canaries tell the
-caller when the window has plausibly reopened.
+denied the caller is told to use the browser entry; robots canaries report only robots availability; actual search/detail
+responses are required to establish readiness.
 """
 from __future__ import annotations
 
@@ -131,7 +131,7 @@ class CoupangFastPath:
     self-clearing classes -> next surface (fingerprint, then exit IP)."""
 
     def __init__(self, surfaces=None, *, evidence_path=None, warm_url=HOME, state_path=None,
-                 clock=time.monotonic, min_gap=5.0):
+                 clock=time.monotonic, min_gap=0.0):
         if surfaces is None:
             surfaces = default_surfaces(EvidenceLog(evidence_path))
         self.surfaces = list(surfaces)
@@ -164,22 +164,21 @@ class CoupangFastPath:
 
     def status(self):
         state = self._state()
-        state.update(window_open=self.canary(), canary_marker='impersonated-robots-200')
+        state.update(robots_available=self.canary(), window_open=None,
+                     canary_marker='robots-only-not-search-readiness')
         return state
 
     def canary(self):
-        """Cheap liveness check: robots stays servable during an edge block,
-        so 200 + User-agent proves the edge answers us again."""
+        """Robots liveness only; this does not prove search/detail access."""
         code, body = self.surfaces[0].get(ROBOTS)
-        ok = code == 200 and 'User-agent' in body or 'user-agent' in body.lower()
+        ok = code == 200 and 'user-agent' in body.lower()
         self._update(canary_status=code, canary_at=time.time())
         return bool(ok)
 
     # -- ladder ------------------------------------------------------------
     def _pacing(self, sess):
-        # Respectful pacing beats re-denial: today a sustained ~1 req / few
-        # seconds per session kept the window open; sub-second bursts closed
-        # both exits for ~10-20 minutes (evidence.jsonl stream).
+        # Disabled by default. A caller can explicitly opt into pacing;
+        # prior observations never impose an automatic cooldown.
         now = self.clock()
         gap = now - self._last_request.get(sess.name, 0)
         if self._last_request.get(sess.name) is not None and gap < self.min_gap:
@@ -202,7 +201,6 @@ class CoupangFastPath:
                 self._pacing(sess)
                 code, body = sess.get(url, referer=self.warm_url)
                 cls = classify(code, body)
-                ok = (cls in ('ready', 'soft_challenge') and is_expected(kind, body)) or cls == 'ready'
                 self._log(session=sess.name, url=url, stage=stage, surface=surface_no,
                           status=code, classification=cls, expected=is_expected(kind, body),
                           bytes=len(body),
