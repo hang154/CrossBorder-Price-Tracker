@@ -314,7 +314,10 @@ Alibaba.com 상세 페이지가 슬라이드 검증으로 차단된 상황의 �
 
 ## 백업 범위
 
-GitHub에는 소스·테스트·README·재사용 설정·스킬·이미 공개된 비교 샘플을 보관합니다.
+GitHub에는 소스·테스트·README·재사용 설정·스킬·이미 공개된 비교 샘플과 검증된 관측
+아카이브를 보관합니다. 쿠팡 부적·팔찌·재물운 상세 29건(원문 HTML·이미지 원본·검색
+노출 근거)은 `reports/coupang-amulet-archive-20261022/`에 있고, 재검증 지식은 같은
+폴더의 README와 `archive-verification.json`에 있습니다.
 `sourcing-runs/`의 사용자 조사 원본, 개인 Excel, 모델 API 키, Chrome 프로필·쿠키, `.env`,
 가상환경·`node_modules`·`dist`는 포함하지 않습니다. 새 환경에서 실제 실행하려면 이 실행 자료와
 접근 설정을 사용자의 로컬 백업에서 별도로 복원해야 합니다. 이 코드 백업만으로 과거 개인 조사
