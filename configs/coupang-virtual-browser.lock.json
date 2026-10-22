@@ -1,0 +1,31 @@
+{
+  "as_of": "2026-10-23",
+  "python_verified": "3.14.5",
+  "chrome_verified": "143.0.7499.169",
+  "driver_version_main": 143,
+  "python_packages_verified": {
+    "undetected-chromedriver": "3.5.5",
+    "selenium": "4.51.0",
+    "setuptools": "84.2.1",
+    "httpx": "0.28.1",
+    "openpyxl": "3.1.5",
+    "Pillow": "13.0.0",
+    "curl_cffi": "0.16.3"
+  },
+  "xvfb_package": {
+    "version": "2:21.1.12-1ubuntu1.9",
+    "distribution": "Ubuntu 24.04 noble-updates amd64",
+    "sha256": "2011271eabcc2eb460e99995c5ef26e46633e87d04f570e305b62f178f7b452c"
+  },
+  "runtime_rules": {
+    "private_xvfb": true,
+    "desktop_fallback": false,
+    "short_tmpdir": true,
+    "batch_size": 4,
+    "batch_timeout_seconds": 90,
+    "cpu_nice": 19,
+    "io_priority_class": 3,
+    "artificial_request_spacing_seconds": 0
+  },
+  "opencli_commit": "de9d7d784c66681d96ec4f22059b10381e73f1c0"
+}

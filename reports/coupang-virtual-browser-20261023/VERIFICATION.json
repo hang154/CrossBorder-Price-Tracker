@@ -1,0 +1,72 @@
+{
+  "as_of": "2026-10-23",
+  "scope": "Method backup; aggregate evidence only. Runtime profiles, credentials and product/reviewer records excluded.",
+  "live_run": {
+    "total": 137,
+    "processed": 137,
+    "actually_attempted": 137,
+    "detail_complete": 14,
+    "reviews_complete": 12,
+    "reviews_partial": 6,
+    "elapsed_seconds": 1891.79,
+    "profile_removed": true,
+    "virtual_display_removed": true
+  },
+  "partial_detail_archives": 4,
+  "unavailable_products": 119,
+  "archive_integrity": {
+    "products_with_detail": 18,
+    "detail_asset_hashes": 252,
+    "detail_source_hashes": 18,
+    "review_page_hashes": 83,
+    "monthly_review_counts_checked": 18,
+    "start_inclusive": "2026-09-23",
+    "end_inclusive": "2026-10-23",
+    "errors": [],
+    "passed": true
+  },
+  "observed_http_rotation": {
+    "products": 137,
+    "requests": 2472,
+    "valid_stages": 0
+  },
+  "ranking_refresh": {
+    "pages_verified": 73,
+    "same_product_option_matches": 122
+  },
+  "source_artifact_sha256": {
+    "index.html": "3f9723dba2ce2aba7e7a483174502aa331a3dbbe832e999d397443fe4c74cf16",
+    "research.xlsx": "bd5fb945774a8dc696a3cf154df580186a9b641d8ab5a4e703edec4f78d39eb1",
+    "queue.json": "3193f66b557b32df6380f91e0fd870fd5de9db81f602f7b5e3bd06b6f3297f85",
+    "opportunities-with-monthly.json": "a5bbea78b5f34ec8e26ed27ebdd97b1d2073873b5ed0d11e43a243784c5fee7f",
+    "route-status.json": "be9fbe610a260b42343ae49a6196d3673cc582c653a5979bf3b1ac605673d51f",
+    "ranking-refresh.json": "9e4cc98d4550da2bb1ef3d2c644645f3534b6be84a99dfe6e5185fdcb19fce94",
+    "full-rotation/manifest.json": "6dac2082f04d8a59eb6dd54bc05893f56ffa27d264f78abbf7e7a57de5332ed9",
+    "full-rotation/evidence.jsonl": "e3d9a4c89a8301f36b1684b7584784c7cee853d5617dee4c79b10b7b419636d1",
+    "isolated-audit/manifest.json": "5d29562c3581532f27b6f98d60b7445588bfe9065a74dc10fbe60545751f9427",
+    "historical-88-resolution.json": "bb4d586482f8ae25e4c60bf90eae21d9576f22e7ed870e879e8828356aab947b",
+    "virtual-audit-first/manifest.json": "7f1966f19fd5729ccd4077246cfd9e5dadfadc8a97635913ed217c406546b76c",
+    "virtual-audit/manifest.json": "dc4a8b4c7ab587805dfc3f555373fd45f47efc39aa4cd603c54e92ea7a541bcb",
+    "archive-integrity.json": "87adeda21ca7b5f6f2ebef1b3ca4825962a96c2cadb16052a982814152bee2a7"
+  },
+  "tests_previously_passed": 47,
+  "browser_page_errors": [],
+  "desktop_isolation_fixture": {
+    "native_fill_click": "passed",
+    "shared_desktop_connection": false,
+    "xvfb_cleanup": "passed"
+  },
+  "backup_validation": {
+    "core_related_tests_passed": 74,
+    "headless_navigation_fixture_tests_passed": 5,
+    "total_passed": 79,
+    "fixture_requests": "intercepted locally; no live Coupang collection",
+    "offline_finalize_real_run": {
+      "products": 137,
+      "comparisons": 193,
+      "details_complete": 14,
+      "reviews_complete": 12,
+      "archive_integrity_passed": true
+    }
+  }
+}

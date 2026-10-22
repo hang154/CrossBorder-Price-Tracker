@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-21",
+  "as_of": "2026-10-23",
   "tracker": {
     "repository": "https://github.com/hang154/CrossBorder-Price-Tracker",
     "branch": "main",
@@ -8,7 +8,7 @@
   "opencli": {
     "repository": "https://github.com/hang154/OpenCLI",
     "branch": "main",
-    "commit": "aee46c6f4ee46dbe79fcaeae13a01be5cb627a99",
+    "commit": "de9d7d784c66681d96ec4f22059b10381e73f1c0",
     "layout": "../OpenCLI/dist/src/main.js"
   },
   "requested_model_alias": "Qwen3.8-27B-uncensored-FP8",
@@ -36,5 +36,10 @@
     "branches": "both main; no separate local feature branches",
     "policy": "additive commits, no force push",
     "tracker_integrated_tip": "629af4eb35252b94fe8f4d42e765d7aab75b511d"
+  },
+  "virtual_browser": {
+    "lock": "configs/coupang-virtual-browser.lock.json",
+    "runbook": "docs/COUPANG_VIRTUAL_BROWSER.md",
+    "desktop_fallback": false
   }
 }

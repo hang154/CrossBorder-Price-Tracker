@@ -109,3 +109,54 @@ complete/partial 재개 건은 기존처럼 건너뛰며 새 이동 기록으로
 유선·무선 인터페이스를 포함한 기존 4단 사다리 재검사도 모두 검색 403이었다.
 브라우저 홈 진입 또한 3.71초 후 Access restriction으로 중단됐다.
 53개 관련 테스트 통과; 라이브 성공과 구분해 `verification.json`에 기록했다.
+
+## 2026-10-23 공개 카테고리 경로 검증
+
+`/np/search`가 403이어도 `/np/best100/bestseller/<category>`와
+`/np/best100/trending/<category>`는 상품을 반환했다. 기본·chrome124·유선·무선
+4개 조합에서 일반 검색, 모바일, 상품 상세, 리뷰, 스토어와 랭킹을 분리 검사했다.
+브라우저 홈이 막힌 상태의 same-origin 읽기에서도 best100은 30개 상품을 반환했다.
+스토어 정보 JSON의 id/vendorId는 유효하지만 listing POST는 실패했으므로
+스토어 전체 상품 수집에 성공했다고 보고하면 안 된다.
+
+재사용: `python -m app.coupang_catalog_routes --category 184455 --out <job.json>`.
+실제 source HTML과 해시를 함께 저장한다. 현재 Next.js의
+`best100-product-cell` 카드를 파싱하며 할인 전 가격·적립금을 판매가로 오인하지 않는다.
+검색 순위와 월 판매량은 수집하지 않은 것으로 표시한다. 카테고리는 응답에
+실제로 포함된 링크만 따라간다. 자세한 새 증거는
+`sourcing-runs/coupang-route-audit-20261023/`에 보존한다.
+
+### 저장 원본에서 상품 속성 확장
+
+`app.coupang_catalog_routes.parse_ranking`은 목록 카드에 표시된 배송 배지와
+동일 product/item/vendor 조합의 Next 페이지 데이터를 연결한다. 정가·할인율,
+별점·집계수, 도착 안내, 적립, 품절 상태, 반품/중고 옵션 가격을 구분해 저장한다.
+판매자로켓과 로켓배송은 별도 유형이다. 배지 미표시는 로켓 이용 불가를 뜻하지
+않으며 `rocket_delivery=None`, `rocket_badge_present=False`로 기록한다.
+무료배송은 명시된 경우만 True이다. 배송 배지로 무료배송을 추정하지 않는다.
+판매자명·전체 옵션·최근 판매량은 해당 원본에 없으면 null로 남긴다.
+
+이미 수집한 source HTML/HTML.gz의 SHA-256과 기존 가격을 검증하면서 확장:
+
+```bash
+PYTHONPATH=. python scripts/coupang_catalog_enrich.py \
+  --source-root sourcing-runs/coupang-route-audit-20261023 \
+  --comparison sourcing-runs/coupang-route-audit-20261023/winter-final-comparison \
+  --out sourcing-runs/winter-product-details-20261023
+```
+
+HTML의 검색·가격·별점·배송 필터, 개별 상품 사진·원문·관측시각 상세창,
+Excel 전체 카탈로그 및 원래 가격비교 시트를 함께 제공한다. 1688 원문의
+판매자 표시명·업력·재구매율·발송 문구를 보존하고, 라벨 없는 숫자 점수는
+`listing_score_untyped`로 저장해 쿠팡의 상품 별점과 혼동하지 않는다.
+구매 표시의 기간과 평가 대상이 확인되지 않으면 월 판매량·공급업체 신뢰도로
+확정하지 않는다. 재추출은 새 네트워크 수집 또는 새 Qwen 추론으로 보고하지 않는다.
+
+## 2026-10-23 전용 가상 브라우저 복구와 실측
+
+사용자 화면과 키보드를 방해하던 최소화/화면 밖 Chrome을 전용 Xvfb로 교체했다.
+짧은 /tmp 런타임, 별도 인증·프로필, 묶음 단위 정체 복구와 정리 검증을 적용했다.
+137개 실제 시도에서 상세14개 완료·4개 부분, 월 리뷰12개 완료·6개 부분을 저장했다.
+이미지252개·리뷰 원본83페이지와 18개 상품의 월 리뷰 수 대조가 통과했다.
+전체 성공은 아니며 나머지119개는 미확보다.
+복원·실행·마무리 명령: [COUPANG_VIRTUAL_BROWSER.md](docs/COUPANG_VIRTUAL_BROWSER.md).

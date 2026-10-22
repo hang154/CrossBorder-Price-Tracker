@@ -7,6 +7,15 @@ Qwen은 계획·분류·도구 선택을 담당하고, 가격 계산·기간 집
 2026-10-21 기준으로 만들어진 사입 관련 실행 경로를 이 README에 통합했습니다.
 기존 가격 추적 기능과 이전 설명은 [통합 전 README](docs/README.previous.md)에 보존합니다.
 
+## 쿠팡 수집·가상 브라우저 백업 (2026-10-23)
+
+성공한 카테고리 경로, 전용 Xvfb에서 홈→검색→상품 상세·리뷰 수집,
+실패 복구와 HTML·Excel 마무리를 [복원·실행 문서](docs/COUPANG_VIRTUAL_BROWSER.md)에 정리했습니다.
+[버전 고정](configs/coupang-virtual-browser.lock.json) · [실측 검증 요약](reports/coupang-virtual-browser-20261023/VERIFICATION.json)
+
+사용자 화면·키보드와 분리된 전용 가상 디스플레이를 기본으로 사용합니다.
+임시 브라우저 프로필·쿠키·인증 키·원본 상품/리뷰 자료는 코드 백업에 포함하지 않습니다.
+
 ## 저장소 구성과 복원
 
 - **이 저장소:** [hang154/CrossBorder-Price-Tracker](https://github.com/hang154/CrossBorder-Price-Tracker) — Qwen 에이전트, 리뷰 조사, 보고서, Excel, Codex 스킬.

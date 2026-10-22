@@ -10,6 +10,30 @@ It calls the local `Qwen3.8-27B-uncensored-FP8` API, drives the authenticated Op
 browser, and saves source-linked observations. Alibaba here is the shopping website;
 do not switch inference to Alibaba or another hosted model provider.
 
+## Desktop isolation for this user
+
+Background sourcing must run on an owned **private Xvfb display** (or a truly
+headless browser), using a separate temporary profile. The user reported that
+minimized/offscreen Chrome still stole focus and reacted to their keyboard.
+Do not attach background jobs to their current DISPLAY, WAYLAND_DISPLAY, desktop
+DBus session, foreground browser, Browser Bridge, or OS keyboard/mouse input.
+`--window-mode background`, minimizing and moving a window offscreen do not
+provide this separation. Preserve the home → visible search → observed product
+link workflow inside the virtual browser.
+
+The tracker’s `app.isolated_display.virtual_display()` owns an authenticated Xvfb
+server and cleans it up after Chrome quits. Both
+`scripts/coupang_isolated_purchase_audit.py` and
+`scripts/coupang_isolated_browser_probe.py` use it and refuse desktop fallback
+when Xvfb is missing. For full queues use `scripts/coupang_virtual_batch.py`: one
+private browser at a time, four products per instance, bounded driver lifetime,
+and child-tree-only cleanup on hangs. Unreached products are retried individually.
+Use short private `/tmp` paths for Chrome/Xvfb runtime and profiles: a 197-byte
+TMPDIR reproduced Chrome startup failure, whereas `/tmp` started correctly.
+Keep jobs at low CPU/I/O priority. If the owned browser
+window/session disappears, stop and preserve unfinished products; do not classify
+NoSuchWindow/InvalidSession errors as website access-denied responses.
+
 ## Locate the runtime
 
 Find the existing checkout containing `app/sourcing_agent.py` and the OpenCLI build
@@ -112,6 +136,22 @@ response classifications and actual extracted products. The 2026-10-22 21:21 KST
 recheck returned 403 on both default surfaces. Keep the SearchAgent browser
 home-search default until fresh execution and downstream validation succeed;
 do not describe the optional HTTP script as an integrated default pipeline.
+
+## Coupang public category discovery fallback
+
+When keyword search is blocked, category ranking is a separate, tested discovery
+route: `python -m app.coupang_catalog_routes --board bestseller --category <observed-id-or-all> --out <job.json>`.
+The adapter saves the actual source HTML and its hash, and parses current
+`best100-product-cell` cards (title, sale price, image, rating and review count).
+Follow only category links returned by those pages to narrow winter product groups.
+Label these results as category discovery, never keyword-search rank or exact sales.
+A valid result requires parsed product cards; HTTP 200 alone is insufficient.
+Observed 2026-10-23: best100 worked through HTTP and the connected browser while
+home/search/detail/mobile/review requests returned 403. Store metadata was readable,
+but its listing POST failed, so do not claim store inventory collection succeeded.
+The optional Partners API needs its own credentials; seller login is not API auth.
+No artificial pacing/cooldown is enabled. Full matrix and reusable collection
+outputs: `sourcing-runs/coupang-route-audit-20261023/` in the local checkout.
 
 ## Coupang keyword search and sales UI
 
@@ -267,3 +307,27 @@ and embedded photographs. Deliver clickable absolute HTML and Excel paths plus t
 actual product/search coverage and remaining uncertainty. When GitHub publication
 is requested, commit code, skill and reusable configuration; keep local research,
 credentials and browser state excluded unless the user separately requests those data.
+
+
+## Purchase opportunity: dated review records and paired detail capture
+
+For the user's sourcing follow-up requiring recent one-month **review count ×15**,
+run `python -m app.coupang_purchase_audit --source <opportunity-results.json>
+--out <fresh-run> --opencli-main <OpenCLI-main>`. This deduplicates domestic product
+IDs, visits priority candidates first, and calls the existing rendered-review
+crawler with `months_to_cover=1` and a same-visit detail observer. The detail archive
+saves selected options, mandatory information, source HTML/text and image hashes.
+It does not mean every option-specific page was separately visited.
+
+This explicit record-count request uses distinct dated review IDs, **not** the
+legacy participant union model. Expose text/media versus star-only records, use
+createdAt with a rolling calendar month in KST (inclusive boundaries), and label
+×15 as a heuristic. Keep inaccessible counts null; retain a separate observed
+partial estimate and do not use it as complete monthly sales. The merged
+`opportunities-with-monthly.json` may calculate conditional monthly contribution
+only when monthly coverage is confirmed. Catalog reviews can combine sellers
+and options and do not forecast a new seller's sales.
+
+Current route evidence is per execution. Browser denial does not prove HTTP
+denial; HTTP home200 does not prove search/detail access. Retain soft challenge
+200 as blocked rather than product data. No artificial pacing/cooldown is added.

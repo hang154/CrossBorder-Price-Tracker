@@ -246,17 +246,17 @@ class Browser:
         return True
 
 
-def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None):
+def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None, detail_observer=None, months_to_cover=3):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     with (out/'.audit.lock').open('a') as lock:
         try:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another audit owns this output directory')
-        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress,coordinator,navigation_query)
+        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress,coordinator,navigation_query,detail_observer,months_to_cover)
 
 
-def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None):
+def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None, detail_observer=None, months_to_cover=3):
     parsed=urlsplit(url)
     match=re.fullmatch(r'/vp/products/(\d+)/?',parsed.path)
     if parsed.scheme!='https' or parsed.hostname not in ['www.coupang.com','coupang.com'] or not match or parsed.username is not None or parsed.password is not None:
@@ -264,7 +264,8 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
     product=match[1]
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     path=out/'state.json'
-    fingerprint=digest([url,as_of.isoformat(),multiplier,full_scan,date_basis,prefix,hashlib.sha256(Path(__file__).with_name('coupang_review_extract.js').read_bytes()).hexdigest()])
+    if months_to_cover not in (1,3): raise ValueError('months_to_cover must be 1 or 3')
+    fingerprint=digest([url,as_of.isoformat(),multiplier,full_scan,date_basis,prefix,hashlib.sha256(Path(__file__).with_name('coupang_review_extract.js').read_bytes()).hexdigest()]+([] if months_to_cover==3 else [months_to_cover]))
     if path.exists():
         state=json.loads(path.read_text())
         if not resume or state['fingerprint']!=fingerprint:
@@ -287,6 +288,8 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
             home_search_detail(browser, product, navigation_query or product, trace)
         finally:
             atomic_json(out/'navigation.json', trace)
+        if detail_observer:
+            detail_observer(browser,product)
         browser.call('click','--role','button','--name','최신순')
         wanted=1
         for _ in range(max_pages):
@@ -316,8 +319,8 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
                 stop='list_exhausted';break
             # Creation-date mode can stop at the covered boundary. Display-date
             # mode must scan all pages because later edits occur on old pages.
-            if not full_scan and date_basis=='created' and current and all(d is not None for d in current) and current[-1]<months_ago(as_of,3):
-                stop='three_month_boundary';break
+            if not full_scan and date_basis=='created' and current and all(d is not None for d in current) and current[-1]<months_ago(as_of,months_to_cover):
+                stop='three_month_boundary' if months_to_cover==3 else 'one_month_boundary';break
             if _+1>=max_pages:
                 stop='page_limit';break
             if not browser.next_page(wanted+1):
@@ -325,14 +328,18 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
             # Group navigation may jump to page 11/21; the expected next page remains explicit.
             wanted+=1
         coverage={'stop_reason':stop,'pages':len(state['pages']),
+            'covered_months':3 if stop in ['list_exhausted','three_month_boundary'] else 1 if stop=='one_month_boundary' else 0,
             'date_range_complete':stop in ['list_exhausted','three_month_boundary'],
             'rating_only_coverage':'count_reconciled' if first and first['rating_count'] is not None and first['rating_count']==first['listed_review_count'] else 'unknown',
             'site_rating_count':first['rating_count'] if first else None,'listed_review_count':first['listed_review_count'] if first else None,
             'list_count_reconciled':stop=='list_exhausted' and len(records)==first['listed_review_count'] if first else False}
         if stop=='list_exhausted' and not coverage['list_count_reconciled']:
             coverage['date_range_complete']=False
+            coverage['covered_months']=0
         missing=sum(record_date(r,date_basis) is None for r in records.values())
-        if missing:coverage['date_range_complete']=False
+        if missing:
+            coverage['date_range_complete']=False
+            coverage['covered_months']=0
     except Exception as exc:
         coverage={'date_range_complete':False,'rating_only_coverage':'unknown','stop_reason':'error','error':type(exc).__name__+': '+str(exc),'pages':len(state['pages'])}
     finally:
