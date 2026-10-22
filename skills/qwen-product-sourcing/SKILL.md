@@ -1,6 +1,6 @@
 ---
 name: qwen-product-sourcing
-description: Research domestic and overseas product candidates using local Qwen3.8 and OpenCLI, compare observed prices and photographs, and create HTML and Excel reports. Also audit Coupang review pages for rolling 1/3-month participants and review-based sales estimates. Use for Naver versus 1688/Alibaba sourcing, image search, or Coupang rating/review counts.
+description: Research domestic and overseas product candidates using local Qwen3.8 and OpenCLI, compare observed prices and photographs, and create HTML and Excel reports. Also audit Coupang review pages for rolling 1/3-month participants and review-based sales estimates, and archive Coupang product detail pages with content hashes. Use for Naver versus 1688/Alibaba sourcing, image search, Coupang rating/review counts, or Coupang detail-page collection.
 ---
 
 # Qwen product sourcing
@@ -26,6 +26,47 @@ the Browser Bridge connection before starting searches.
 The agent reads `ADINTEL_QWEN_API_KEY` or the existing enabled local Azrael Qwen
 bearer-file connection. Never request credentials in chat or copy them into reports,
 the skill, or Git. Browser sessions and account login remain managed by OpenCLI.
+
+## Coupang navigation: always start from home
+
+User requirement: for all Coupang work, enter `https://www.coupang.com/`
+and navigate through the visible website as a person would. This includes public
+search, product details, reviews and seller login. Direct opening of search URLs,
+product URLs, `wing.coupang.com` or `xauth.coupang.com` is not an entry route.
+Automatic redirects after clicking an observed official link are allowed.
+
+- Search: find the visible enabled search input, fill and verify its value, then
+  click its visible search-submit button. Enter alone did not submit in the live
+  2026-10-22 run. Verify the resulting query and page before extracting products.
+- Detail/reviews: click an observed search-result link with the exact requested
+  product ID, verify that product after navigation, then use visible review controls.
+- Seller login: from home, locate the visible seller/입점/판매자센터 menu or link,
+  follow the relevant official login link, verify its HTTPS Coupang origin, and
+  fill credentials only on the actual login form. Do not guess menu destinations
+  or open a remembered authentication URL directly.
+- Keep the worker's own leased tab and serialize native fill/click operations.
+  Save navigation stages, observed links, final URLs and failures; exclude
+  credentials, authentication query strings, cookies and input values from logs.
+- A transient Access Denied on home may be retried on the same browser/profile:
+  at most three homepage loads per retry cycle, at least ten seconds apart, as
+  requested by the user. Preserve each outcome; continue only when the visible
+  homepage and its navigation controls actually load. If all three fail, report
+  that result. A CAPTCHA requires the normal human verification step.
+- A block after leaving home stops that navigation attempt. Retry entry through
+  home rather than direct URLs; never rotate identities or substitute proxies.
+  Do not repeatedly submit credentials on authentication failures. A successful
+  home load is not proof of successful seller login.
+
+Before invoking the CLI/agents documented below, inspect whether the current
+implementation supports this home-first route. Legacy direct-navigation search
+or review entry must be adapted using the existing browser/navigation/extraction
+helpers, or performed through the visible browser workflow; do not run that legacy
+entry and call it home-first. A configured home-search flag is insufficient unless
+the saved live trace proves the search was submitted and the intended link clicked.
+For this local installation, authorized seller credentials are in
+`~/.config/product-sourcing/coupang-seller.env` (mode 0600), variables
+`COUPANG_SELLER_ID` and `COUPANG_SELLER_PASSWORD`. Load them privately only for an
+authorized login; never put their values in the skill, command output or Git.
 
 ## Run a product request
 
@@ -95,6 +136,58 @@ backend works. Short two-product tests showed little speed gain; report actual t
 UI offers retry when collection or model execution is unfinished; start a new
 search for a fresh observation of already covered dates.
 Do not silently change the keyword or fill fewer than ten real results with guesses.
+
+## Coupang detail-page archive
+
+To collect or extend Coupang product detail pages (full description HTML, displayed
+text, options, and original images with SHA-256), run the checkout's archiver instead
+of inventing another scraper:
+
+```bash
+python scripts/coupang_detail_collect.py \
+  --source <search-job.json> \
+  --output-dir sourcing-runs/<fresh-run> \
+  --opencli-main <opencli-checkout>/dist/src/main.js \
+  --keyword <label> --max <count>
+```
+
+The default entry route is `--entry-route home-search`: open Coupang home,
+fill and verify the visible search input, click its visible search-submit button,
+then click the observed result with
+exact matching product ID. Never silently fall back to direct search/product URL
+navigation or substitute a different product. Set product `keywords`/`search_query`
+or pass `--search-query`; this takes priority over the run label. Each item keeps
+`navigation.json` with stage timestamps, actual URLs and selected link. Native
+input sequences share a lock; asset downloads can overlap. The legacy
+`--entry-route direct` is excluded by the user's home-first requirement. Failed collection exits nonzero;
+fixture browser tests are not evidence of live Coupang access.
+
+The source JSON is `{"products":[{product_id,rank,title,price,url}]}`; wrap a saved
+`coupang search -f json` result or reuse a prior run job. Rules: two concurrent
+browser pages; stop new navigation when access restriction is detected,
+failed items keep an error scaffold and never become silent success, and completed
+items are skipped on rerun so the same folder doubles as the resume queue. Seller
+claims in the text are transcribed, not verified; prices are listing-time values.
+
+After every collection (or before trusting an old archive), re-run
+`python scripts/coupang_archive_revalidate.py <run-dir>...`; it re-hashes stored
+images, checks every http(s) source in the raw HTML maps to a downloaded asset,
+recorded video, or recorded unsupported entry, and confirms the description equals
+the observed text. Nonzero exit means drift — report it, do not re-collect blindly.
+
+Coupang blocks are Akamai edge 403s, not a slider, and the verdict differs per
+class: Chrome through the Browser Bridge may pass while curl-style clients stay
+blocked (observed 2026-10-22 in both directions). Probe the browser path and the
+HTTP path separately, resume only through the passing surface, and when live
+search returns EMPTY_RESULT keep that as "no new listings observed" while
+selecting from hash-pinned prior candidates. Third-party mirrors (r.jina.ai,
+allorigins, codetabs, corsproxy, Google Translate, microlink, Wayback save-now,
+archive.today) were all denied or empty for Coupang; archived snapshots cannot
+substitute because detail content renders through same-origin XHR. Full procedure
+and evidence: `COUPANG_COLLECTION.md` and `reports/coupang-*` in the checkout.
+For Qwen-driven search-then-select sessions, adapt
+`scripts/coupang_qwen_expand_template.py` (one search call per keyword, exclude
+known IDs, collect only observed new IDs, summarize without validating claims).
 
 ## Coupang review-only audit
 
