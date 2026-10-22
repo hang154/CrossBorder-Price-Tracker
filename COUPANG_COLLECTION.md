@@ -16,8 +16,8 @@ python scripts/coupang_detail_collect.py \
 - 산출(상품마다): 상세 원문 HTML(`detail-original.html.txt`), 표시 텍스트
   (`description.txt`), `detail.json`(선택 옵션·필수정보·이미지 SHA·영상 URL),
   이미지 원본(`images/`), browsable `index.html`, 런 `manifest.json`(출처 SHA 포함).
-- 정책:동시 2 브라우저, 차단 감지 시 상품당 재시도 1회, 차단 상품은 `failed`
-  스캐폴더로 남기고 계속. 구매·문의·계정 변경 없음. complete/partial 상품은
+- 정책: 동시 2 브라우저. 접근 제한 감지 시 새 탐색을 중단하고 `failed`
+  스캐폴더와 이동 기록을 보존한다. 구매·문의·계정 변경 없음. complete/partial 상품은
   재실행 시 자동 skip(대기열 재사용).
 
 ## 재검증(저장 자료 vs 디스크)
@@ -51,3 +51,48 @@ description==detail_text, expanded=true를 검사하고 불일치 시 exit 1.
 `scripts/coupang_qwen_expand_template.py`를 기준으로 한다(과거 실행본과 API
 증적 동봉). 도구 계약: 세 검색어 1회씩, 제외 ID 주입, `collect_details`는 관측된
 new ID만, 완료 시 판결 요약. 상세 수집 로직은 위 상세 수집기와 동일하다.
+
+## 홈 검색창을 통한 상세페이지 진입 (기본 경로)
+
+상세 수집기는 기본 `--entry-route home-search`로 실행한다. `coupang.com` 홈을
+열고 표시된 검색창에 검색어를 입력·검증한 뒤 Enter를 보낸다. 검색 결과에
+실제로 나타난 동일 product_id 링크를 클릭하고, 상세 페이지의 ID와 본문을
+확인한 다음 기존 원문·이미지 저장기를 실행한다. 검색/상품 URL 직접 열기로
+자동 전환하지 않는다. 결과에 목표 상품이 없으면 다른 상품으로 대체하지 않는다.
+
+검색어 우선순위: `--search-query` → 상품 `search_query/search_keyword/keyword`
+→ 상품 `keywords[0]` → `--keyword` → 상품 제목. 여러 상품군은 상품별 검색어를
+job에 넣는다. 홈 검색 경로에서 입력·클릭은 탭 충돌을 막기 위해 직렬화하며,
+상세 자산 다운로드는 겹쳐서 수행한다. 새 창 링크는 실제 href를 유지하면서
+현재 작업 탭에서 열도록 target만 변경한다.
+
+```bash
+python scripts/coupang_detail_collect.py --source job.json \
+  --output-dir sourcing-runs/home-search-run \
+  --opencli-main ../OpenCLI/dist/src/main.js \
+  --entry-route home-search --search-query 부적 --max 2
+```
+
+각 상품의 `navigation.json` 및 `detail.json.navigation_trace`에 홈·검색·선택
+링크·최종 ID 검증 시각과 URL을 저장한다. 실패 상품이 있으면 종료 코드 1이다.
+complete/partial 재개 건은 기존처럼 건너뛰며 새 이동 기록으로 꾸미지 않는다.
+명시적 `--entry-route direct`는 기존 직접 URL 경로를 재현할 때만 쓴다.
+브라우저 경로 테스트는 `tests/test_coupang_navigation.py`이며, 가상 응답으로
+홈 검색 제출·원본 링크 클릭·오상품/미노출/홈 차단/검색창 누락을 검사한다.
+이 테스트 통과는 쿠팡 라이브 접속 성공을 뜻하지 않는다.
+
+## 표면별 접속 사다리 (2026-10-22 확정)
+
+차단은 표면별 구름레이트 윈도우(rolling window)다. 단일 경로만으로 "차단"을
+판정하면 안 된다. 전 표면 진단: `python3 scripts/coupang_surface_probe.py`
+(exit 0 = 텍스트 표면 열림). 관측 증거·설계는 `reports/coupang-access-ladder-20261022/NOTES.md`.
+
+- HTTP 요청에는 `app/coupang_fastpath.py`를 먼저 쓴다(curl_cffi Chrome 지문,
+  HOME warm, 지문→출구IP 표면 순서, 본문 마커로 200-위장 페이지 판별). 본문 마커
+  검증 구간(검색 SSR 페이지, 상세 셸의 itemBrief·LD-JSON·메인 이미지)은 브라우저
+  없이 수집 가능: `scripts/coupang_fastpath_search.py`.
+- 판매자 상세 본문 fragment(`/vp/products/<id>/description`)와 리뷰는 브라우저
+  라우트(OpenCLI home-search 진입) 유지.
+- 삽입형 챌린지(같은 세션 재요청 1회로 self-clearing)와 하드 403(지문/출구 교체로
+  표면 전환)을 구분한다. 인공 쿨다운은 없다(2026-10-22 사용자 결정). 전 표면
+  소진 시 브라우저 경로로 전환하고, 10~20분 뒤 surface probe로 창 재개를 포착한다.

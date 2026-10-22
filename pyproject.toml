@@ -16,12 +16,14 @@ coupang-review-audit = "app.coupang_reviews:main"
 coupang-search-agent = "app.coupang_search_agent:main"
 coupang-search-ui = "app.coupang_search_web:main"
 sourcing-template-agent = "app.template_excel_agent:main"
+detail-workspace = "app.detail_workspace:main"
 
 [project.optional-dependencies]
 browser = ["playwright>=1.45,<2"]
+fastpath = ["curl_cffi>=0.10"]
 
 [tool.setuptools.package-data]
-app = ["coupang_review_extract.js", "coupang_search.html", "catalog_visuals.js"]
+app = ["coupang_review_extract.js", "coupang_search.html", "catalog_visuals.js", "detail_workspace.html", "text_edit_agent.html", "detail_style_comparison.html", "text_layer_runtime.js", "text_layer_controls.js", "vendor/*.js", "vendor/*.json", "vendor/*.txt"]
 
 [tool.setuptools.packages.find]
 include = ["app*"]

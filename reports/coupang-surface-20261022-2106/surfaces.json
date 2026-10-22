@@ -1,0 +1,120 @@
+{
+ "at_kst": "2026-10-22T21:06:43.611144+09:00",
+ "surfaces": {
+  "curl-h2": {
+   "robots": "403",
+   "home": "403",
+   "detail": "403",
+   "mobile": "403"
+  },
+  "httpx": {
+   "home": {
+    "status": 403,
+    "denied": true
+   },
+   "detail": {
+    "status": 403,
+    "denied": true
+   }
+  },
+  "cdn-assets": {
+   "status": 404,
+   "denied": false
+  },
+  "curl_cffi": {
+   "robots": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 3966,
+    "expected": false
+   },
+   "robots@wlo1": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 3966,
+    "expected": false
+   },
+   "robots@enp4s0": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 3966,
+    "expected": false
+   },
+   "home": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 221353,
+    "expected": true
+   },
+   "home@wlo1": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 221411,
+    "expected": true
+   },
+   "home@enp4s0": {
+    "status": 200,
+    "classification": "ready",
+    "bytes": 221349,
+    "expected": true
+   },
+   "search": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 543,
+    "expected": null
+   },
+   "search@wlo1": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 543,
+    "expected": null
+   },
+   "search@enp4s0": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 543,
+    "expected": null
+   },
+   "detail": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 555,
+    "expected": null
+   },
+   "detail@wlo1": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 555,
+    "expected": null
+   },
+   "detail@enp4s0": {
+    "status": 403,
+    "classification": "edge_denied",
+    "bytes": 555,
+    "expected": null
+   }
+  },
+  "browser": {
+   "home": {
+    "status": "blocked",
+    "title": "Access Denied",
+    "cards": 0,
+    "detail": false
+   },
+   "search": {
+    "status": "blocked",
+    "title": "Access Denied",
+    "cards": 0,
+    "detail": false
+   },
+   "detail": {
+    "status": "blocked",
+    "title": "Access Denied",
+    "cards": 0,
+    "detail": false
+   }
+  }
+ },
+ "verdict": "text-traffic-open"
+}
