@@ -306,6 +306,13 @@ Alibaba.com 상세 페이지가 슬라이드 검증으로 차단된 상황의 �
 
 2026-10-22에는 쿠팡이 같은 문서의 절차로 회복 불가능한 엣지 IP 403 차단을 반환했다.
 로그는 `reports/coupang-edge-block-20261022/`에 있고, 새 수집은 탐침 통과 후 재개한다.
+
+쿠팡 상세 수집 절차 전체는 [COUPANG_COLLECTION.md](COUPANG_COLLECTION.md)에 재사용
+런북으로 있다. 실행부는 `scripts/coupang_detail_collect.py`(검색 job JSON → 상세
+원문·이미지·SHA 아카이브, 차단 경찰 상품당 1회, complete 자동 skip), 검증부는
+`scripts/coupang_archive_revalidate.py`(이미지 SHA·원문 HTML src 대응·텍스트 일치),
+Qwen 자율 탐색 기준은 `scripts/coupang_qwen_expand_template.py`다. 스모크로
+새 경로에서 1건 complete 수집과 검증 통과를 확인했다.
 ```
 
 특히 `test_sourcing_agent.py`, `test_sourcing_pipeline.py`, `test_sourcing_handoff.py`,
@@ -325,3 +332,16 @@ GitHub에는 소스·테스트·README·재사용 설정·스킬·이미 공개�
 
 기준 시점 이후 다른 작업에서 생긴 변경은 별도 커밋 대상이며 덮어쓰거나 강제로 푸시하지 않습니다.
 기존 README의 라이선스 안내는 MIT입니다. OpenCLI의 라이선스는 해당 저장소에서 확인하세요.
+
+## 상품표 · 상세페이지 편집 작업실
+
+엑셀 UI에서 상품별 여러 상세페이지의 진행 상태를 관리하고, HTML 문구·기획안·수정 지시를
+서버에 저장할 수 있습니다. 외부 편집기 URL 매핑, 에이전트 전달 링크, 선택 지시 반영과
+버전 복원, XLSX 가져오기·내보내기를 지원합니다.
+
+```bash
+python -m app.detail_workspace --root sourcing-runs/detail-workspace serve --port 8884
+```
+
+접속: `http://127.0.0.1:8884`.
+[사용법과 Codex 인계 계약](docs/DETAIL_WORKSPACE.md)을 참고하세요.
