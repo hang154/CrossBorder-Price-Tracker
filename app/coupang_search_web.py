@@ -15,7 +15,7 @@ from app.sourcing_pipeline import atomic_json, digest
 
 
 class Jobs:
-    def __init__(self, root, prefix, workers=2, start_interval=2.0, window_mode="background"):
+    def __init__(self, root, prefix, workers=2, start_interval=0.0, window_mode="background"):
         self.collection_options = dict(workers=workers, start_interval=start_interval, window_mode=window_mode)
         self.root, self.prefix = Path(root).resolve(), prefix
         self.root.mkdir(parents=True, exist_ok=True)
@@ -153,7 +153,7 @@ def main():
     parser.add_argument('--output-dir', type=Path, default=Path('sourcing-runs/coupang-search'))
     parser.add_argument('--port', type=int, default=8879)
     parser.add_argument('--workers', type=int, choices=range(1,5), default=2)
-    parser.add_argument('--start-interval', type=float, default=2.0)
+    parser.add_argument('--start-interval', type=float, default=0.0)
     parser.add_argument('--window-mode', choices=['background','foreground'], default='background')
     args = parser.parse_args()
     jobs = Jobs(args.output_dir, ['node', str(args.opencli_main.resolve())], args.workers, args.start_interval, args.window_mode)

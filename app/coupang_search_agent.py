@@ -15,11 +15,12 @@ from concurrent.futures import ThreadPoolExecutor
 import httpx
 
 from app.coupang_reviews import KST, crawl, CollectionCoordinator
+from app.coupang_home_search import search_products as home_search_products
 from app.sourcing_agent import BASE, MODEL, connection, tool, validate_arguments
 from app.sourcing_pipeline import atomic_json, digest
 
 
-DEFAULT_START_INTERVAL = 2.0
+DEFAULT_START_INTERVAL = 0.0
 
 def now():
     return dt.datetime.now(KST).isoformat()
@@ -77,11 +78,9 @@ class SearchAgent:
     def search(self):
         if self.state['products']:
             return self.search_summary()
-        args = [*self.prefix, 'coupang', 'search', self.state['keyword'], '--limit', '10', '--window', self.window_mode]
-        result = subprocess.run(args, capture_output=True, text=True, timeout=150)
-        payload = json.loads(result.stdout)
+        payload = home_search_products(self.prefix, self.state['keyword'], self.out/'navigation.json')
         atomic_json(self.out/'search-response.json', payload)
-        if result.returncode or payload.get('ok') is not True:
+        if payload.get('ok') is not True:
             raise ValueError('쿠팡 검색 실패: '+str(payload.get('error', {})))
         rows = payload['data']
         if not isinstance(rows, list) or not rows:
@@ -132,7 +131,7 @@ class SearchAgent:
                     p['progress'] = value
                     self.save()
             try:
-                options = {'coordinator': coordinator}
+                options = {'coordinator': coordinator, 'navigation_query': self.state['keyword']}
                 r = crawl(p['url'], folder, self.prefix, self.as_of, 15, self.max_pages,
                           resume=(folder/'state.json').exists(), on_progress=progress, **options)
                 if 'access restriction' in str(r.get('coverage',{}).get('error','')).lower():

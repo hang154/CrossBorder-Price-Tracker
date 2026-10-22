@@ -1,0 +1,150 @@
+[
+  {
+    "repo": "aisyncclub/detail_page_codex_skill",
+    "commit": "afcfdf8d9de2b0f144d50a80e0e56e3a57c229f3",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "aisyncclub--detail_page_codex_skill--README.md",
+        "sha256": "1a2f6798639d8b5dc5a1036a0123a3f44f0043454b2003c23dfcfbe5678c4693"
+      },
+      {
+        "path": "detail-page-reference-analyzer/SKILL.md",
+        "local": "aisyncclub--detail_page_codex_skill--detail-page-reference-analyzer--SKILL.md",
+        "sha256": "604a5fd024661f25a0cb8688dcdbfeeda644fded70ed4f54dda5c1f72350745a"
+      },
+      {
+        "path": "ecommerce-detail-page/SKILL.md",
+        "local": "aisyncclub--detail_page_codex_skill--ecommerce-detail-page--SKILL.md",
+        "sha256": "86bd4f75ffc44d80b6b4cd951ebb19c019bd6c0badda2ea349a56e84c1a58989"
+      }
+    ]
+  },
+  {
+    "repo": "fivetaku/sangse",
+    "commit": "1b2aeae79329be44396a3f6dd638f797ccd190d1",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "fivetaku--sangse--README.md",
+        "sha256": "4f72b0cf321d44e5650ea5d7a21e15ef52c45262eea79df006942098a1ed1fab"
+      },
+      {
+        "path": "skills/sangse/SKILL.md",
+        "local": "fivetaku--sangse--skills--sangse--SKILL.md",
+        "sha256": "2329255d6403ff6711c2080a3f457e15ae0af1a695967e80e31057b326a20147"
+      }
+    ]
+  },
+  {
+    "repo": "alpoxdev/hypercore-business",
+    "commit": "2733e10152f757ad162e9f69672a0a00ebc8f85b",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "alpoxdev--hypercore-business--README.md",
+        "sha256": "1565c1fc68d7b86cbcfc84ceb8187be83a31bfb67d946da7acc051eb504d62c4"
+      },
+      {
+        "path": "skills/product-detail-maker/SKILL.md",
+        "local": "alpoxdev--hypercore-business--skills--product-detail-maker--SKILL.md",
+        "sha256": "64c14274e7c79ced23544fd42530ee9da7fb585ab4d637340835d44ec2a6f839"
+      }
+    ]
+  },
+  {
+    "repo": "Gayaya999/ecommerce-detail-page-generator",
+    "commit": "234848792b0579ad77c528057e24049f91ad2a19",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "Gayaya999--ecommerce-detail-page-generator--README.md",
+        "sha256": "a8cecf252da29a47ab0db929e0c8ee02e24ee6f948c8640f579bb7d071aecd96"
+      },
+      {
+        "path": "SKILL.md",
+        "local": "Gayaya999--ecommerce-detail-page-generator--SKILL.md",
+        "sha256": "c5de2a084e9f1adc2cb1e4c71666f06808454ed5d847d0df7e3da019646e5ecb"
+      }
+    ]
+  },
+  {
+    "repo": "modu-ai/moai-cowork",
+    "commit": "e438597ec9fb92bfd72f2cf390bd0a1d8afe8c75",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "modu-ai--moai-cowork--README.md",
+        "sha256": "08871c610bd5bb03709b36a39178e425f9247d9115e35c3034e4e7cbd1322ef6"
+      },
+      {
+        "path": "plugins/moai-coworker/skills/collab-productivity-report/SKILL.md",
+        "local": "modu-ai--moai-cowork--plugins--moai-coworker--skills--collab-productivity-report--SKILL.md",
+        "sha256": "26766b7fe09c3024d518ca7403326fb6ca5730faab655f58936e4bdc3e6e490f"
+      },
+      {
+        "path": "plugins/moai-coworker/skills/productivity-goal/SKILL.md",
+        "local": "modu-ai--moai-cowork--plugins--moai-coworker--skills--productivity-goal--SKILL.md",
+        "sha256": "67a84ce318f5bcc2749e22d4bec89f02994cb7f9900ac2ec3e05a825fe47f572"
+      }
+    ]
+  },
+  {
+    "repo": "motiful/product-shots",
+    "commit": "063c508b0b7f4db5cda89f10bdf20df25026dfc5",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "motiful--product-shots--README.md",
+        "sha256": "5230b1436cb3e11c1f66f454b06725508bec48c94907448e8ed1262f838ee61a"
+      },
+      {
+        "path": "skills/product-shots-ad-creative/SKILL.md",
+        "local": "motiful--product-shots--skills--product-shots-ad-creative--SKILL.md",
+        "sha256": "0ca48ef8ec94e61f8eb69164e6a5cfb2340e59b4be0fe3582858dc86f0319189"
+      },
+      {
+        "path": "skills/product-shots-detail-page/SKILL.md",
+        "local": "motiful--product-shots--skills--product-shots-detail-page--SKILL.md",
+        "sha256": "696920d13f133d289ffeb6c129d454c124b81c20c3a41af4f6c710cbee1fa292"
+      }
+    ]
+  },
+  {
+    "repo": "NewTurn2017/codex-sangpye-skill",
+    "commit": "943fdaafd49e45f1851c3f8709f421bba326a400",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "NewTurn2017--codex-sangpye-skill--README.md",
+        "sha256": "36f0140cf884beee571b2fa47fbdc7cdf9b5734451d82522cace875c31a66703"
+      },
+      {
+        "path": "SKILL.md",
+        "local": "NewTurn2017--codex-sangpye-skill--SKILL.md",
+        "sha256": "e48a5b6e231f32d661f271e241fa6aacaae277f20289e42f3a506108266447da"
+      }
+    ]
+  },
+  {
+    "repo": "contentscoin/wadiz-detail-page-production-skill",
+    "commit": "942ad0188a4d2abbf795f06649609d00662b93aa",
+    "files": [
+      {
+        "path": "README.md",
+        "local": "contentscoin--wadiz-detail-page-production-skill--README.md",
+        "sha256": "85cb6aa82ae9f3dc5675cfdbb254d492d70c5f0a9223015de38b8fe4127eeaf6"
+      },
+      {
+        "path": "wadiz-detail-page-production/SKILL.md",
+        "local": "contentscoin--wadiz-detail-page-production-skill--wadiz-detail-page-production--SKILL.md",
+        "sha256": "ed5d0d0a3792019fc554dad7cdc7f20129a448e6126e25875e41a73e149799cf"
+      },
+      {
+        "path": "wadiz-detail-page-production/references/base-ecommerce-clone/Ecommerce-SKILL.md",
+        "local": "contentscoin--wadiz-detail-page-production-skill--wadiz-detail-page-production--references--base-ecommerce-clone--Ecommerce-SKILL.md",
+        "sha256": "3cc1668446a1e1012e244c7f698ea1e992cf8114fe74438cbfcbdaa9eff903d8"
+      }
+    ]
+  }
+]

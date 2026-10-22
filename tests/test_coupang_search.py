@@ -30,7 +30,7 @@ def mock_runtime(monkeypatch, no_tool=False, partial=False):
         return httpx.Response(200, json={'choices': [{'message': msg, 'finish_reason': 'stop' if no_tool else 'tool_calls'}], 'usage': {'total_tokens': 30}})
     monkeypatch.setattr(agent.httpx, 'Client', lambda **kwargs: native_client(transport=httpx.MockTransport(respond)))
     rows = [{'product_id': str(i), 'rank': i, 'title': '상품 '+str(i), 'price': 1000, 'review_count': 20} for i in range(1, 12)]
-    monkeypatch.setattr(agent.subprocess, 'run', lambda *a, **k: subprocess.CompletedProcess([], 0, json.dumps({'ok': True, 'data': rows}), ''))
+    monkeypatch.setattr(agent, 'home_search_products', lambda *a, **k: {'ok': True, 'data': rows, 'entry_route':'home-search-visible-submit'})
     def crawl(url, out, prefix, day, multiplier, max_pages, resume=False, on_progress=None, **kwargs):
         out.mkdir(parents=True, exist_ok=True)
         if resume and (out/'state.json').exists() and json.loads((out/'state.json').read_text()).get('done'):

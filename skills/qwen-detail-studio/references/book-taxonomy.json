@@ -1,0 +1,136 @@
+{
+  "source": "User-provided four table-of-contents photographs, 2026-10-22. Classification only; full book unavailable.",
+  "parts": [
+    {
+      "part": 1,
+      "id": "planning",
+      "label": "기획",
+      "variants": [
+        "정의",
+        "최신 트렌드",
+        "기본 구성",
+        "상품군별 제작",
+        "설득 흐름 기획"
+      ]
+    },
+    {
+      "part": 2,
+      "id": "workspace",
+      "label": "제작 환경",
+      "variants": [
+        "설치",
+        "패널",
+        "도구",
+        "환경 설정",
+        "작업 환경",
+        "작업 영역 저장",
+        "레이어",
+        "디자인 참고"
+      ]
+    },
+    {
+      "part": 3,
+      "id": "image_editing",
+      "label": "이미지 제작",
+      "variants": [
+        "불필요 부분 제거",
+        "사진 보정",
+        "부분 색상 변경",
+        "인물 보정",
+        "경계 분리",
+        "레이어 마스크",
+        "클리핑 마스크",
+        "그림자"
+      ]
+    },
+    {
+      "part": 4,
+      "id": "promotion",
+      "label": "프로모션",
+      "variants": [
+        "할인 특가",
+        "카카오 친구 추가",
+        "리뷰 이벤트"
+      ]
+    },
+    {
+      "part": 5,
+      "id": "notice",
+      "label": "공지·제품정보",
+      "variants": [
+        "공휴일 배송",
+        "사이즈와 상세정보",
+        "교환과 반품"
+      ]
+    },
+    {
+      "part": 6,
+      "id": "review",
+      "label": "리뷰·근거",
+      "variants": [
+        "검색 상위 노출 정보",
+        "고객 리뷰 이미지",
+        "만족도 그래프"
+      ]
+    },
+    {
+      "part": 7,
+      "id": "problem",
+      "label": "문제 제기",
+      "variants": [
+        "낮은 평점 리뷰",
+        "고객 공감 문제"
+      ]
+    },
+    {
+      "part": 8,
+      "id": "intro",
+      "label": "인트로",
+      "variants": [
+        "대표 이미지",
+        "영문 카피",
+        "제품 사진 강조",
+        "패턴"
+      ]
+    },
+    {
+      "part": 9,
+      "id": "key_points",
+      "label": "핵심 포인트",
+      "variants": [
+        "아이콘",
+        "텍스트 포인트 1",
+        "텍스트 포인트 2",
+        "제품 사진"
+      ]
+    },
+    {
+      "part": 10,
+      "id": "recommendation",
+      "label": "상품 추천",
+      "variants": [
+        "제품 비교",
+        "디테일 강조",
+        "체크리스트",
+        "아이콘 추천"
+      ]
+    },
+    {
+      "part": 11,
+      "id": "motion",
+      "label": "GIF·움직임",
+      "variants": [
+        "사진 GIF",
+        "영상 GIF",
+        "나타나는 텍스트",
+        "움직이는 인트로",
+        "롤링 리뷰",
+        "리뷰 숫자 전환",
+        "텍스트 색 변화",
+        "빛 통과",
+        "채팅형 리뷰"
+      ]
+    }
+  ],
+  "application": "Planning/workspace/editing are production capabilities; remaining eight are content families. Select applicable modules, do not force promotions or testimonials without evidence."
+}

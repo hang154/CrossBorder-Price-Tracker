@@ -4,7 +4,7 @@
 `.product-detail-content` 원문 HTML·표시 텍스트·선택 옵션·원본 이미지를 저장한다.
 이미지는 origin 검사(coupangcdn) 후 바이트·SHA-256·크기를 기록하고, 각 상품 폴더에 detail.json, detail-original.html.txt, description.txt, images/,
 index.html로 남긴다. 차단(Akamai/접근제한) 상품은 status=failed 스캐폴더와 에러만
-남기고 계속한다(정책: 제한 재시도는 상품당 1회).
+남기고 접근 제한이 확인되면 새 탐색을 중단한다.
 
 필요: OpenCLI dist와 연결된 Chrome, 실행 위치는 자유롭지만 OpenCLI는 빌드되어 있어야 한다.
 
@@ -22,6 +22,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.coupang_reviews import Browser, CollectionCoordinator, KST
 from app.sourcing_pipeline import atomic_json
+from app.coupang_navigation import home_search_detail, search_query
 
 EXTRACT = r'''(() => {
  const d=document.querySelector('.product-detail-content');
@@ -72,6 +73,8 @@ def parse_args():
     p.add_argument('--output-dir', required=True, type=Path, help='신규런 폴더(신규 폴더 권장; 재실행 시 complete/partial 상품 자동 skip)')
     p.add_argument('--opencli-main', required=True, type=Path, help='OpenCLI dist/src/main.js 경로')
     p.add_argument('--keyword', default='', help='실행 식별용 검색어(파일명·매니페스트 기록)')
+    p.add_argument('--entry-route', choices=['home-search', 'direct'], default='home-search', help='기본: 홈 검색창 → 검색 결과 클릭. direct는 명시적 이전 경로')
+    p.add_argument('--search-query', default='', help='홈 검색창에 입력할 검색어(상품별 keywords보다 우선)')
     p.add_argument('--max', type=int, default=10, help='최대 상품 수')
     p.add_argument('--workers', type=int, default=2, help='동시 브라우저 수(차단 재점화 방지를 위해 2 이하 권장)')
     return p.parse_args()
@@ -110,11 +113,17 @@ def main():
         result = {'product_id': str(product['product_id']), 'search_rank': product.get('rank'),
                   'search_title': product.get('title'), 'search_price': product.get('price'),
                   'product_url': f"https://www.coupang.com/vp/products/{product['product_id']}",
-                  'source_job': str(source), 'session_kind': 'coupang_detail_collect'}
-        coordinator.admit()
+                  'source_job': str(source), 'session_kind': 'coupang_detail_collect',
+                  'entry_route': args.entry_route, 'navigation_trace': []}
         b = Browser(prefix, 'cp-detail-'+str(product['product_id'])+'-'+uuid.uuid4().hex[:6], coordinator)
         try:
-            b.call('open', product.get('url') or result['product_url'])
+            coordinator.admit()
+            if args.entry_route == 'home-search':
+                result['search_query'] = search_query(product, args.search_query, args.keyword)
+                with coordinator.native_lock:
+                    home_search_detail(b, product['product_id'], result['search_query'], result['navigation_trace'])
+            else:
+                b.call('open', product.get('url') or result['product_url'])
             ready = None
             for attempt in range(8):
                 ready = b.call('eval', "(() => ({blocked:/access denied|captcha|접속이.*제한/i.test(document.title+' '+document.body.innerText.slice(0,1000)),detail:!!document.querySelector('.product-detail-content'),more:[...document.querySelectorAll('button')].some(e=>e.innerText.trim()==='상품정보 더보기')}))()")
@@ -129,8 +138,10 @@ def main():
             (folder/'description.txt').write_text(data['detail_text'])
             result.update(data, observed_at_kst=dt.datetime.now(KST).isoformat())
         except Exception as exc:
+            if 'Access restriction detected' in str(exc): coordinator.stopped.set()
             result.update(status='failed', error=str(exc)); atomic_json(folder/'detail.json', result); return result
         finally:
+            atomic_json(folder/'navigation.json', {'entry_route': args.entry_route, 'trace': result['navigation_trace']})
             try: b.call('close')
             except Exception: pass
         entries = data['detail_images'] + ([data['main_image']] if data['main_image'] else [])
@@ -161,7 +172,9 @@ def main():
                         'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest()})
         finally:
             asset_pool.shutdown(); client.close()
-    state = json.loads(manifest_path.read_text())
+    if not products:
+        asset_pool.shutdown(); client.close()
+    state = json.loads(manifest_path.read_text()) if manifest_path.exists() else state
     state.update(keyword=args.keyword, source_job=str(source), source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
                  elapsed_seconds=round(time.monotonic()-started,3))
     atomic_json(manifest_path, state)
@@ -174,5 +187,8 @@ def main():
     (root/'index.html').write_text(document((args.keyword or '쿠팡')+' 상세 아카이브', '<h1>'+html.escape(args.keyword or '쿠팡')+' 상세 아카이브</h1><p>원본 상세 설명의 텍스트·이미지를 저장했으며 판매자 주장의 사실 여부는 별도 검증하지 않았습니다. 페이지에 선택된 옵션 기준입니다.</p><div class="grid">'+''.join(rows)+'</div>'))
     print(json.dumps({'elapsed_seconds': state['elapsed_seconds'], 'statuses': [r['status'] for r in state['results']]}, ensure_ascii=False), flush=True)
 
+    selected = {str(p['product_id']) for p in job_products}
+    return 1 if any(r.get('status') == 'failed' for r in state['results'] if r['product_id'] in selected) else 0
+
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

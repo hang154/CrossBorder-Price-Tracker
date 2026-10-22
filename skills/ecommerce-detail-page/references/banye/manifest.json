@@ -1,0 +1,163 @@
+{
+  "upstream": "https://github.com/Banye0517/ecommerce-detail-page-skill",
+  "commit": "72bf0707fcb63bbfb5b76bceaa2186ac978239a3",
+  "license": "MIT",
+  "file_count": 31,
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "40a5919bc5b451ff9532f5b4f90edea8fd9c3f9d978f0c6ab97f6294d3b3aa05",
+      "bytes": 221
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/SKILL.md",
+      "sha256": "801311c18a48f6a1dcd6cdfce3d7161793266f8c76e7273e19e9433104eb65e1",
+      "bytes": 16769
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/assets/html-templates/template-general.html",
+      "sha256": "0afdf69b65cabafecde63e21de5bfa8b6c350a5daf4b08ce7b289c7142f83052",
+      "bytes": 9913
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/ai-design-rules.md",
+      "sha256": "fcf33522bf3f920755ebdd320f1cc288b8a7be9bd0f1a52ea92286ae6429abce",
+      "bytes": 1575
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/_index.md",
+      "sha256": "65afa88912b53015b37512b5118d32fbd37a2d8222a0f619d5482e2a6f4ab835",
+      "bytes": 6542
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/daily-use.md",
+      "sha256": "b2a31d81f803a7e36802e9a2faa9264deab5048fa09a81cf91e13d14caed6386",
+      "bytes": 9588
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/dairy.md",
+      "sha256": "947ee665a5d3189f9f7a0482fa5e9471f7ebe01515dfe843ea72ad5e28980baf",
+      "bytes": 14833
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/infant-food.md",
+      "sha256": "afc06e3db4d8683776c46ce56d60e064867daab46d13526594abe6cf9345cd8a",
+      "bytes": 17775
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/nutrition-supplement.md",
+      "sha256": "1d355066592c860f23d40d8645af18e529d5543c407055eef859814c3144a46c",
+      "bytes": 18691
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/small-appliance.md",
+      "sha256": "950a55b579609877adf1f9a21d192fdf5f44e88842eed179c138eb0dc747a744",
+      "bytes": 11963
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/categories/wash-care.md",
+      "sha256": "6ada2a64d3494e011293169aa208f92682489b2cb4c05571b32b2f86186f3c48",
+      "bytes": 7348
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/competitor-research.md",
+      "sha256": "3f56e793c06e736a591385454b369a616cfa84baafe6abd589d12a04aaa7d281",
+      "bytes": 3345
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/consumer-psychology.md",
+      "sha256": "9d7356c11d6954497a627205baaa4ddccf3b7c04232aacc3f2c37fd8e43b8ee6",
+      "bytes": 3140
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/detail-page-structure.md",
+      "sha256": "cdde43a9bccc52cbe7dc3e214b6d7f618b72982abf7124af54cff2e8199384bf",
+      "bytes": 5079
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/fbe-sellpoint-model.md",
+      "sha256": "446be62a63750c40a726ff38f0ee715154126068d4aadf197b5d7afdc7d66941",
+      "bytes": 4007
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/review-standards.md",
+      "sha256": "8b4e77403f4948033551cdad437aec0ce94f00bc2fd869c90a2b01158a01d341",
+      "bytes": 1387
+    },
+    {
+      "path": ".workbuddy/skills/snack-ecommerce-detail-page/references/visual-design-rules.md",
+      "sha256": "ae9f4311463faa5c024b58127fd856f21512839380d512a961ef1039e766db45",
+      "bytes": 1824
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "382c8b8248e51c113ebf7d9bcffe7ff80d9f188010ade9e919e3295a6f8e9c45",
+      "bytes": 1071
+    },
+    {
+      "path": "README.md",
+      "sha256": "5e17fff35475206f978ebc9fe11cd7cc766725f4f36a800e909877365c12406f",
+      "bytes": 12334
+    },
+    {
+      "path": "docs/example-coddy-bath.html",
+      "sha256": "efa07fdbb7f709c52766607207d4b9f561add485ec5dbf0a7339aae771a68bd6",
+      "bytes": 28194
+    },
+    {
+      "path": "docs/example-feihe-milk.html",
+      "sha256": "c5d14469ee96c04e69bd20667203398aa43aba6c3ef0e684fa3fddc9a1672004",
+      "bytes": 24623
+    },
+    {
+      "path": "docs/example-handheld-fan.html",
+      "sha256": "3dba7a7e2d35c0ae76646f70181c4db72387771a44ac50f6a35875be421e8ea4",
+      "bytes": 15281
+    },
+    {
+      "path": "docs/example-suction-bowl.html",
+      "sha256": "4f62b66758abdf41c64f629161ed4d12ec8951ff117fed561dcca0708dc417b9",
+      "bytes": 19470
+    },
+    {
+      "path": "docs/example-tissue.html",
+      "sha256": "7d77c16ca3e2fc83836c09786134a24cfba9eb00c97c52268fa4e152e8c0f790",
+      "bytes": 19839
+    },
+    {
+      "path": "docs/example-walnut-milk-stick.html",
+      "sha256": "035d3ca0e012d645cfbe39bc4129439ec298df2b385fc3a3308ffd719a6f9047",
+      "bytes": 37264
+    },
+    {
+      "path": "docs/preview-cod.png",
+      "sha256": "77be3289fcec25a929b13354f7b10f04b9376b76cfbae6663fa88578d8dbf86a",
+      "bytes": 3820025
+    },
+    {
+      "path": "docs/preview-coddy.png",
+      "sha256": "70eab6bc31d4d0095e5d59462dd44b0b6245b8c02b03f9d4c8c43fe64a8f3fbe",
+      "bytes": 3475667
+    },
+    {
+      "path": "docs/preview-fan.png",
+      "sha256": "ab92d27bca6fca5ec8ca4f8f1f2858d713dc59a42585fd72c858c8e1a86eed22",
+      "bytes": 1729104
+    },
+    {
+      "path": "docs/preview-hawthorn.png",
+      "sha256": "22a1269957afb9d4946c181f450ddad0e668e39588fc29d6fe95cab0d57e4a66",
+      "bytes": 3274248
+    },
+    {
+      "path": "docs/preview-pork.png",
+      "sha256": "d2efbe8c03cfb224844266d9567b4985f91eb268844dbd1abe8ed8e0af3a3026",
+      "bytes": 3169952
+    },
+    {
+      "path": "docs/preview-walnut.png",
+      "sha256": "e6efc3becb900ae7291d54b29cd11a5a79175d11bb5bcdcfa6f83750b1fbdc06",
+      "bytes": 5357812
+    }
+  ]
+}

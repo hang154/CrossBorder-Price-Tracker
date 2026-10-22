@@ -98,6 +98,9 @@ def test_page_cap_resume_selects_all_pages_and_completed_cache_skips_browser(tmp
                         rating_count=2,total_pages=2,page=page)
         def next_page(self,page):calls.append(('next',page));return True
     monkeypatch.setattr(audit,'Browser',FakeBrowser)
+    # These tests isolate pagination/cache behavior; native entry is covered
+    # with actual DOM navigation in test_coupang_navigation.py.
+    monkeypatch.setattr('app.coupang_navigation.home_search_detail', lambda *args, **kwargs: None)
     args=('https://www.coupang.com/vp/products/123',tmp_path,[],dt.date(2026,10,21))
     partial=audit.crawl(*args,max_pages=1)
     assert partial['coverage']['stop_reason']=='page_limit'
@@ -136,6 +139,9 @@ def test_old_creation_page_does_not_skip_recent_edits_in_display_mode(tmp_path,m
                         rating_count=2,total_pages=2,page=page)
         def next_page(self,page):return True
     monkeypatch.setattr(audit,'Browser',FakeBrowser)
+    # These tests isolate pagination/cache behavior; native entry is covered
+    # with actual DOM navigation in test_coupang_navigation.py.
+    monkeypatch.setattr('app.coupang_navigation.home_search_detail', lambda *args, **kwargs: None)
     url='https://www.coupang.com/vp/products/123'
     created=audit.crawl(url,tmp_path/'created',[],dt.date(2026,10,21))
     display=audit.crawl(url,tmp_path/'display',[],dt.date(2026,10,21),date_basis='display')

@@ -48,8 +48,10 @@ Automatic redirects after clicking an observed official link are allowed.
   Save navigation stages, observed links, final URLs and failures; exclude
   credentials, authentication query strings, cookies and input values from logs.
 - A transient Access Denied on home may be retried on the same browser/profile:
-  at most three homepage loads per retry cycle, at least ten seconds apart, as
-  requested by the user. Preserve each outcome; continue only when the visible
+  at most three homepage loads per retry cycle, without an imposed pause, as
+  requested by the user. Do not add cooldowns, random sleeps or mandatory
+  request spacing. Old blocked-until timestamps must not delay a new attempt.
+  Wait only for the actual page/navigation readiness needed by the next action. Preserve each outcome; continue only when the visible
   homepage and its navigation controls actually load. If all three fail, report
   that result. A CAPTCHA requires the normal human verification step.
 - A block after leaving home stops that navigation attempt. Retry entry through
@@ -124,7 +126,8 @@ and collection date. Search rank is observed order, not proven organic rank.
 stay partial. `--resume` verifies completed evidence and retries unfinished audits
 without repeating successful browser collection. Date-complete audits with
 mismatched rating counters are retained as uncertain, not blindly recollected.
-Product audits default to two concurrent workers with two-second staggered starts.
+Product audits default to two concurrent workers with zero-second start spacing.
+Do not enable a positive start interval unless the user explicitly requests it.
 CLI and UI server support `--workers 1..4`, `--start-interval`, and
 `--window-mode background|foreground`. Default background avoids bringing the
 Chrome window forward; it is not a windowless/headless browser. Native clicks

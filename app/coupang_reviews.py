@@ -15,6 +15,7 @@ import uuid
 from urllib.parse import urlsplit
 
 from app.sourcing_pipeline import atomic_json, digest
+from app.coupang_access import AccessGate, CoupangAccessError
 
 KST = dt.timezone(dt.timedelta(hours=9))
 
@@ -115,7 +116,7 @@ def render(report, target):
 
 class CollectionCoordinator:
     """Share native input safely; overlap independent page loads and extraction."""
-    def __init__(self, start_interval=2.0, window_mode="background"):
+    def __init__(self, start_interval=0.0, window_mode="background"):
         if window_mode not in ["background", "foreground"]:
             raise ValueError("Invalid window mode")
         self.window_mode = window_mode
@@ -138,6 +139,7 @@ class Browser:
     def __init__(self, prefix, session, coordinator=None):
         self.prefix, self.session = prefix, session
         self.coordinator = coordinator
+        self.access_gate = AccessGate() if prefix and 'coupang' in session.lower() else None
 
     def call(self, action, *args, _retry=True):
         if self.coordinator:
@@ -157,6 +159,37 @@ class Browser:
         return self._call(action, *args, _retry=_retry)
 
     def _call(self, action, *args, _retry=True):
+        if action == 'open' and args:
+            host = urlsplit(str(args[0])).hostname or ''
+            if host == 'coupang.com' or host.endswith('.coupang.com'):
+                self.access_gate = self.access_gate or AccessGate()
+        if self.access_gate:
+            try:
+                with self.access_gate.action(action, args):
+                    value = self._transport(action, *args, _retry=_retry)
+            except CoupangAccessError:
+                if self.coordinator: self.coordinator.stopped.set()
+                raise
+            except ValueError as exc:
+                # Retry only a guaranteed undispatched input; never replay
+                # a click whose dispatch outcome is uncertain.
+                if _retry and action == 'click' and 'input was not dispatched' in str(exc):
+                    tabs = self._call('tab', 'list')
+                    if isinstance(tabs, list) and len(tabs) == 1 and tabs[0].get('page'):
+                        self._call('tab', 'select', tabs[0]['page'])
+                        return self._call(action, *args, _retry=False)
+                raise
+            if isinstance(value, dict):
+                title = str(value.get('title', ''))
+                denied = value.get('blocked') is True or value.get('error') == 'access_restricted' or bool(re.search(r'access denied|접속이.*제한', title, re.I))
+                if denied:
+                    self.access_gate.blocked(action)
+                    if self.coordinator: self.coordinator.stopped.set()
+                    raise CoupangAccessError(f'Access restriction detected at {action}; attempt stopped without a timed cooldown')
+            return value
+        return self._transport(action, *args, _retry=_retry)
+
+    def _transport(self, action, *args, _retry=True):
         r=subprocess.run([*self.prefix,'browser',action,*map(str,args),'--session',self.session,'--window',self.coordinator.window_mode if self.coordinator else 'background'],capture_output=True,text=True,timeout=90)
         try: payload=json.loads(r.stdout)
         except ValueError: raise ValueError('Invalid browser JSON; exit '+str(r.returncode))
@@ -164,7 +197,7 @@ class Browser:
             # Retry only when the bridge explicitly guarantees no input occurred.
             # Select this session's single leased tab, never an unrelated tab.
             message=str(payload.get('error',{}).get('message',''))
-            if _retry and action=='click' and 'input was not dispatched' in message:
+            if not self.access_gate and _retry and action=='click' and 'input was not dispatched' in message:
                 tabs=self.call('tab','list')
                 if isinstance(tabs,list) and len(tabs)==1 and tabs[0].get('page'):
                     self.call('tab','select',tabs[0]['page'])
@@ -213,17 +246,17 @@ class Browser:
         return True
 
 
-def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None):
+def crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     with (out/'.audit.lock').open('a') as lock:
         try:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another audit owns this output directory')
-        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress,coordinator)
+        return _crawl(url,out,prefix,as_of,multiplier,max_pages,full_scan,resume,date_basis,on_progress,coordinator,navigation_query)
 
 
-def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None):
+def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=False, resume=False, date_basis='created', on_progress=None, coordinator=None, navigation_query=None):
     parsed=urlsplit(url)
     match=re.fullmatch(r'/vp/products/(\d+)/?',parsed.path)
     if parsed.scheme!='https' or parsed.hostname not in ['www.coupang.com','coupang.com'] or not match or parsed.username is not None or parsed.password is not None:
@@ -248,7 +281,12 @@ def _crawl(url, out, prefix, as_of, multiplier=15, max_pages=100, full_scan=Fals
     browser=Browser(prefix,'coupang-reviews-'+product+'-'+uuid.uuid4().hex[:8], coordinator) if coordinator else Browser(prefix,'coupang-reviews-'+product)
     coverage={};records={};stop='page_limit';first=None;previous_date=None
     try:
-        browser.call('open',url)
+        from app.coupang_navigation import home_search_detail
+        trace=[]
+        try:
+            home_search_detail(browser, product, navigation_query or product, trace)
+        finally:
+            atomic_json(out/'navigation.json', trace)
         browser.call('click','--role','button','--name','최신순')
         wanted=1
         for _ in range(max_pages):

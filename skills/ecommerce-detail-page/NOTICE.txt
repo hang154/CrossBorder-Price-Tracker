@@ -1,0 +1,5 @@
+Upstream: https://github.com/aisyncclub/detail_page_codex_skill
+Source commit: afcfdf8d9de2b0f144d50a80e0e56e3a57c229f3
+Author credit from upstream README: AI Sync Club Created by 싱크
+License stated by upstream README: MIT
+Local fork: promotional response requirements removed; repeated intake/output instructions condensed; mandatory maximum parallelism removed; handoff-only workflow added.

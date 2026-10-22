@@ -1,0 +1,8 @@
+{
+  "name": "fabric",
+  "version": "6.9.0",
+  "source": "https://github.com/fabricjs/fabric.js",
+  "artifact": "https://registry.npmjs.org/fabric/-/fabric-6.9.0.tgz",
+  "license": "MIT",
+  "sha256": "ca9d8bcd0999ea00cf0630cf94a7a8edca608f1fa49dd57e5785cf168c7f626d"
+}

@@ -13,3 +13,7 @@ build/
 
 # Local discovery evidence and session material
 /sourcing-runs/
+
+# External vendored clone of https://github.com/Banye0517/ecommerce-detail-page-skill
+# (re-fetch: git clone that URL to vendor/banye-ecommerce-detail-page-skill)
+/vendor/
