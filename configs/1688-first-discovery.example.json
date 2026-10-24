@@ -1,0 +1,8 @@
+{
+  "offers_per_category": 20,
+  "matches_per_category": 3,
+  "category_source": "live 1688 home observed links",
+  "scope": "all observed main categories; no manual category exclusion",
+  "flow": "1688_first_then_coupang",
+  "public_only": true
+}

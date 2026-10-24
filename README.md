@@ -1,5 +1,12 @@
 # Qwen 사입·상품 소싱 에이전트 모음
 
+## 2026-10-25 운영 진입점
+
+사입 전체 흐름과 Azrael 도구는 [sourcing-workbench](https://github.com/hang154/sourcing-workbench)의 CLI/MCP를 기본 진입점으로 사용합니다. 이 저장소는 수집·비교·기간 리뷰·사업자 대량 사입 원가·기존 편집기 호환을 담당합니다. 신규 상세페이지 제작은 [detail-page-production-system](https://github.com/hang154/detail-page-production-system)의 검증된 고정 버전으로 연결하고, 이전 [detail-page-studio](https://github.com/hang154/detail-page-studio)와 여기의 고정 조판 경로는 기존 결과 재현용으로 보존합니다.
+
+겨울 상품 탐색은 `scripts/1688_first_discovery.py`, 실패 검색 재개는 `scripts/coupang_winter_resume.py`, Qwen 경로 선택은 `scripts/coupang_qwen_route_recovery.py`입니다. 개인 화면과 분리된 Xvfb에서 실행하며 실제 입력/응답과 부분 실패를 보존합니다. 구버전은 `archive/pre-unification-20261025`에 보존했습니다. 공개 코드 저장소에 로그인 세션·대화 원문·상품 원본·개인 조사 자료를 추가하지 않습니다.
+
+
 국내 판매 후보와 1688·Alibaba.com 공급 후보를 실제 브라우저로 조사하고,
 사진·가격·판매 단위·리뷰 근거를 연결해 HTML과 Excel로 정리하는 저장소입니다.
 Qwen은 계획·분류·도구 선택을 담당하고, 가격 계산·기간 집계·근거 검증은 코드가 수행합니다.
@@ -158,7 +165,7 @@ Qwen이 `search_products → audit_top_products → finish_search` 도구를 호
 ```bash
 python -m app.coupang_search_agent --keyword '호안석 팔찌' \
   --opencli-main ../OpenCLI/dist/src/main.js \
-  --output-dir sourcing-runs/coupang-keyword --workers 2 --start-interval 2
+  --output-dir sourcing-runs/coupang-keyword --workers 2 --start-interval 0
 
 python -m app.coupang_search_web \
   --opencli-main ../OpenCLI/dist/src/main.js \
@@ -354,3 +361,8 @@ python -m app.detail_workspace --root sourcing-runs/detail-workspace serve --por
 
 접속: `http://127.0.0.1:8884`.
 [사용법과 Codex 인계 계약](docs/DETAIL_WORKSPACE.md)을 참고하세요.
+# 로켓그로스 사입 마진
+
+저장된 비교 결과를 [로켓그로스 마진 계산기](docs/ROCKET_MARGIN.md)로 재계산할 수 있습니다.
+수입원가·입출고·배송·보관·반품·광고·VAT와 비용 가정을 분리하고,
+HTML·엑셀로 상품별 손익과 본전 ROAS를 비교합니다.

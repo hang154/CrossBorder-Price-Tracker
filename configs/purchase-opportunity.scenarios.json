@@ -1,0 +1,32 @@
+{
+  "optimistic": {
+    "sale_factor": 1,
+    "fee": 0.1,
+    "ads": 0.05,
+    "returns": 0.02,
+    "international": 500,
+    "delivery": 2800,
+    "packaging": 300,
+    "buffer": 0.05
+  },
+  "base": {
+    "sale_factor": 0.95,
+    "fee": 0.12,
+    "ads": 0.1,
+    "returns": 0.05,
+    "international": 1000,
+    "delivery": 3200,
+    "packaging": 500,
+    "buffer": 0.15
+  },
+  "stress": {
+    "sale_factor": 0.85,
+    "fee": 0.15,
+    "ads": 0.2,
+    "returns": 0.1,
+    "international": 2000,
+    "delivery": 3800,
+    "packaging": 800,
+    "buffer": 0.3
+  }
+}

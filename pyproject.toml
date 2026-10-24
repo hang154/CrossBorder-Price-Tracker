@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crossborder-price-tracker"
-version = "1.0.0"
+version = "1.1.0"
 description = "跨境电商多平台价格追踪器"
 requires-python = ">=3.9"
 dependencies = ["httpx[socks]>=0.27.0", "openpyxl>=3.1,<4", "Pillow>=10"]
@@ -16,6 +16,7 @@ coupang-review-audit = "app.coupang_reviews:main"
 coupang-search-agent = "app.coupang_search_agent:main"
 coupang-search-ui = "app.coupang_search_web:main"
 sourcing-template-agent = "app.template_excel_agent:main"
+sourcing-rocket-margin = "app.rocket_margin_report:main"
 detail-workspace = "app.detail_workspace:main"
 
 [project.optional-dependencies]
@@ -24,7 +25,7 @@ fastpath = ["curl_cffi>=0.10"]
 virtual-browser = ["undetected-chromedriver==3.5.5", "selenium==4.51.0", "setuptools==84.2.1"]
 
 [tool.setuptools.package-data]
-app = ["coupang_review_extract.js", "coupang_search.html", "catalog_visuals.js", "detail_workspace.html", "text_edit_agent.html", "detail_style_comparison.html", "text_layer_runtime.js", "text_layer_controls.js", "vendor/*.js", "vendor/*.json", "vendor/*.txt"]
+app = ["rocket_margin.html", "detail_builder.html", "detail_motion.js", "coupang_review_extract.js", "coupang_search.html", "catalog_visuals.js", "detail_workspace.html", "text_edit_agent.html", "detail_style_comparison.html", "text_layer_runtime.js", "text_layer_controls.js", "vendor/*.js", "vendor/*.json", "vendor/*.txt"]
 
 [tool.setuptools.packages.find]
 include = ["app*"]

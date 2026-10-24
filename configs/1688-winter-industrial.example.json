@@ -1,0 +1,138 @@
+{
+  "offers_per_category": 20,
+  "matches_per_category": 3,
+  "scope": "공산품 · 겨울 시즌 상품: 방풍/단열, 방한 의류·잡화, 보온 생활용품, 차량/야외·작업, 난방/가습, 반려동물·원예 방한",
+  "selection_requirements": "Manufactured finished goods or usable accessories with an explicit winter/cold-weather use. Require exact title evidence, concrete winter-use reason, short Korean Coupang query. Keep electric/battery/skin-contact and certification checks as unresolved flags, not automatic exclusions. No food, medicine, services or raw commodities. No claimed profitability without cost evidence.",
+  "searches": [
+    {
+      "label": "방풍 문풍지",
+      "keyword": "冬季 门窗 密封条"
+    },
+    {
+      "label": "단열 창문 필름",
+      "keyword": "冬季 窗户 保温膜"
+    },
+    {
+      "label": "방풍 커튼",
+      "keyword": "冬季 门帘 防风"
+    },
+    {
+      "label": "배관 동파 방지",
+      "keyword": "水管 防冻 保温套"
+    },
+    {
+      "label": "보온 수도꼭지 커버",
+      "keyword": "水龙头 防冻保护罩"
+    },
+    {
+      "label": "겨울 작업 장갑",
+      "keyword": "冬季 防寒 工作手套"
+    },
+    {
+      "label": "보온 양말",
+      "keyword": "冬季 加厚 保暖袜"
+    },
+    {
+      "label": "방한 깔창",
+      "keyword": "保暖 鞋垫"
+    },
+    {
+      "label": "방한 귀마개",
+      "keyword": "冬季 保暖 耳罩"
+    },
+    {
+      "label": "넥워머",
+      "keyword": "冬季 防风 护颈"
+    },
+    {
+      "label": "겨울 마스크",
+      "keyword": "冬季 防寒 面罩"
+    },
+    {
+      "label": "기모 실내화",
+      "keyword": "冬季 加绒 棉拖鞋"
+    },
+    {
+      "label": "무릎 담요",
+      "keyword": "冬季 膝盖 毛毯"
+    },
+    {
+      "label": "보온 방석",
+      "keyword": "冬季 保暖 坐垫"
+    },
+    {
+      "label": "보온 물주머니",
+      "keyword": "冬季 热水袋"
+    },
+    {
+      "label": "핫팩",
+      "keyword": "冬季 暖贴"
+    },
+    {
+      "label": "텀블러 보온병",
+      "keyword": "冬季 不锈钢 保温杯"
+    },
+    {
+      "label": "도시락 보온 가방",
+      "keyword": "冬季 保温 饭盒袋"
+    },
+    {
+      "label": "차량 성에 제거",
+      "keyword": "汽车 冬季 除霜 铲"
+    },
+    {
+      "label": "차량 앞유리 커버",
+      "keyword": "汽车 挡风玻璃 防雪罩"
+    },
+    {
+      "label": "타이어 미끄럼 방지",
+      "keyword": "汽车 雪地 防滑链"
+    },
+    {
+      "label": "겨울 자전거 핸들 커버",
+      "keyword": "冬季 自行车 把手套"
+    },
+    {
+      "label": "겨울 등산 아이젠",
+      "keyword": "冬季 登山 防滑 冰爪"
+    },
+    {
+      "label": "신발 건조기",
+      "keyword": "冬季 烘鞋器"
+    },
+    {
+      "label": "난방 텐트",
+      "keyword": "冬季 室内 保暖帐篷"
+    },
+    {
+      "label": "온풍기",
+      "keyword": "冬季 电暖器"
+    },
+    {
+      "label": "가습기",
+      "keyword": "冬季 加湿器"
+    },
+    {
+      "label": "반려동물 보온 매트",
+      "keyword": "冬季 宠物 保暖垫"
+    },
+    {
+      "label": "원예 방한 덮개",
+      "keyword": "植物 冬季 防寒罩"
+    },
+    {
+      "label": "겨울 제설 도구",
+      "keyword": "冬季 除雪 工具"
+    },
+    {
+      "label": "단열 보온 벽지",
+      "keyword": "冬季 墙面 保温贴"
+    },
+    {
+      "label": "빨래 건조 보조",
+      "keyword": "冬季 晾衣 烘干罩"
+    }
+  ],
+  "flow": "1688_first_then_coupang",
+  "public_only": true
+}

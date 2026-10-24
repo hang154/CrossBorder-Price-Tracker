@@ -1,0 +1,234 @@
+{
+  "as_of": "2026-10-23",
+  "notice": "All scenarios and size assignments are assumptions. Public tariff figures are starting prices, not exact WING quotations. General VAT taxpayer with conditional input-credit eligibility; not simplified-tax treatment.",
+  "public_fee_source": "https://marketplace.coupang.com/rocket-growth",
+  "size_starting_fees_ex_vat": {
+    "극소형": {
+      "io": 600,
+      "delivery": 1125
+    },
+    "소형": {
+      "io": 650,
+      "delivery": 1250
+    },
+    "중형": {
+      "io": 1250,
+      "delivery": 1500
+    },
+    "대형1": {
+      "io": 1375,
+      "delivery": 1700
+    },
+    "대형2": {
+      "io": 1375,
+      "delivery": 2900
+    },
+    "특대형": {
+      "io": 1375,
+      "delivery": 3500
+    }
+  },
+  "defaults": {
+    "coupon": 0,
+    "fee_rounding": "round_won",
+    "insurance": 0,
+    "other_import_taxes": 0,
+    "target_margin": 0.2,
+    "batch_units": 100,
+    "monthly_seller_units": null,
+    "settlement_delay_days": null
+  },
+  "scenarios": {
+    "optimistic": {
+      "sale_factor": 1,
+      "fee_rate": 0.108,
+      "ads_rate": 0.05,
+      "purchase_buffer": 0,
+      "duty_rate": 0,
+      "china_inland": 0,
+      "sourcing_agent": 0,
+      "international": 0,
+      "clearance": 0,
+      "inspection": 0,
+      "packaging": 200,
+      "label": 30,
+      "bundling": 0,
+      "center_inbound": 0,
+      "logistics_multiplier": 1,
+      "held_days": 30,
+      "storage_free_days": 30,
+      "storage_daily": 3,
+      "return_rate": 0.02,
+      "return_collection": 2500,
+      "return_restock": 500,
+      "return_writeoff_fraction": 0.25,
+      "unsold_fraction": 0.01,
+      "withdrawal": 500,
+      "disposal": 500,
+      "fixed_overhead": 200,
+      "shipment": {
+        "basis": "units",
+        "quote_status": "assumed_not_forwarder_quote",
+        "totals": {
+          "china_inland": 10000,
+          "sourcing_agent": 5000,
+          "international": 50000,
+          "insurance": 0,
+          "clearance": 10000,
+          "inspection": 10000,
+          "center_inbound": 10000
+        }
+      },
+      "insurance": 0
+    },
+    "base": {
+      "sale_factor": 0.95,
+      "fee_rate": 0.108,
+      "ads_rate": 0.1,
+      "purchase_buffer": 0,
+      "duty_rate": 0.08,
+      "china_inland": 0,
+      "sourcing_agent": 0,
+      "international": 0,
+      "clearance": 0,
+      "inspection": 0,
+      "packaging": 300,
+      "label": 50,
+      "bundling": 100,
+      "center_inbound": 0,
+      "logistics_multiplier": 1.25,
+      "held_days": 45,
+      "storage_free_days": 30,
+      "storage_daily": 5,
+      "return_rate": 0.05,
+      "return_collection": 3000,
+      "return_restock": 500,
+      "return_writeoff_fraction": 0.5,
+      "unsold_fraction": 0.02,
+      "withdrawal": 1000,
+      "disposal": 1000,
+      "fixed_overhead": 300,
+      "shipment": {
+        "basis": "units",
+        "quote_status": "assumed_not_forwarder_quote",
+        "totals": {
+          "china_inland": 20000,
+          "sourcing_agent": 10000,
+          "international": 100000,
+          "insurance": 0,
+          "clearance": 20000,
+          "inspection": 20000,
+          "center_inbound": 20000
+        }
+      },
+      "insurance": 0
+    },
+    "stress": {
+      "sale_factor": 0.85,
+      "fee_rate": 0.12,
+      "ads_rate": 0.2,
+      "purchase_buffer": 0,
+      "duty_rate": 0.13,
+      "china_inland": 0,
+      "sourcing_agent": 0,
+      "international": 0,
+      "clearance": 0,
+      "inspection": 0,
+      "packaging": 600,
+      "label": 100,
+      "bundling": 200,
+      "center_inbound": 0,
+      "logistics_multiplier": 1.6,
+      "held_days": 90,
+      "storage_free_days": 30,
+      "storage_daily": 8,
+      "return_rate": 0.1,
+      "return_collection": 4000,
+      "return_restock": 1000,
+      "return_writeoff_fraction": 1,
+      "unsold_fraction": 0.05,
+      "withdrawal": 1500,
+      "disposal": 1500,
+      "fixed_overhead": 500,
+      "shipment": {
+        "basis": "units",
+        "quote_status": "assumed_not_forwarder_quote",
+        "totals": {
+          "china_inland": 35000,
+          "sourcing_agent": 20000,
+          "international": 200000,
+          "insurance": 0,
+          "clearance": 50000,
+          "inspection": 50000,
+          "center_inbound": 40000
+        }
+      },
+      "insurance": 0
+    }
+  },
+  "pair_overrides": {},
+  "purchase_price_basis": "1688 observed KRW representative variant price × explicit/assumed unit ratio; no arbitrary purchase-price markup. MOQ is not a pack size. No automatic volume discount or promotional coupon. Supplier quote must confirm selected variant and order quantity.",
+  "shipment_basis": "Each comparison is a separate hypothetical homogeneous consolidated lot of 100 domestic selling units. Batch totals preserve previous unquoted assumptions ×100 for comparability, not an observed forwarding quote. Replace with actual consolidated quotation; no bulky multiplier. Mixed lots require explicit physical quantities and measured allocation weights.",
+  "bulk_plan": {
+    "selling_units": null,
+    "cartons": null,
+    "china_inland": null,
+    "sourcing_agent": null,
+    "insurance": null,
+    "brokerage": null,
+    "destination_extra": null,
+    "center_inbound": null,
+    "inspection": null,
+    "payment_fx_fee": null,
+    "certification_total": null,
+    "pallet_rework": null,
+    "customs_value_per_sale": null,
+    "duty_rate": null,
+    "wing_io": null,
+    "wing_delivery": null,
+    "fee_rate": null,
+    "storage_daily": null,
+    "storage_free_days": null,
+    "route": "ssj_lcl",
+    "supplier_price_confirmed": false,
+    "duty_confirmed": false,
+    "wing_fees_confirmed": false,
+    "inbound_preparation_confirmed": false,
+    "tax_evidence_confirmed": false,
+    "volume_weight": false,
+    "co": false,
+    "co_eligibility_confirmed": false,
+    "small_business_route_confirmed": false,
+    "separate_onward_leg": false
+  },
+  "mode": "sensitivity_with_business_import_readiness",
+  "shipping_tariffs": {
+    "observed_at": "2026-10-23",
+    "ssj_lcl": {
+      "source": "https://www.ssjlog.com/Front/Page/DlvrMny_S.asp?sCenterSeq=5&sDlvrWayCd=3",
+      "krw_per_cbm": 88000,
+      "cbm_step": 0.1,
+      "doc_per_bl": 22000,
+      "handling_per_bl": 22000,
+      "handling_threshold": ">=0.2CBM OR >=20kg; confirm boundary with provider",
+      "optional_co_per_bl": 33000,
+      "ends_at": "Korean CFS; onward delivery actual charge",
+      "vat_basis": "not established; no assumed input credit"
+    },
+    "next_basic": {
+      "source": "https://next1688.com/Front/Introduction/DlvrMny.asp?CTR_SEQ=2031&gMnu1=201&gMnu2=20107&sCbmYn=N",
+      "rates_kg_krw": {
+        "1": 6200,
+        "5": 12600,
+        "10": 20600
+      },
+      "minimum_kg": 1,
+      "step_kg": 0.5,
+      "additional_half_kg_through_10kg": 800,
+      "ordinary_domestic_delivery_included": true,
+      "business_route": "separate acceptance confirmation; not automatic commercial LCL",
+      "volume_weight": "68kg per CBM only when applied by provider",
+      "vat_basis": "not established"
+    }
+  }
+}

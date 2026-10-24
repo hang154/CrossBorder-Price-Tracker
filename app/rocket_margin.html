@@ -1,0 +1,71 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>로켓그로스 마진 재계산</title>
+<style>body{overflow-wrap:anywhere}.scroll{max-width:100%}body{font:14px/1.6 system-ui;color:#243746;margin:24px auto;max-width:1600px;padding:0 18px}h1{font-size:24px}h2{font-size:19px;margin-top:30px}.note{background:#f2f4f6;padding:14px}select,input{padding:9px;margin:6px 10px 6px 0;max-width:90%}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}td,th{text-align:left;border-bottom:1px solid #ddd;padding:9px;vertical-align:top}th{background:#f2f4f6;white-space:nowrap}tbody tr{cursor:pointer}tbody tr:hover{background:#eef4f7}.scroll{overflow:auto}.bad{color:#ab302a}.good{color:#176647}a{color:#235b92}.stats{display:flex;gap:24px;flex-wrap:wrap}.stats strong{font-size:23px;display:block}details{padding:8px 0}</style>
+<h1>1688 사업자 해운 사입 · 로켓그로스 마진</h1><p id="notice" class="note"></p>
+<p><a href="로켓그로스_마진분석.xlsx">엑셀 다운로드</a> · <a href="assumptions.json">비용 가정 JSON</a> · <a href="report.json">전체 결과</a></p>
+<section class="note"><h2>해운 노선별 운임 계산</h2><p>중국 배대지 → 해운 → 한국 사업자통관 → 쿠팡 로켓그로스 입고. 아래 값은 포장 완료 배치 전체 기준입니다. 상품별 실측을 자동 추정하지 않습니다.</p>
+<label>노선 <select id="sea-route"><option value="ssj_lcl">사업자 LCL · 신성진 월수금</option><option value="next_basic">소량 해운 · 넥스트 BASIC</option></select></label>
+<label>포장 총 CBM <input id="sea-cbm" type="number" min="0.001" step="0.001" placeholder="미입력"></label>
+<label>포장 총 kg <input id="sea-kg" type="number" min="0.01" step="0.01" placeholder="미입력"></label>
+<label>국내 판매단위 수량 <input id="sea-units" type="number" min="1" step="1" placeholder="미입력"></label>
+<label><input id="sea-volume" type="checkbox">소량 해운 부피무게 적용(업체 확인 시)</label>
+<label><input id="sea-co" type="checkbox">원산지증명서 발급비 추가(FTA 적용 자동 아님)</label>
+<p id="sea-result">실측 CBM·중량과 배치 수량을 입력하면 공개 운임 소계를 계산합니다.</p>
+<p>소량 해운은 기본 국내택배 포함, 사업자통관 수락 별도 확인. LCL은 국내 CFS 출고 이후 실비 별도. DOC·핸들링·CO는 건별 금액이며 VAT 포함 여부는 미확인입니다. 운임 소계에는 세금·관세사·검수·작업·입고 추가 운송 등의 미견적 비용이 빠져 있습니다.</p></section>
+<h2>사업자 사입 준비 현황</h2><p id="bulk-status"></p>
+<div class="stats" id="stats"></div>
+<label>비용 <select id="scenario"><option value="base">기준</option><option value="optimistic">낙관</option><option value="stress">보수</option></select></label>
+<label>포장 크기 가정 <select id="size"></select></label>
+<label>매입세액 공제 <select id="credit"><option value="1">증빙 갖춘 일반과세자 · 100%</option><option value="0">증빙 미확보 민감도 · 0%</option></select></label>
+<label>범위 <select id="scope"><option value="eligible">기존 견적 후보</option><option value="all">전체 조합</option><option value="positive">가정 이익 양수만</option><option value="ready">사업자 사입 입력 완료만</option></select></label>
+<input id="query" placeholder="국내외 상품명·상품군 검색" aria-label="상품 검색">
+<p>상품 매입원가 = 1688 관측 표시가격 × 판매단위 환산 수량. 임의 원가 가산 0%. 국제운송·내륙배송·대행·통관·검수·센터운송은 배대지 합배송 배치 총액에서 배분합니다. 현재 총액은 실제 견적 전 가정이며 각 조합은 별도 가상 배치입니다.</p><p id="basis"></p><div class="scroll"><table><thead><tr><th>국내 상품 / 해외 상품</th><th>최종 소비자가</th><th>기존 기준 이익</th><th>가정 VAT 후 이익</th><th>소비자가 대비 마진</th><th>광고 본전 ROAS</th><th>VAT 후 본전 판매가</th><th>월 리뷰×15</th><th>구성 근거 / 사업자 사입</th></tr></thead><tbody id="rows"></tbody></table></div>
+<h2 id="detail-title">상품별 원가 내역</h2><p id="detail-meta"></p>
+<div class="scroll"><table><thead><tr><th>비용 항목</th><th>공급가 / 충당</th><th>VAT</th><th>공제 가정액</th><th>현금 / 충당</th></tr></thead><tbody id="ledger"></tbody></table></div>
+<p id="cash-bridge"></p><p id="inventory"></p>
+<details><summary>비용 가정 전체 보기</summary><pre id="assumptions" style="white-space:pre-wrap"></pre></details>
+<h2>확인할 사항</h2><p>국내외 개수·세트·면적이 다르면 이익을 그대로 비교할 수 없습니다. 해외 상품가에서 한국 매입 VAT를 임의 공제하지 않고 수입 VAT를 별도 계산했습니다. 보관·반품 무료 프로모션은 계정 적용 여부가 미확인이라 자동 적용하지 않습니다. 관세0/8/13%, 수수료10.8/12%, 보관·반품 단가·체류일·사입100개는 모두 가정입니다.</p>
+<p>본전 ROAS는 최종 소비자 매출÷VAT 별도 광고비입니다. 무료 반품도 상품가치 손실·재출고 비용을 없애지는 않습니다. 재고소진·회수일은 카탈로그 판매량으로 계산하지 않으며, 판매자 월 판매예측과 정산지연을 입력해 재실행하면 계산됩니다.</p>
+<h2>확인한 원문</h2><ul id="sources"></ul>
+<script>
+const data=__REPORT_DATA__;
+const $=id=>document.getElementById(id),fmt=v=>v==null?'미확보':Number(v).toLocaleString('ko-KR',{maximumFractionDigits:0}),won=v=>v==null?'미확보':fmt(v)+'원',esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const audits=Object.fromEntries((data.bulk_audits||[]).map(x=>[x.pair_id,x]));
+$('bulk-status').textContent=`${data.products.length}조합 중 사업자 사입 입력 완료 ${(data.bulk_audits||[]).filter(x=>x.ready).length}조합. 아래 마진은 기존 가정 민감도이며, 미실측 상품의 실제 착지원가·확정 수익률이 아닙니다.`;
+const products=Object.fromEntries(data.products.map(p=>[p.pair_id,p]));let selected=null;
+$('notice').textContent=data.notice;$('size').innerHTML=Object.keys(data.config.size_starting_fees_ex_vat).map(s=>`<option ${s==='중형'?'selected':''}>${esc(s)}</option>`).join('');
+$('stats').innerHTML=`<div><strong>${data.products.length}</strong>비교 조합</div><div><strong>${data.records.length}</strong>비용×크기 민감도</div><div><strong>${new Set(data.products.filter(p=>p.monthly_status==='complete').map(p=>p.pair_id.split(':')[1])).size}상품</strong>저장 월 리뷰 완료 · 판매자 전망 아님</div>`;
+$('sources').innerHTML=data.sources.map(s=>`<li><a href="${esc(s.url)}" rel="noreferrer" target="_blank">${esc(s.url)}</a> — ${esc(s.use)}</li>`).join('');
+function profit(r){return $('credit').value==='1'?r.operating_profit_after_vat:r.profit_no_input_credit}
+function detail(r){selected=r.pair_id;const p=products[selected],credit=$('credit').value==='1';$('detail-title').textContent=p.title;
+ $('detail-meta').innerHTML=`${audits[r.pair_id] ? `<strong>사업자 사입: ${audits[r.pair_id].ready?'입력 완료 · 비용 가정은 개별 확인 필요':'입력 미완료 · 실제 마진 미확정'}</strong><br>${esc(audits[r.pair_id].issues.join(' / '))}<br>` : ''}${esc(p.overseas_title)}<br>${r.shipment_allocation ? `배대지 합배송: 실물 ${r.shipment_allocation.shipment_physical_units}개 / 해당 SKU 판매단위 ${r.shipment_allocation.sku_selling_units}개 · 배분 ${esc(r.shipment_allocation.basis)} · 견적 ${esc(r.shipment_allocation.quote_status)}<br>국제운임 배치 총액 ${won(r.shipment_allocation.shipment_totals.international)} → 해당 SKU 배분 ${won(r.shipment_allocation.sku_allocated_totals.international)} → 판매단위당 ${won(r.shipment_allocation.per_sale_costs.international)}<br>` : ''}1688 관측 매입가 ${won(p.foreign_price)} × 환산 수량 ${p.quantity_ratio_assumed} (구성 미확정 시 가정값)<br><a href="${esc(p.domestic_url)}" target="_blank" rel="noreferrer">쿠팡</a> · <a href="${esc(p.overseas_url)}" target="_blank" rel="noreferrer">1688</a><br>원문 대조 전 기존 모델 설명: ${esc(p.comparison_issue)}`;
+ $('ledger').innerHTML=r.ledger.map(([name,net,vat,deduct,cash])=>`<tr><td>${esc(data.cost_labels[name])}</td><td>${won(net)}</td><td>${won(vat)}</td><td>${won(credit?deduct:0)}</td><td>${won(cash)}</td></tr>`).join('');
+ const due=credit?r.vat_due_allocated:r.output_vat;
+ $('cash-bridge').textContent=`충당 포함 VAT 전 현금기여 ${won(r.cash_contribution_before_vat)} − 배분 VAT 납부 ${won(due)} = 고정비 후 예상 이익 ${won(profit(r))}. 정산 단계 예상액(광고·사입 등 차감 전) ${won(r.estimated_platform_payout)}. 음수 VAT는 계산상 공제 초과이며 환급 확정 아님.`;
+ const recovery=credit?r.capital_recovery_days_including_settlement:r.capital_recovery_days_no_credit;
+ $('inventory').textContent=`가정 사입 ${fmt(r.batch_units)}개, 초기 재고 현금 ${won(r.initial_inventory_cash)}. 판매자 예측 소진일 ${r.inventory_days==null?'미확정':fmt(r.inventory_days)+'일'}, 정산지연 포함 원금 회수일 ${recovery==null?'미확정':fmt(recovery)+'일'}.`;
+}
+function render(){const scenario=$('scenario').value,size=$('size').value,query=$('query').value.toLowerCase(),scope=$('scope').value,credit=$('credit').value==='1';
+ let rs=data.records.filter(r=>r.scenario===scenario&&r.size===size).filter(r=>{let p=products[r.pair_id];return (p.title+p.overseas_title+p.group).toLowerCase().includes(query)&&(scope!=='eligible'||p.legacy_eligible)&&(scope!=='positive'||profit(r)>0)&&(scope!=='ready'||p.bulk_ready)}).sort((a,b)=>profit(b)-profit(a));
+ const fees=data.config.size_starting_fees_ex_vat[size];$('basis').textContent=`${rs.length}조합 · ${size}는 실측 분류 아님. 공개 입출고 ${won(fees.io)}~ + 배송 ${won(fees.delivery)}~에 비용 가정 배율 적용. 본전 판매가는 선택한 공제 조건·현재 크기 요금 유지 가정.`;
+ $('assumptions').textContent=JSON.stringify({...data.config.defaults,...data.config.scenarios[scenario]},null,2);
+ $('rows').innerHTML=rs.map((r,index)=>{const p=products[r.pair_id],pr=profit(r),roas=credit?r.break_even_roas:r.break_even_roas_no_credit;return `<tr data-index="${index}"><td>${esc(p.title)}<br><small>${esc(p.overseas_title)}</small></td><td>${won(r.final_consumer_price)}</td><td>${won(p.legacy_base_profit)}</td><td class="${pr>=0?'good':'bad'}">${won(pr)}</td><td>${(100*pr/r.final_consumer_price).toFixed(1)}%</td><td>${roas==null?'광고 전부터 적자':(roas*100).toFixed(0)+'%'}</td><td>${won(credit?r.minimum_final_price:r.minimum_final_price_no_credit)}</td><td>${p.catalog_monthly_sales==null?'미확정':fmt(p.catalog_monthly_sales)}<br>${esc(p.monthly_status)}</td><td>${p.quantity_verified?'수량 원문 근거 있음':'미확정'}<br>${p.bulk_ready?'사입 입력 완료':'실제 마진 미확정'}</td></tr>`}).join('');
+ $('rows').querySelectorAll('tr').forEach((tr,i)=>tr.onclick=()=>detail(rs[i]));
+ if(rs.length)detail(rs.find(r=>r.pair_id===selected)||rs[0]);else{$('ledger').innerHTML='';$('detail-title').textContent='검색 결과가 없습니다';$('detail-meta').textContent='';$('cash-bridge').textContent='';$('inventory').textContent=''}
+}
+function seaQuote(){
+ const cbm=Number($('sea-cbm').value),kg=Number($('sea-kg').value),units=Number($('sea-units').value),mode=$('sea-route').value;
+ if(!(cbm>0&&kg>0&&Number.isInteger(units)&&units>0)){ $('sea-result').textContent='실측 CBM·중량과 정수 판매단위 수량을 입력하세요. 미입력은 0원 운임이 아닙니다.';return; }
+ let subtotal,explanation;
+ if(mode==='ssj_lcl'){
+  const billed=Math.ceil(Number((cbm*10).toFixed(9)))/10,ocean=Math.round(billed*88000),doc=22000,handling=cbm>=.2||kg>=20?22000:0,co=$('sea-co').checked?33000:0;
+  subtotal=ocean+doc+handling+co;explanation=`청구 ${billed}CBM: 해운 ${won(ocean)} + DOC ${won(doc)} + 핸들링 ${won(handling)} + CO ${won(co)}. 국내 CFS 이후 운송·통관 세금·기타 비용 별도.`;
+ }else{
+  const billkg=Math.max(1,Math.ceil(Math.max(kg,$('sea-volume').checked?cbm*68:0)*2)/2);
+  if(billkg>10){$('sea-result').textContent='10kg 초과는 이번에 고정한 BASIC 요금표 범위 밖입니다. 사업자 LCL 또는 별도 견적이 필요합니다.';return;}
+  subtotal=6200+(billkg-1)*1600;explanation=`청구 ${billkg}kg. 기본 국내택배 포함이므로 동일 구간 배송비 중복 금지. 사업자통관 수락·창고·관세사·할증은 별도 확인.`;
+ }
+ $('sea-result').textContent=`공개 운임 소계 ${won(subtotal)} / 판매단위당 ${won(subtotal/units)}. ${explanation} 전체 착지원가·마진이 아닙니다.`;
+}
+for(const id of ['sea-route','sea-cbm','sea-kg','sea-units','sea-volume','sea-co'])$(id).addEventListener('input',seaQuote);
+for(const id of ['scenario','size','credit','scope'])$(id).onchange=render;$('query').oninput=render;render();
+</script></html>
